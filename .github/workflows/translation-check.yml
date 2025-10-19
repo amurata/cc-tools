@@ -1,0 +1,76 @@
+name: Translation Freshness Check
+
+on:
+  schedule:
+    # 毎週土曜日 12:00 JST (03:00 UTC)
+    - cron: '0 3 * * 6'
+  workflow_dispatch:  # 手動実行も可能
+
+jobs:
+  check-translations:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check translation freshness
+        id: check
+        run: |
+          # 翻訳チェックスクリプトを実行
+          bash i18n/scripts/check-outdated.sh > /tmp/outdated.txt
+
+          if [ -s /tmp/outdated.txt ]; then
+            echo "outdated=true" >> $GITHUB_OUTPUT
+            echo "## 翻訳の更新が必要なファイル" >> /tmp/report.md
+            cat /tmp/outdated.txt >> /tmp/report.md
+          else
+            echo "outdated=false" >> $GITHUB_OUTPUT
+            echo "すべての翻訳は最新です ✅" >> /tmp/report.md
+          fi
+
+      - name: Create or update issue
+        if: steps.check.outputs.outdated == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('/tmp/report.md', 'utf8');
+
+            // 既存のissueを検索
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ['i18n', 'translation-outdated'],
+              state: 'open'
+            });
+
+            const title = '🌐 翻訳の更新が必要です';
+            const body = `${report}\n\n---\n*自動生成 - ${new Date().toISOString()}*`;
+
+            if (issues.data.length > 0) {
+              // 既存issueを更新
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issues.data[0].number,
+                body: body
+              });
+            } else {
+              // 新規issue作成
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: title,
+                body: body,
+                labels: ['i18n', 'translation-outdated']
+              });
+            }

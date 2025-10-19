@@ -1,0 +1,38 @@
+{
+  "version": "1.0.0",
+  "source_language": "en",
+  "target_languages": ["ja"],
+  "last_updated": "2025-10-20T00:00:00Z",
+  "tiers": {
+    "tier1": {
+      "description": "Core documentation - highest priority",
+      "files": [
+        "README.md",
+        "CLAUDE.md",
+        "docs/agent-skills.md",
+        "docs/agents.md",
+        "docs/architecture.md",
+        "docs/plugins.md",
+        "docs/usage.md",
+        ".claude-plugin/marketplace.json"
+      ]
+    },
+    "tier2": {
+      "description": ".claude directory - agents and commands",
+      "pattern": ".claude/**/*.md"
+    },
+    "tier3": {
+      "description": "plugins directory - all plugins",
+      "pattern": "plugins/**/*.md"
+    }
+  },
+  "exclude_patterns": [
+    "instructions/**/*",
+    ".claude/ja/**/*",
+    "i18n/**/*",
+    ".git/**/*",
+    ".serena/**/*",
+    "node_modules/**/*"
+  ],
+  "translations": {}
+}
