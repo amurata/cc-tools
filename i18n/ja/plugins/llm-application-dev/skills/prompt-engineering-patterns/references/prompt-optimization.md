@@ -175,16 +175,16 @@ def improve_accuracy(prompt, failure_cases):
 
     # 一般的な失敗に対する制約を追加
     if has_format_errors(failure_cases):
-        improvements.append("出力は追加テキストなしの有効なJSONである必要があります。")
+        improvements.append("Output must be valid JSON with no additional text.")
 
     # エッジケースの例を追加
     edge_cases = identify_edge_cases(failure_cases)
     if edge_cases:
-        improvements.append(f"エッジケースの例:\\n{format_examples(edge_cases)}")
+        improvements.append(f"Examples of edge cases:\\n{format_examples(edge_cases)}")
 
     # 検証ステップを追加
     if has_logical_errors(failure_cases):
-        improvements.append("応答する前に、答えが論理的に一貫していることを確認してください。")
+        improvements.append("Before responding, verify your answer is logically consistent.")
 
     # 指示を強化
     if has_ambiguity_errors(failure_cases):
@@ -231,43 +231,179 @@ class PromptMetrics:
         return np.percentile(latencies, 95)
 ```
 
-[注: 実際のファイルには、自動評価、失敗分析、バージョニング、ロールバックなどの完全なセクションが続きます]
+### 自動評価
+```python
+def evaluate_prompt_comprehensively(prompt, test_suite):
+    results = {
+        'accuracy': [],
+        'consistency': [],
+        'latency': [],
+        'tokens': [],
+        'success_rate': []
+    }
+
+    # 一貫性測定のため、各テストケースを複数回実行
+    for test_case in test_suite:
+        runs = []
+        for _ in range(3):  # テストケースごとに3回実行
+            start = time.time()
+            response = llm.complete(prompt.format(**test_case['input']))
+            latency = time.time() - start
+
+            runs.append(response)
+            results['latency'].append(latency)
+            results['tokens'].append(count_tokens(prompt) + count_tokens(response))
+
+        # 正確性（3回の実行のベスト）
+        accuracies = [evaluate_accuracy(r, test_case['expected']) for r in runs]
+        results['accuracy'].append(max(accuracies))
+
+        # 一貫性（3回の実行がどれだけ似ているか？）
+        results['consistency'].append(calculate_similarity(runs))
+
+        # 成功率（すべての実行が成功？）
+        results['success_rate'].append(all(is_valid(r) for r in runs))
+
+    return {
+        'avg_accuracy': np.mean(results['accuracy']),
+        'avg_consistency': np.mean(results['consistency']),
+        'p95_latency': np.percentile(results['latency'], 95),
+        'avg_tokens': np.mean(results['tokens']),
+        'success_rate': np.mean(results['success_rate'])
+    }
+```
+
+## 失敗分析
+
+### 失敗の分類
+```python
+class FailureAnalyzer:
+    def categorize_failures(self, test_results):
+        categories = {
+            'format_errors': [],
+            'factual_errors': [],
+            'logic_errors': [],
+            'incomplete_responses': [],
+            'hallucinations': [],
+            'off_topic': []
+        }
+
+        for result in test_results:
+            if not result['success']:
+                category = self.determine_failure_type(
+                    result['response'],
+                    result['expected']
+                )
+                categories[category].append(result)
+
+        return categories
+
+    def generate_fixes(self, categorized_failures):
+        fixes = []
+
+        if categorized_failures['format_errors']:
+            fixes.append({
+                'issue': 'Format errors',
+                'fix': 'Add explicit format examples and constraints',
+                'priority': 'high'
+            })
+
+        if categorized_failures['hallucinations']:
+            fixes.append({
+                'issue': 'Hallucinations',
+                'fix': 'Add grounding instruction: "Base your answer only on provided context"',
+                'priority': 'critical'
+            })
+
+        if categorized_failures['incomplete_responses']:
+            fixes.append({
+                'issue': 'Incomplete responses',
+                'fix': 'Add: "Ensure your response fully addresses all parts of the question"',
+                'priority': 'medium'
+            })
+
+        return fixes
+```
+
+## バージョニングとロールバック
+
+### プロンプトバージョン管理
+```python
+class PromptVersionControl:
+    def __init__(self, storage_path):
+        self.storage = storage_path
+        self.versions = []
+
+    def save_version(self, prompt, metadata):
+        version = {
+            'id': len(self.versions),
+            'prompt': prompt,
+            'timestamp': datetime.now(),
+            'metrics': metadata.get('metrics', {}),
+            'description': metadata.get('description', ''),
+            'parent_id': metadata.get('parent_id')
+        }
+        self.versions.append(version)
+        self.persist()
+        return version['id']
+
+    def rollback(self, version_id):
+        if version_id < len(self.versions):
+            return self.versions[version_id]['prompt']
+        raise ValueError(f"Version {version_id} not found")
+
+    def compare_versions(self, v1_id, v2_id):
+        v1 = self.versions[v1_id]
+        v2 = self.versions[v2_id]
+
+        return {
+            'diff': generate_diff(v1['prompt'], v2['prompt']),
+            'metrics_comparison': {
+                metric: {
+                    'v1': v1['metrics'].get(metric),
+                    'v2': v2['metrics'].get(metric),
+                    'change': v2['metrics'].get(metric, 0) - v1['metrics'].get(metric, 0)
+                }
+                for metric in set(v1['metrics'].keys()) | set(v2['metrics'].keys())
+            }
+        }
+```
 
 ## ベストプラクティス
 
-1. **ベースラインを確立**: 常に初期パフォーマンスを測定
-2. **一度に一つ変更**: 明確な帰属のために変数を分離
-3. **徹底的にテスト**: 多様で代表的なテストケースを使用
-4. **メトリクスを追跡**: すべての実験と結果をログ
-5. **有意性を検証**: A/B比較に統計的テストを使用
-6. **変更を文書化**: 何をなぜ変更したかの詳細なメモを保持
-7. **すべてをバージョン管理**: 以前のバージョンへのロールバックを可能に
-8. **本番環境を監視**: デプロイされたプロンプトを継続的に評価
+1. **ベースラインを確立**: 常に初期パフォーマンスを測定します
+2. **一度に一つ変更**: 明確な帰属のために変数を分離します
+3. **徹底的にテスト**: 多様で代表的なテストケースを使用します
+4. **メトリクスを追跡**: すべての実験と結果をログに記録します
+5. **有意性を検証**: A/B比較に統計的テストを使用します
+6. **変更を文書化**: 何をなぜ変更したかの詳細なメモを保持します
+7. **すべてをバージョン管理**: 以前のバージョンへのロールバックを可能にします
+8. **本番環境を監視**: デプロイされたプロンプトを継続的に評価します
 
 ## 一般的な最適化パターン
 
 ### パターン1: 構造を追加
 ```
-前: "このテキストを分析"
-後: "このテキストを以下について分析:\n1. メイントピック\n2. 主要な論点\n3. 結論"
+変更前: "Analyze this text"
+変更後: "Analyze this text for:\n1. Main topic\n2. Key arguments\n3. Conclusion"
 ```
 
 ### パターン2: 例を追加
 ```
-前: "エンティティを抽出"
-後: "エンティティを抽出\\n\\n例:\\nテキスト: AppleがiPhoneを発表\\nエンティティ: {company: Apple, product: iPhone}"
+変更前: "Extract entities"
+変更後: "Extract entities\\n\\nExample:\\nText: Apple released iPhone\\nEntities: {company: Apple, product: iPhone}"
 ```
 
 ### パターン3: 制約を追加
 ```
-前: "これを要約"
-後: "正確に3つの箇条書きで要約、各15語"
+変更前: "Summarize this"
+変更後: "Summarize in exactly 3 bullet points, 15 words each"
 ```
 
 ### パターン4: 検証を追加
 ```
-前: "計算..."
-後: "計算... 次に応答する前に計算が正しいことを検証。"
+変更前: "Calculate..."
+変更後: "Calculate... Then verify your calculation is correct before responding."
 ```
 
 ## ツールとユーティリティ

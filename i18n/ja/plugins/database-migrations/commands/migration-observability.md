@@ -1,25 +1,25 @@
 > **[English](../../../../plugins/database-migrations/commands/migration-observability.md)** | **日本語**
 
 ---
-description: 移行監視、CDC、オブザーバビリティインフラストラクチャ
+description: マイグレーション監視、CDC、オブザーバビリティインフラストラクチャ
 version: "1.0.0"
 tags: [database, cdc, debezium, kafka, prometheus, grafana, monitoring]
 tool_access: [Read, Write, Edit, Bash, WebFetch]
 ---
 
-# 移行オブザーバビリティとリアルタイム監視
+# マイグレーションオブザーバビリティとリアルタイム監視
 
-変更データキャプチャ、リアルタイム移行監視、エンタープライズグレードのオブザーバビリティインフラストラクチャを専門とするデータベースオブザーバビリティエキスパートです。CDCパイプライン、異常検出、自動アラートを備えたデータベース移行のための包括的な監視ソリューションを作成します。
+あなたは、変更データキャプチャ、リアルタイムマイグレーション監視、エンタープライズグレードのオブザーバビリティインフラストラクチャを専門とするデータベースオブザーバビリティエキスパートです。CDCパイプライン、異常検出、自動アラート機能を備えた、データベースマイグレーション用の包括的な監視ソリューションを作成してください。
 
 ## コンテキスト
-ユーザーは、リアルタイムデータ同期（CDC経由）、包括的なメトリクス収集、アラートシステム、ビジュアルダッシュボードを含む、データベース移行のためのオブザーバビリティインフラストラクチャを必要としています。
+ユーザーは、CDCによるリアルタイムデータ同期、包括的なメトリクス収集、アラートシステム、ビジュアルダッシュボードを含む、データベースマイグレーションのためのオブザーバビリティインフラストラクチャを必要としています。
 
 ## 要件
 $ARGUMENTS
 
 ## 指示
 
-### 1. オブザーバブルなMongoDB移行
+### 1. オブザーバブルなMongoDBマイグレーション
 
 ```javascript
 const { MongoClient } = require('mongodb');
@@ -44,20 +44,20 @@ class ObservableAtlasMigration {
         return {
             migrationDuration: new prometheus.Histogram({
                 name: 'mongodb_migration_duration_seconds',
-                help: 'MongoDBマイグレーションの期間',
+                help: 'Duration of MongoDB migrations',
                 labelNames: ['version', 'status'],
                 buckets: [1, 5, 15, 30, 60, 300],
                 registers: [register]
             }),
             documentsProcessed: new prometheus.Counter({
                 name: 'mongodb_migration_documents_total',
-                help: '処理されたドキュメント総数',
+                help: 'Total documents processed',
                 labelNames: ['version', 'collection'],
                 registers: [register]
             }),
             migrationErrors: new prometheus.Counter({
                 name: 'mongodb_migration_errors_total',
-                help: 'マイグレーションエラー総数',
+                help: 'Total migration errors',
                 labelNames: ['version', 'error_type'],
                 registers: [register]
             }),
@@ -79,7 +79,7 @@ class ObservableAtlasMigration {
         const session = this.client.startSession();
 
         try {
-            this.logger.info(`マイグレーション ${version} を開始`);
+            this.logger.info(`Starting migration ${version}`);
 
             await session.withTransaction(async () => {
                 await migration.up(db, session, (collection, count) => {
@@ -91,7 +91,7 @@ class ObservableAtlasMigration {
             });
 
             timer({ status: 'success' });
-            this.logger.info(`マイグレーション ${version} 完了`);
+            this.logger.info(`Migration ${version} completed`);
 
         } catch (error) {
             this.metrics.migrationErrors.inc({
@@ -107,7 +107,7 @@ class ObservableAtlasMigration {
 }
 ```
 
-### 2. Debeziumを使用した変更データキャプチャ
+### 2. Debeziumによる変更データキャプチャ
 
 ```python
 import asyncio
@@ -125,17 +125,17 @@ class CDCObservabilityManager:
         return {
             'events_processed': Counter(
                 'cdc_events_processed_total',
-                '処理されたCDCイベント総数',
+                'Total CDC events processed',
                 ['source', 'table', 'operation']
             ),
             'consumer_lag': Gauge(
                 'cdc_consumer_lag_messages',
-                'メッセージのコンシューマーラグ',
+                'Consumer lag in messages',
                 ['topic', 'partition']
             ),
             'replication_lag': Gauge(
                 'cdc_replication_lag_seconds',
-                'レプリケーションラグ',
+                'Replication lag',
                 ['source_table', 'target_table']
             )
         }
@@ -191,16 +191,175 @@ class CDCObservabilityManager:
 
 ### 3. エンタープライズ監視とアラート
 
-[Pythonコードはそのまま保持し、コメントのみ日本語化]
+```python
+from prometheus_client import Counter, Gauge, Histogram, Summary
+import numpy as np
+
+class EnterpriseMigrationMonitor:
+    def __init__(self, config):
+        self.config = config
+        self.registry = prometheus.CollectorRegistry()
+        self.metrics = self.setup_metrics()
+        self.alerting = AlertingSystem(config.get('alerts', {}))
+
+    def setup_metrics(self):
+        return {
+            'migration_duration': Histogram(
+                'migration_duration_seconds',
+                'Migration duration',
+                ['migration_id'],
+                buckets=[60, 300, 600, 1800, 3600],
+                registry=self.registry
+            ),
+            'rows_migrated': Counter(
+                'migration_rows_total',
+                'Total rows migrated',
+                ['migration_id', 'table_name'],
+                registry=self.registry
+            ),
+            'data_lag': Gauge(
+                'migration_data_lag_seconds',
+                'Data lag',
+                ['migration_id'],
+                registry=self.registry
+            )
+        }
+
+    async def track_migration_progress(self, migration_id):
+        while migration.status == 'running':
+            stats = await self.calculate_progress_stats(migration)
+
+            self.metrics['rows_migrated'].labels(
+                migration_id=migration_id,
+                table_name=migration.table
+            ).inc(stats.rows_processed)
+
+            anomalies = await self.detect_anomalies(migration_id, stats)
+            if anomalies:
+                await self.handle_anomalies(migration_id, anomalies)
+
+            await asyncio.sleep(30)
+
+    async def detect_anomalies(self, migration_id, stats):
+        anomalies = []
+
+        if stats.rows_per_second < stats.expected_rows_per_second * 0.5:
+            anomalies.append({
+                'type': 'low_throughput',
+                'severity': 'warning',
+                'message': f'Throughput below expected'
+            })
+
+        if stats.error_rate > 0.01:
+            anomalies.append({
+                'type': 'high_error_rate',
+                'severity': 'critical',
+                'message': f'Error rate exceeds threshold'
+            })
+
+        return anomalies
+
+    async def setup_migration_dashboard(self):
+        dashboard_config = {
+            "dashboard": {
+                "title": "Database Migration Monitoring",
+                "panels": [
+                    {
+                        "title": "Migration Progress",
+                        "targets": [{
+                            "expr": "rate(migration_rows_total[5m])"
+                        }]
+                    },
+                    {
+                        "title": "Data Lag",
+                        "targets": [{
+                            "expr": "migration_data_lag_seconds"
+                        }]
+                    }
+                ]
+            }
+        }
+
+        response = requests.post(
+            f"{self.config['grafana_url']}/api/dashboards/db",
+            json=dashboard_config,
+            headers={'Authorization': f"Bearer {self.config['grafana_token']}"}
+        )
+
+class AlertingSystem:
+    def __init__(self, config):
+        self.config = config
+
+    async def send_alert(self, title, message, severity, **kwargs):
+        if 'slack' in self.config:
+            await self.send_slack_alert(title, message, severity)
+
+        if 'email' in self.config:
+            await self.send_email_alert(title, message, severity)
+
+    async def send_slack_alert(self, title, message, severity):
+        color = {
+            'critical': 'danger',
+            'warning': 'warning',
+            'info': 'good'
+        }.get(severity, 'warning')
+
+        payload = {
+            'text': title,
+            'attachments': [{
+                'color': color,
+                'text': message
+            }]
+        }
+
+        requests.post(self.config['slack']['webhook_url'], json=payload)
+```
 
 ### 4. Grafanaダッシュボード設定
 
-[Pythonコードはそのまま保持]
+```python
+dashboard_panels = [
+    {
+        "id": 1,
+        "title": "Migration Progress",
+        "type": "graph",
+        "targets": [{
+            "expr": "rate(migration_rows_total[5m])",
+            "legendFormat": "{{migration_id}} - {{table_name}}"
+        }]
+    },
+    {
+        "id": 2,
+        "title": "Data Lag",
+        "type": "stat",
+        "targets": [{
+            "expr": "migration_data_lag_seconds"
+        }],
+        "fieldConfig": {
+            "thresholds": {
+                "steps": [
+                    {"value": 0, "color": "green"},
+                    {"value": 60, "color": "yellow"},
+                    {"value": 300, "color": "red"}
+                ]
+            }
+        }
+    },
+    {
+        "id": 3,
+        "title": "Error Rate",
+        "type": "graph",
+        "targets": [{
+            "expr": "rate(migration_errors_total[5m])"
+        }]
+    }
+]
+```
 
 ### 5. CI/CD統合
 
 ```yaml
-name: マイグレーション監視
+name: Migration Monitoring
 
 on:
   push:
@@ -213,17 +372,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: 監視開始
+      - name: Start Monitoring
         run: |
           python migration_monitor.py start \
             --migration-id ${{ github.sha }} \
             --prometheus-url ${{ secrets.PROMETHEUS_URL }}
 
-      - name: マイグレーション実行
+      - name: Run Migration
         run: |
           python migrate.py --environment production
 
-      - name: マイグレーションヘルスチェック
+      - name: Check Migration Health
         run: |
           python migration_monitor.py check \
             --migration-id ${{ github.sha }} \
@@ -232,20 +391,20 @@ jobs:
 
 ## 出力形式
 
-1. **オブザーバブルなMongoDB移行**: メトリクスと検証を備えたAtlasフレームワーク
-2. **監視付きCDCパイプライン**: KafkaとのDebezium統合
+1. **オブザーバブルなMongoDBマイグレーション**: メトリクスと検証機能を備えたAtlasフレームワーク
+2. **監視機能付きCDCパイプライン**: KafkaとのDebezium統合
 3. **エンタープライズメトリクス収集**: Prometheus計装
 4. **異常検出**: 統計分析
 5. **マルチチャネルアラート**: Email、Slack、PagerDuty統合
 6. **Grafanaダッシュボード自動化**: プログラマティックなダッシュボード作成
-7. **レプリケーションラグ追跡**: ソースからターゲットへのラグ監視
+7. **レプリケーション遅延追跡**: ソースからターゲットへの遅延監視
 8. **ヘルスチェックシステム**: 継続的なパイプライン監視
 
-ゼロダウンタイム移行のためのリアルタイム可視性、プロアクティブアラート、包括的なオブザーバビリティに焦点を当ててください。
+ゼロダウンタイムマイグレーションのためのリアルタイム可視性、プロアクティブアラート、包括的なオブザーバビリティに焦点を当ててください。
 
 ## クロスプラグイン統合
 
-このプラグインは以下と統合：
-- **sql-migrations**: SQL移行のオブザーバビリティを提供
+このプラグインは以下と統合されます：
+- **sql-migrations**: SQLマイグレーションのオブザーバビリティを提供
 - **nosql-migrations**: NoSQL変換を監視
 - **migration-integration**: ワークフロー全体の監視を調整

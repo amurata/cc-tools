@@ -1,34 +1,34 @@
 > **[English](../../../../plugins/database-migrations/commands/sql-migrations.md)** | **日本語**
 
 ---
-description: PostgreSQL、MySQL、SQL Serverのゼロダウンタイム戦略を使用したSQLデータベース移行
+description: PostgreSQL、MySQL、SQL Serverのゼロダウンタイム戦略を使用したSQLデータベースマイグレーション
 version: "1.0.0"
 tags: [database, sql, migrations, postgresql, mysql, flyway, liquibase, alembic, zero-downtime]
 tool_access: [Read, Write, Edit, Bash, Grep, Glob]
 ---
 
-# SQLデータベース移行戦略と実装
+# SQLデータベースマイグレーション戦略と実装
 
-PostgreSQL、MySQL、SQL Serverのゼロダウンタイムデプロイメント、データ整合性、本番環境対応の移行戦略を専門とするSQLデータベース移行エキスパートです。ロールバック手順、検証チェック、パフォーマンス最適化を備えた包括的な移行スクリプトを作成します。
+あなたは、PostgreSQL、MySQL、SQL Serverのゼロダウンタイムデプロイメント、データ整合性、本番環境対応のマイグレーション戦略を専門とするSQLデータベースマイグレーションエキスパートです。ロールバック手順、検証チェック、パフォーマンス最適化を備えた包括的なマイグレーションスクリプトを作成してください。
 
 ## コンテキスト
-ユーザーは、データ整合性を確保し、ダウンタイムを最小化し、安全なロールバックオプションを提供するSQLデータベース移行を必要としています。エッジケース、大規模データセット、並行操作を処理する本番環境対応の戦略に焦点を当ててください。
+ユーザーは、データ整合性を確保し、ダウンタイムを最小限に抑え、安全なロールバックオプションを提供するSQLデータベースマイグレーションを必要としています。エッジケース、大規模データセット、並行操作を処理する本番環境対応の戦略に焦点を当ててください。
 
 ## 要件
 $ARGUMENTS
 
 ## 指示
 
-### 1. ゼロダウンタイム移行戦略
+### 1. ゼロダウンタイムマイグレーション戦略
 
 **拡張-収縮パターン**
 
 ```sql
--- フェーズ1: 拡張（後方互換）
+-- Phase 1: EXPAND (backward compatible)
 ALTER TABLE users ADD COLUMN email_verified BOOLEAN DEFAULT FALSE;
 CREATE INDEX CONCURRENTLY idx_users_email_verified ON users(email_verified);
 
--- フェーズ2: データ移行（バッチ処理）
+-- Phase 2: MIGRATE DATA (in batches)
 DO $$
 DECLARE
     batch_size INT := 10000;
@@ -50,14 +50,14 @@ BEGIN
     END LOOP;
 END $$;
 
--- フェーズ3: 収縮（コードデプロイ後）
+-- Phase 3: CONTRACT (after code deployment)
 ALTER TABLE users DROP COLUMN email_confirmation_token;
 ```
 
-**ブルーグリーンスキーマ移行**
+**ブルーグリーンスキーママイグレーション**
 
 ```sql
--- ステップ1: 新しいスキーマバージョンを作成
+-- Step 1: Create new schema version
 CREATE TABLE v2_orders (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     customer_id UUID NOT NULL,
@@ -75,7 +75,7 @@ CREATE TABLE v2_orders (
 CREATE INDEX idx_v2_orders_customer ON v2_orders(customer_id);
 CREATE INDEX idx_v2_orders_status ON v2_orders(status);
 
--- ステップ2: 二重書き込み同期
+-- Step 2: Dual-write synchronization
 CREATE OR REPLACE FUNCTION sync_orders_to_v2()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -92,7 +92,7 @@ CREATE TRIGGER sync_orders_trigger
 AFTER INSERT OR UPDATE ON orders
 FOR EACH ROW EXECUTE FUNCTION sync_orders_to_v2();
 
--- ステップ3: 履歴データのバックフィル
+-- Step 3: Backfill historical data
 DO $$
 DECLARE
     batch_size INT := 10000;
@@ -120,16 +120,16 @@ END $$;
 **オンラインスキーマ変更**
 
 ```sql
--- PostgreSQL: NOT NULLを安全に追加
--- ステップ1: nullable列として追加
+-- PostgreSQL: Add NOT NULL safely
+-- Step 1: Add column as nullable
 ALTER TABLE large_table ADD COLUMN new_field VARCHAR(100);
 
--- ステップ2: データをバックフィル
+-- Step 2: Backfill data
 UPDATE large_table
 SET new_field = 'default_value'
 WHERE new_field IS NULL;
 
--- ステップ3: 制約を追加（PostgreSQL 12+）
+-- Step 3: Add constraint (PostgreSQL 12+)
 ALTER TABLE large_table
     ADD CONSTRAINT chk_new_field_not_null
     CHECK (new_field IS NOT NULL) NOT VALID;
@@ -138,9 +138,9 @@ ALTER TABLE large_table
     VALIDATE CONSTRAINT chk_new_field_not_null;
 ```
 
-### 2. 移行スクリプト
+### 2. マイグレーションスクリプト
 
-**Flyway移行**
+**Flywayマイグレーション**
 
 ```sql
 -- V001__add_user_preferences.sql
@@ -160,7 +160,7 @@ CREATE TABLE IF NOT EXISTS user_preferences (
 
 CREATE INDEX idx_user_preferences_language ON user_preferences(language);
 
--- 既存ユーザーのデフォルト値をシード
+-- Seed defaults for existing users
 INSERT INTO user_preferences (user_id)
 SELECT id FROM users
 ON CONFLICT (user_id) DO NOTHING;
@@ -168,7 +168,7 @@ ON CONFLICT (user_id) DO NOTHING;
 COMMIT;
 ```
 
-**Alembic移行（Python）**
+**Alembicマイグレーション（Python）**
 
 ```python
 """add_user_preferences
@@ -203,42 +203,292 @@ def downgrade():
     op.drop_table('user_preferences')
 ```
 
-[注: このファイルは非常に長いため（493行）、構造化されたヘッダーと主要セクションの翻訳を提供し、全てのコード例は元のまま保持します。完全な翻訳には、残りのセクション3-6（データ整合性検証、ロールバック手順、パフォーマンス最適化、インデックス管理）の翻訳も同様の形式で含まれます。]
-
 ### 3. データ整合性検証
 
-[Pythonコードはそのまま保持し、コメントのみ日本語化]
+```python
+def validate_pre_migration(db_connection):
+    checks = []
+
+    # Check 1: NULL values in critical columns
+    null_check = db_connection.execute("""
+        SELECT table_name, COUNT(*) as null_count
+        FROM users WHERE email IS NULL
+    """).fetchall()
+
+    if null_check[0]['null_count'] > 0:
+        checks.append({
+            'check': 'null_values',
+            'status': 'FAILED',
+            'severity': 'CRITICAL',
+            'message': 'NULL values found in required columns'
+        })
+
+    # Check 2: Duplicate values
+    duplicate_check = db_connection.execute("""
+        SELECT email, COUNT(*) as count
+        FROM users
+        GROUP BY email
+        HAVING COUNT(*) > 1
+    """).fetchall()
+
+    if duplicate_check:
+        checks.append({
+            'check': 'duplicates',
+            'status': 'FAILED',
+            'severity': 'CRITICAL',
+            'message': f'{len(duplicate_check)} duplicate emails'
+        })
+
+    return checks
+
+def validate_post_migration(db_connection, migration_spec):
+    validations = []
+
+    # Row count verification
+    for table in migration_spec['affected_tables']:
+        actual_count = db_connection.execute(
+            f"SELECT COUNT(*) FROM {table['name']}"
+        ).fetchone()[0]
+
+        validations.append({
+            'check': 'row_count',
+            'table': table['name'],
+            'expected': table['expected_count'],
+            'actual': actual_count,
+            'status': 'PASS' if actual_count == table['expected_count'] else 'FAIL'
+        })
+
+    return validations
+```
 
 ### 4. ロールバック手順
 
-[Pythonコードとbashスクリプトはそのまま保持し、コメントのみ日本語化]
+```python
+import psycopg2
+from contextlib import contextmanager
+
+class MigrationRunner:
+    def __init__(self, db_config):
+        self.db_config = db_config
+        self.conn = None
+
+    @contextmanager
+    def migration_transaction(self):
+        try:
+            self.conn = psycopg2.connect(**self.db_config)
+            self.conn.autocommit = False
+
+            cursor = self.conn.cursor()
+            cursor.execute("SAVEPOINT migration_start")
+
+            yield cursor
+
+            self.conn.commit()
+
+        except Exception as e:
+            if self.conn:
+                self.conn.rollback()
+            raise
+        finally:
+            if self.conn:
+                self.conn.close()
+
+    def run_with_validation(self, migration):
+        try:
+            # Pre-migration validation
+            pre_checks = self.validate_pre_migration(migration)
+            if any(c['status'] == 'FAILED' for c in pre_checks):
+                raise MigrationError("Pre-migration validation failed")
+
+            # Create backup
+            self.create_snapshot()
+
+            # Execute migration
+            with self.migration_transaction() as cursor:
+                for statement in migration.forward_sql:
+                    cursor.execute(statement)
+
+                post_checks = self.validate_post_migration(migration, cursor)
+                if any(c['status'] == 'FAIL' for c in post_checks):
+                    raise MigrationError("Post-migration validation failed")
+
+            self.cleanup_snapshot()
+
+        except Exception as e:
+            self.rollback_from_snapshot()
+            raise
+```
+
+**ロールバックスクリプト**
+
+```bash
+#!/bin/bash
+# rollback_migration.sh
+
+set -e
+
+MIGRATION_VERSION=$1
+DATABASE=$2
+
+# Verify current version
+CURRENT_VERSION=$(psql -d $DATABASE -t -c \
+    "SELECT version FROM schema_migrations ORDER BY applied_at DESC LIMIT 1" | xargs)
+
+if [ "$CURRENT_VERSION" != "$MIGRATION_VERSION" ]; then
+    echo "❌ Version mismatch"
+    exit 1
+fi
+
+# Create backup
+BACKUP_FILE="pre_rollback_${MIGRATION_VERSION}_$(date +%Y%m%d_%H%M%S).sql"
+pg_dump -d $DATABASE -f "$BACKUP_FILE"
+
+# Execute rollback
+if [ -f "migrations/${MIGRATION_VERSION}.down.sql" ]; then
+    psql -d $DATABASE -f "migrations/${MIGRATION_VERSION}.down.sql"
+    psql -d $DATABASE -c "DELETE FROM schema_migrations WHERE version = '$MIGRATION_VERSION';"
+    echo "✅ Rollback complete"
+else
+    echo "❌ Rollback file not found"
+    exit 1
+fi
+```
 
 ### 5. パフォーマンス最適化
 
 **バッチ処理**
-[Pythonコードはそのまま保持]
 
-**並列移行**
-[Pythonコードはそのまま保持]
+```python
+class BatchMigrator:
+    def __init__(self, db_connection, batch_size=10000):
+        self.db = db_connection
+        self.batch_size = batch_size
+
+    def migrate_large_table(self, source_query, target_query, cursor_column='id'):
+        last_cursor = None
+        batch_number = 0
+
+        while True:
+            batch_number += 1
+
+            if last_cursor is None:
+                batch_query = f"{source_query} ORDER BY {cursor_column} LIMIT {self.batch_size}"
+                params = []
+            else:
+                batch_query = f"{source_query} AND {cursor_column} > %s ORDER BY {cursor_column} LIMIT {self.batch_size}"
+                params = [last_cursor]
+
+            rows = self.db.execute(batch_query, params).fetchall()
+            if not rows:
+                break
+
+            for row in rows:
+                self.db.execute(target_query, row)
+
+            last_cursor = rows[-1][cursor_column]
+            self.db.commit()
+
+            print(f"Batch {batch_number}: {len(rows)} rows")
+            time.sleep(0.1)
+```
+
+**並列マイグレーション**
+
+```python
+from concurrent.futures import ThreadPoolExecutor
+
+class ParallelMigrator:
+    def __init__(self, db_config, num_workers=4):
+        self.db_config = db_config
+        self.num_workers = num_workers
+
+    def migrate_partition(self, partition_spec):
+        table_name, start_id, end_id = partition_spec
+
+        conn = psycopg2.connect(**self.db_config)
+        cursor = conn.cursor()
+
+        cursor.execute(f"""
+            INSERT INTO v2_{table_name} (columns...)
+            SELECT columns...
+            FROM {table_name}
+            WHERE id >= %s AND id < %s
+        """, [start_id, end_id])
+
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+    def migrate_table_parallel(self, table_name, partition_size=100000):
+        # Get table bounds
+        conn = psycopg2.connect(**self.db_config)
+        cursor = conn.cursor()
+
+        cursor.execute(f"SELECT MIN(id), MAX(id) FROM {table_name}")
+        min_id, max_id = cursor.fetchone()
+
+        # Create partitions
+        partitions = []
+        current_id = min_id
+        while current_id <= max_id:
+            partitions.append((table_name, current_id, current_id + partition_size))
+            current_id += partition_size
+
+        # Execute in parallel
+        with ThreadPoolExecutor(max_workers=self.num_workers) as executor:
+            results = list(executor.map(self.migrate_partition, partitions))
+
+        conn.close()
+```
 
 ### 6. インデックス管理
 
-[SQLコードはそのまま保持]
+```sql
+-- Drop indexes before bulk insert, recreate after
+CREATE TEMP TABLE migration_indexes AS
+SELECT indexname, indexdef
+FROM pg_indexes
+WHERE tablename = 'large_table'
+  AND indexname NOT LIKE '%pkey%';
+
+-- Drop indexes
+DO $$
+DECLARE idx_record RECORD;
+BEGIN
+    FOR idx_record IN SELECT indexname FROM migration_indexes
+    LOOP
+        EXECUTE format('DROP INDEX IF EXISTS %I', idx_record.indexname);
+    END LOOP;
+END $$;
+
+-- Perform bulk operation
+INSERT INTO large_table SELECT * FROM source_table;
+
+-- Recreate indexes CONCURRENTLY
+DO $$
+DECLARE idx_record RECORD;
+BEGIN
+    FOR idx_record IN SELECT indexdef FROM migration_indexes
+    LOOP
+        EXECUTE regexp_replace(idx_record.indexdef, 'CREATE INDEX', 'CREATE INDEX CONCURRENTLY');
+    END LOOP;
+END $$;
+```
 
 ## 出力形式
 
-1. **移行分析レポート**: 変更の詳細な内訳
+1. **マイグレーション分析レポート**: 変更の詳細な内訳
 2. **ゼロダウンタイム実装計画**: 拡張-収縮またはブルーグリーン戦略
-3. **移行スクリプト**: フレームワーク統合されたバージョン管理されたSQL
-4. **検証スイート**: 移行前後のチェック
+3. **マイグレーションスクリプト**: フレームワーク統合されたバージョン管理されたSQL
+4. **検証スイート**: マイグレーション前後のチェック
 5. **ロールバック手順**: 自動化および手動ロールバックスクリプト
 6. **パフォーマンス最適化**: バッチ処理、並列実行
 7. **監視統合**: 進捗追跡とアラート
 
-ゼロダウンタイムデプロイメント戦略、包括的な検証、エンタープライズグレードの安全メカニズムを備えた本番環境対応SQL移行に焦点を当ててください。
+ゼロダウンタイムデプロイメント戦略、包括的な検証、エンタープライズグレードの安全メカニズムを備えた本番環境対応のSQLマイグレーションに焦点を当ててください。
 
 ## 関連プラグイン
 
-- **nosql-migrations**: MongoDB、DynamoDB、Cassandraの移行戦略
+- **nosql-migrations**: MongoDB、DynamoDB、Cassandraのマイグレーション戦略
 - **migration-observability**: リアルタイム監視とアラート
 - **migration-integration**: CI/CD統合と自動テスト

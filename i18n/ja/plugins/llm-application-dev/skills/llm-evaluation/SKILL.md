@@ -11,13 +11,13 @@ description: 自動メトリクス、人間のフィードバック、ベンチ�
 
 ## このスキルを使用する場合
 
-- LLMアプリケーションパフォーマンスを体系的に測定
-- 異なるモデルまたはプロンプトを比較
-- デプロイ前にパフォーマンス低下を検出
-- プロンプト変更からの改善を検証
-- 本番環境システムへの信頼を構築
-- ベースラインを確立し、時間とともに進捗を追跡
-- 予期しないモデル動作のデバッグ
+- LLMアプリケーションパフォーマンスを体系的に測定する場合
+- 異なるモデルまたはプロンプトを比較する場合
+- デプロイ前にパフォーマンス低下を検出する場合
+- プロンプト変更からの改善を検証する場合
+- 本番環境システムへの信頼を構築する場合
+- ベースラインを確立し、時間とともに進捗を追跡する場合
+- 予期しないモデル動作のデバッグを行う場合
 
 ## コア評価タイプ
 
@@ -38,9 +38,9 @@ description: 自動メトリクス、人間のフィードバック、ベンチ�
 - **AUC-ROC**: ランキング品質
 
 **検索（RAG）:**
-- **MRR**: Mean Reciprocal Rank
-- **NDCG**: Normalized Discounted Cumulative Gain
-- **Precision@K**: トップKに関連
+- **MRR**: Mean Reciprocal Rank（平均逆順位）
+- **NDCG**: Normalized Discounted Cumulative Gain（正規化割引累積利得）
+- **Precision@K**: トップKに関連するもの
 - **Recall@K**: トップKでのカバレッジ
 
 ### 2. 人間評価
@@ -55,10 +55,10 @@ description: 自動メトリクス、人間のフィードバック、ベンチ�
 - **有用性**: ユーザーにとって有用
 
 ### 3. LLM-as-Judge
-より強力なLLMを使用して、より弱いモデルの出力を評価。
+より強力なLLMを使用して、より弱いモデルの出力を評価します。
 
 **アプローチ:**
-- **Pointwise**: 個別の応答をスコア
+- **Pointwise**: 個別の応答をスコア付け
 - **Pairwise**: 2つの応答を比較
 - **Reference-based**: ゴールドスタンダードと比較
 - **Reference-free**: 真実なしで判断
@@ -103,7 +103,7 @@ print(f"BLEU Score: {results.metrics['bleu']}")
 from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
 
 def calculate_bleu(reference, hypothesis):
-    """参照と仮説の間のBLEUスコアを計算"""
+    """参照と仮説の間のBLEUスコアを計算します。"""
     smoothie = SmoothingFunction().method4
 
     return sentence_bleu(
@@ -124,7 +124,7 @@ bleu = calculate_bleu(
 from rouge_score import rouge_scorer
 
 def calculate_rouge(reference, hypothesis):
-    """ROUGEスコアを計算"""
+    """ROUGEスコアを計算します。"""
     scorer = rouge_scorer.RougeScorer(['rouge1', 'rouge2', 'rougeL'], use_stemmer=True)
     scores = scorer.score(reference, hypothesis)
 
@@ -140,7 +140,7 @@ def calculate_rouge(reference, hypothesis):
 from bert_score import score
 
 def calculate_bertscore(references, hypotheses):
-    """事前学習済みBERTを使用してBERTScoreを計算"""
+    """事前学習済みBERTを使用してBERTScoreを計算します。"""
     P, R, F1 = score(
         hypotheses,
         references,
@@ -158,7 +158,7 @@ def calculate_bertscore(references, hypotheses):
 ### カスタムメトリクス
 ```python
 def calculate_groundedness(response, context):
-    """応答が提供されたコンテキストに基づいているかをチェック"""
+    """応答が提供されたコンテキストに基づいているかをチェックします。"""
     # NLIモデルを使用して含意をチェック
     from transformers import pipeline
 
@@ -170,14 +170,14 @@ def calculate_groundedness(response, context):
     return result['score'] if result['label'] == 'ENTAILMENT' else 0.0
 
 def calculate_toxicity(text):
-    """生成されたテキストの有害性を測定"""
+    """生成されたテキストの有害性を測定します。"""
     from detoxify import Detoxify
 
     results = Detoxify('original').predict(text)
     return max(results.values())  # 最高の有害性スコアを返す
 
 def calculate_factuality(claim, knowledge_base):
-    """ナレッジベースに対して事実的主張を検証"""
+    """ナレッジベースに対して事実的主張を検証します。"""
     # ナレッジベースに依存する実装
     # 検索+NLI、またはファクトチェックAPIを使用できる
     pass
@@ -188,16 +188,16 @@ def calculate_factuality(claim, knowledge_base):
 ### 単一出力評価
 ```python
 def llm_judge_quality(response, question):
-    """GPT-4を使用して応答品質を判断"""
-    prompt = f"""以下の応答を1-10のスケールで評価:
-1. 正確性（事実的に正しい）
-2. 有用性（質問に答えている）
-3. 明確性（よく書かれ理解しやすい）
+    """GPT-4を使用して応答品質を判断します。"""
+    prompt = f"""Rate the following response on a scale of 1-10 for:
+1. Accuracy (factually correct)
+2. Helpfulness (answers the question)
+3. Clarity (well-written and understandable)
 
-質問: {question}
-応答: {response}
+Question: {question}
+Response: {response}
 
-JSON形式で評価を提供:
+Provide ratings in JSON format:
 {{
   "accuracy": <1-10>,
   "helpfulness": <1-10>,
@@ -218,18 +218,18 @@ JSON形式で評価を提供:
 ### ペアワイズ比較
 ```python
 def compare_responses(question, response_a, response_b):
-    """LLMジャッジを使用して2つの応答を比較"""
-    prompt = f"""これら2つの応答を質問に対して比較し、どちらが優れているかを判断。
+    """LLMジャッジを使用して2つの応答を比較します。"""
+    prompt = f"""Compare these two responses to the question and determine which is better.
 
-質問: {question}
+Question: {question}
 
-応答A: {response_a}
+Response A: {response_a}
 
-応答B: {response_b}
+Response B: {response_b}
 
-どちらの応答が優れているか、その理由は？ 正確性、有用性、明確性を考慮。
+Which response is better and why? Consider accuracy, helpfulness, and clarity.
 
-JSONで回答:
+Answer with JSON:
 {{
   "winner": "A" or "B" or "tie",
   "reasoning": "<explanation>",
@@ -246,7 +246,201 @@ JSONで回答:
     return json.loads(result.choices[0].message.content)
 ```
 
-[注: 実際のファイルには、人間評価フレームワーク、A/Bテスト、回帰テスト、ベンチマークなどの完全なセクションが続きます]
+## 人間評価フレームワーク
+
+### アノテーションガイドライン
+```python
+class AnnotationTask:
+    """人間アノテーションタスクの構造。"""
+
+    def __init__(self, response, question, context=None):
+        self.response = response
+        self.question = question
+        self.context = context
+
+    def get_annotation_form(self):
+        return {
+            "question": self.question,
+            "context": self.context,
+            "response": self.response,
+            "ratings": {
+                "accuracy": {
+                    "scale": "1-5",
+                    "description": "Is the response factually correct?"
+                },
+                "relevance": {
+                    "scale": "1-5",
+                    "description": "Does it answer the question?"
+                },
+                "coherence": {
+                    "scale": "1-5",
+                    "description": "Is it logically consistent?"
+                }
+            },
+            "issues": {
+                "factual_error": False,
+                "hallucination": False,
+                "off_topic": False,
+                "unsafe_content": False
+            },
+            "feedback": ""
+        }
+```
+
+### 評価者間一致度
+```python
+from sklearn.metrics import cohen_kappa_score
+
+def calculate_agreement(rater1_scores, rater2_scores):
+    """評価者間一致度を計算します。"""
+    kappa = cohen_kappa_score(rater1_scores, rater2_scores)
+
+    interpretation = {
+        kappa < 0: "Poor",
+        kappa < 0.2: "Slight",
+        kappa < 0.4: "Fair",
+        kappa < 0.6: "Moderate",
+        kappa < 0.8: "Substantial",
+        kappa <= 1.0: "Almost Perfect"
+    }
+
+    return {
+        "kappa": kappa,
+        "interpretation": interpretation[True]
+    }
+```
+
+## A/Bテスト
+
+### 統計的テストフレームワーク
+```python
+from scipy import stats
+import numpy as np
+
+class ABTest:
+    def __init__(self, variant_a_name="A", variant_b_name="B"):
+        self.variant_a = {"name": variant_a_name, "scores": []}
+        self.variant_b = {"name": variant_b_name, "scores": []}
+
+    def add_result(self, variant, score):
+        """バリアントの評価結果を追加します。"""
+        if variant == "A":
+            self.variant_a["scores"].append(score)
+        else:
+            self.variant_b["scores"].append(score)
+
+    def analyze(self, alpha=0.05):
+        """統計分析を実行します。"""
+        a_scores = self.variant_a["scores"]
+        b_scores = self.variant_b["scores"]
+
+        # T検定
+        t_stat, p_value = stats.ttest_ind(a_scores, b_scores)
+
+        # 効果量（Cohen's d）
+        pooled_std = np.sqrt((np.std(a_scores)**2 + np.std(b_scores)**2) / 2)
+        cohens_d = (np.mean(b_scores) - np.mean(a_scores)) / pooled_std
+
+        return {
+            "variant_a_mean": np.mean(a_scores),
+            "variant_b_mean": np.mean(b_scores),
+            "difference": np.mean(b_scores) - np.mean(a_scores),
+            "relative_improvement": (np.mean(b_scores) - np.mean(a_scores)) / np.mean(a_scores),
+            "p_value": p_value,
+            "statistically_significant": p_value < alpha,
+            "cohens_d": cohens_d,
+            "effect_size": self.interpret_cohens_d(cohens_d),
+            "winner": "B" if np.mean(b_scores) > np.mean(a_scores) else "A"
+        }
+
+    @staticmethod
+    def interpret_cohens_d(d):
+        """Cohen's d効果量を解釈します。"""
+        abs_d = abs(d)
+        if abs_d < 0.2:
+            return "negligible"
+        elif abs_d < 0.5:
+            return "small"
+        elif abs_d < 0.8:
+            return "medium"
+        else:
+            return "large"
+```
+
+## 回帰テスト
+
+### 回帰検出
+```python
+class RegressionDetector:
+    def __init__(self, baseline_results, threshold=0.05):
+        self.baseline = baseline_results
+        self.threshold = threshold
+
+    def check_for_regression(self, new_results):
+        """新しい結果が回帰を示しているかを検出します。"""
+        regressions = []
+
+        for metric in self.baseline.keys():
+            baseline_score = self.baseline[metric]
+            new_score = new_results.get(metric)
+
+            if new_score is None:
+                continue
+
+            # 相対変化を計算
+            relative_change = (new_score - baseline_score) / baseline_score
+
+            # 大幅な減少にフラグを立てる
+            if relative_change < -self.threshold:
+                regressions.append({
+                    "metric": metric,
+                    "baseline": baseline_score,
+                    "current": new_score,
+                    "change": relative_change
+                })
+
+        return {
+            "has_regression": len(regressions) > 0,
+            "regressions": regressions
+        }
+```
+
+## ベンチマーク
+
+### ベンチマークの実行
+```python
+class BenchmarkRunner:
+    def __init__(self, benchmark_dataset):
+        self.dataset = benchmark_dataset
+
+    def run_benchmark(self, model, metrics):
+        """ベンチマークでモデルを実行し、メトリクスを計算します。"""
+        results = {metric.name: [] for metric in metrics}
+
+        for example in self.dataset:
+            # 予測を生成
+            prediction = model.predict(example["input"])
+
+            # 各メトリクスを計算
+            for metric in metrics:
+                score = metric.calculate(
+                    prediction=prediction,
+                    reference=example["reference"],
+                    context=example.get("context")
+                )
+                results[metric.name].append(score)
+
+        # 結果を集約
+        return {
+            metric: {
+                "mean": np.mean(scores),
+                "std": np.std(scores),
+                "min": min(scores),
+                "max": max(scores)
+            }
+            for metric, scores in results.items()
+        }
+```
 
 ## リソース
 
@@ -261,19 +455,19 @@ JSONで回答:
 
 ## ベストプラクティス
 
-1. **複数のメトリクス**: 包括的な視点のために多様なメトリクスを使用
-2. **代表的なデータ**: 実世界の多様な例でテスト
-3. **ベースライン**: 常にベースラインパフォーマンスと比較
-4. **統計的厳密性**: 比較に適切な統計テストを使用
-5. **継続的評価**: CI/CDパイプラインに統合
-6. **人間検証**: 自動メトリクスと人間判断を組み合わせる
-7. **エラー分析**: 失敗を調査して弱点を理解
-8. **バージョン管理**: 評価結果を時間とともに追跡
+1. **複数のメトリクス**: 包括的な視点のために多様なメトリクスを使用します
+2. **代表的なデータ**: 実世界の多様な例でテストします
+3. **ベースライン**: 常にベースラインパフォーマンスと比較します
+4. **統計的厳密性**: 比較に適切な統計テストを使用します
+5. **継続的評価**: CI/CDパイプラインに統合します
+6. **人間検証**: 自動メトリクスと人間の判断を組み合わせます
+7. **エラー分析**: 失敗を調査して弱点を理解します
+8. **バージョン管理**: 評価結果を時間とともに追跡します
 
 ## よくある落とし穴
 
-- **単一メトリクスへの執着**: 他を犠牲にして1つのメトリクスを最適化
-- **小さなサンプルサイズ**: あまりにも少ない例から結論を導き出す
-- **データ汚染**: トレーニングデータでテスト
+- **単一メトリクスへの執着**: 他を犠牲にして1つのメトリクスを最適化してしまう
+- **小さなサンプルサイズ**: あまりにも少ない例から結論を導き出してしまう
+- **データ汚染**: トレーニングデータでテストしてしまう
 - **分散の無視**: 統計的不確実性を考慮しない
-- **メトリクスミスマッチ**: ビジネス目標に合わないメトリクスを使用
+- **メトリクスミスマッチ**: ビジネス目標に合わないメトリクスを使用してしまう

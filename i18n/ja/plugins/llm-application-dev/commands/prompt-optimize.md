@@ -16,7 +16,7 @@ $ARGUMENTS
 
 ### 1. 現在のプロンプトを分析
 
-主要な次元でプロンプトを評価:
+主要な次元でプロンプトを評価します:
 
 **評価フレームワーク**
 - 明確性スコア（1-10）と曖昧性ポイント
@@ -34,42 +34,42 @@ $ARGUMENTS
 
 **標準CoTパターン**
 ```python
-# 前: シンプルな指示
+# Before: Simple instruction
 prompt = "Analyze this customer feedback and determine sentiment"
 
-# 後: CoT強化
-prompt = """このカスタマーフィードバックをステップバイステップで分析:
+# After: CoT enhanced
+prompt = """Analyze this customer feedback step by step:
 
-1. 感情を示すキーフレーズを特定
-2. 各フレーズを分類（ポジティブ/ネガティブ/ニュートラル）
-3. コンテキストと強度を考慮
-4. 全体的なバランスを評価
-5. 支配的な感情と信頼度を決定
+1. Identify key phrases indicating emotion
+2. Categorize each phrase (positive/negative/neutral)
+3. Consider context and intensity
+4. Weigh overall balance
+5. Determine dominant sentiment and confidence
 
-カスタマーフィードバック: {feedback}
+Customer feedback: {feedback}
 
-ステップ1 - 感情的なキーフレーズ:
-[分析...]"""
+Step 1 - Key emotional phrases:
+[Analysis...]"""
 ```
 
 **ゼロショットCoT**
 ```python
-enhanced = original + "\n\n問題をより小さなコンポーネントに分解し、それぞれを慎重に推論しながら、ステップバイステップでアプローチしましょう。"
+enhanced = original + "\n\nLet's approach this step-by-step, breaking down the problem into smaller components and reasoning through each carefully."
 ```
 
 **Tree-of-Thoughts**
 ```python
 tot_prompt = """
-複数の解決パスを探索:
+Explore multiple solution paths:
 
-問題: {problem}
+Problem: {problem}
 
-アプローチA: [パス1]
-アプローチB: [パス2]
-アプローチC: [パス3]
+Approach A: [Path 1]
+Approach B: [Path 2]
+Approach C: [Path 3]
 
-それぞれを評価（実現可能性、完全性、効率: 1-10）
-最良のアプローチを選択して実装。
+Evaluate each (feasibility, completeness, efficiency: 1-10)
+Select best approach and implement.
 """
 ```
 
@@ -78,19 +78,19 @@ tot_prompt = """
 **戦略的な例選択**
 ```python
 few_shot = """
-例1（シンプルケース）:
-入力: {simple_input}
-出力: {simple_output}
+Example 1 (Simple case):
+Input: {simple_input}
+Output: {simple_output}
 
-例2（エッジケース）:
-入力: {complex_input}
-出力: {complex_output}
+Example 2 (Edge case):
+Input: {complex_input}
+Output: {complex_output}
 
-例3（エラーケース - してはいけないこと）:
-間違い: {wrong_approach}
-正しい: {correct_output}
+Example 3 (Error case - what NOT to do):
+Wrong: {wrong_approach}
+Correct: {correct_output}
 
-では以下に適用: {actual_input}
+Now apply to: {actual_input}
 """
 ```
 
@@ -101,15 +101,15 @@ few_shot = """
 constitutional = """
 {initial_instruction}
 
-以下の原則に対して応答をレビュー:
+Review your response against these principles:
 
-1. 正確性: 主張を検証、不確実性にフラグを立てる
-2. 安全性: 害、バイアス、倫理的問題をチェック
-3. 品質: 明確性、一貫性、完全性
+1. ACCURACY: Verify claims, flag uncertainties
+2. SAFETY: Check for harm, bias, ethical issues
+3. QUALITY: Clarity, consistency, completeness
 
-初期応答: [生成]
-自己レビュー: [評価]
-最終応答: [改良]
+Initial Response: [Generate]
+Self-Review: [Evaluate]
+Final Response: [Refined]
 """
 ```
 
@@ -150,9 +150,9 @@ claude_optimized = """
 </task>
 
 <thinking>
-1. 要件を理解...
-2. コンポーネントを特定...
-3. アプローチを計画...
+1. Understanding requirements...
+2. Identifying components...
+3. Planning approach...
 </thinking>
 
 <output_format>
@@ -164,21 +164,21 @@ claude_optimized = """
 **Gemini Pro/Ultra**
 ```python
 gemini_optimized = """
-**システムコンテキスト:** {background}
-**主要目的:** {goal}
+**System Context:** {background}
+**Primary Objective:** {goal}
 
-**プロセス:**
+**Process:**
 1. {action} {target}
 2. {measurement} {criteria}
 
-**出力構造:**
-- 形式: {type}
-- 長さ: {tokens}
-- スタイル: {tone}
+**Output Structure:**
+- Format: {type}
+- Length: {tokens}
+- Style: {tone}
 
-**品質制約:**
-- 引用付きの事実的正確性
-- 免責事項なしの推測なし
+**Quality Constraints:**
+- Factual accuracy with citations
+- No speculation without disclaimers
 """
 ```
 
@@ -187,20 +187,20 @@ gemini_optimized = """
 **RAG最適化プロンプト**
 ```python
 rag_prompt = """
-## コンテキストドキュメント
+## Context Documents
 {retrieved_documents}
 
-## クエリ
+## Query
 {user_question}
 
-## 統合指示
+## Integration Instructions
 
-1. 関連性: 関連ドキュメントを特定、信頼度を記録
-2. 統合: 情報を組み合わせ、ソースを引用 [ソースN]
-3. カバレッジ: すべての側面に対処、ギャップを述べる
-4. 応答: 引用付きの包括的な回答
+1. RELEVANCE: Identify relevant docs, note confidence
+2. SYNTHESIS: Combine info, cite sources [Source N]
+3. COVERAGE: Address all aspects, state gaps
+4. RESPONSE: Comprehensive answer with citations
 
-例: "Based on [ソース1], {answer}。[ソース3]が裏付ける: {detail}。{gap}については情報が見つかりません。"
+Example: "Based on [Source 1], {answer}. [Source 3] corroborates: {detail}. No information found for {gap}."
 """
 ```
 
@@ -209,40 +209,40 @@ rag_prompt = """
 **テストプロトコル**
 ```python
 evaluation = """
-## テストケース（合計20）
-- 典型的ケース: 10
-- エッジケース: 5
-- 敵対的: 3
-- スコープ外: 2
+## Test Cases (20 total)
+- Typical cases: 10
+- Edge cases: 5
+- Adversarial: 3
+- Out-of-scope: 2
 
-## メトリクス
-1. 成功率: {X/20}
-2. 品質（0-100）: 正確性、完全性、一貫性
-3. 効率: トークン、時間、コスト
-4. 安全性: 有害な出力、幻覚、バイアス
+## Metrics
+1. Success Rate: {X/20}
+2. Quality (0-100): Accuracy, Completeness, Coherence
+3. Efficiency: Tokens, time, cost
+4. Safety: Harmful outputs, hallucinations, bias
 """
 ```
 
 **LLM-as-Judge**
 ```python
 judge_prompt = """
-AI応答品質を評価。
+Evaluate AI response quality.
 
-## 元のタスク
+## Original Task
 {prompt}
 
-## 応答
+## Response
 {output}
 
-## 正当化付きで1-10で評価:
-1. タスク完了: 完全に対処？
-2. 正確性: 事実的に正しい？
-3. 推論: 論理的で構造化？
-4. 形式: 要件に一致？
-5. 安全性: 偏りがなく安全？
+## Rate 1-10 with justification:
+1. TASK COMPLETION: Fully addressed?
+2. ACCURACY: Factually correct?
+3. REASONING: Logical and structured?
+4. FORMAT: Matches requirements?
+5. SAFETY: Unbiased and safe?
 
-総合: []/50
-推奨: 受理/改訂/却下
+Overall: []/50
+Recommendation: Accept/Revise/Reject
 """
 ```
 
@@ -271,25 +271,267 @@ class PromptVersion:
 robust_prompt = """
 {main_instruction}
 
-## エラーハンドリング
+## Error Handling
 
-1. 情報不足: "{aspect}についてもっと必要です。{details}を提供してください。"
-2. 矛盾: "要件{A}と{B}が競合しています。優先順位を明確化してください。"
-3. 制限: "{capability}がスコープ外で必要です。代替: {approach}"
-4. 安全性の懸念: "{concern}のため完了できません。安全な代替: {option}"
+1. INSUFFICIENT INFO: "Need more about {aspect}. Please provide {details}."
+2. CONTRADICTIONS: "Conflicting requirements {A} vs {B}. Clarify priority."
+3. LIMITATIONS: "Requires {capability} beyond scope. Alternative: {approach}"
+4. SAFETY CONCERNS: "Cannot complete due to {concern}. Safe alternative: {option}"
 
-## グレースフルデグラデーション
-タスク全体を完了できない場合、境界と次のステップを示して部分的な解決策を提供。
+## Graceful Degradation
+Provide partial solution with boundaries and next steps if full task cannot be completed.
 """
 ```
 
 ## リファレンス例
 
-[注: 実際のファイルには、元の英語版にあるすべてのカスタマーサポート、データ分析、コード生成、メタプロンプトジェネレーターの完全な例が含まれ、コード部分は原文のまま、説明部分は日本語に翻訳されています]
+### 例1: カスタマーサポート
+
+**変更前**
+```
+Answer customer questions about our product.
+```
+
+**変更後**
+```markdown
+You are a senior customer support specialist for TechCorp with 5+ years experience.
+
+## Context
+- Product: {product_name}
+- Customer Tier: {tier}
+- Issue Category: {category}
+
+## Framework
+
+### 1. Acknowledge and Empathize
+Begin with recognition of customer situation.
+
+### 2. Diagnostic Reasoning
+<thinking>
+1. Identify core issue
+2. Consider common causes
+3. Check known issues
+4. Determine resolution path
+</thinking>
+
+### 3. Solution Delivery
+- Immediate fix (if available)
+- Step-by-step instructions
+- Alternative approaches
+- Escalation path
+
+### 4. Verification
+- Confirm understanding
+- Provide resources
+- Set next steps
+
+## Constraints
+- Under 200 words unless technical
+- Professional yet friendly tone
+- Always provide ticket number
+- Escalate if unsure
+
+## Format
+```json
+{
+  "greeting": "...",
+  "diagnosis": "...",
+  "solution": "...",
+  "follow_up": "..."
+}
+```
+```
+
+### 例2: データ分析
+
+**変更前**
+```
+Analyze this sales data and provide insights.
+```
+
+**変更後**
+```python
+analysis_prompt = """
+You are a Senior Data Analyst with expertise in sales analytics and statistical analysis.
+
+## Framework
+
+### Phase 1: Data Validation
+- Missing values, outliers, time range
+- Central tendencies and dispersion
+- Distribution shape
+
+### Phase 2: Trend Analysis
+- Temporal patterns (daily/weekly/monthly)
+- Decompose: trend, seasonal, residual
+- Statistical significance (p-values, confidence intervals)
+
+### Phase 3: Segment Analysis
+- Product categories
+- Geographic regions
+- Customer segments
+- Time periods
+
+### Phase 4: Insights
+<insight_template>
+INSIGHT: {finding}
+- Evidence: {data}
+- Impact: {implication}
+- Confidence: high/medium/low
+- Action: {next_step}
+</insight_template>
+
+### Phase 5: Recommendations
+1. High Impact + Quick Win
+2. Strategic Initiative
+3. Risk Mitigation
+
+## Output Format
+```yaml
+executive_summary:
+  top_3_insights: []
+  revenue_impact: $X.XM
+  confidence: XX%
+
+detailed_analysis:
+  trends: {}
+  segments: {}
+
+recommendations:
+  immediate: []
+  short_term: []
+  long_term: []
+```
+"""
+```
+
+### 例3: コード生成
+
+**変更前**
+```
+Write a Python function to process user data.
+```
+
+**変更後**
+```python
+code_prompt = """
+You are a Senior Software Engineer with 10+ years Python experience. Follow SOLID principles.
+
+## Task
+Process user data: validate, sanitize, transform
+
+## Implementation
+
+### Design Thinking
+<reasoning>
+Edge cases: missing fields, invalid types, malicious input
+Architecture: dataclasses, builder pattern, logging
+</reasoning>
+
+### Code with Safety
+```python
+from dataclasses import dataclass
+from typing import Dict, Any, Union
+import re
+
+@dataclass
+class ProcessedUser:
+    user_id: str
+    email: str
+    name: str
+    metadata: Dict[str, Any]
+
+def validate_email(email: str) -> bool:
+    pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    return bool(re.match(pattern, email))
+
+def sanitize_string(value: str, max_length: int = 255) -> str:
+    value = ''.join(char for char in value if ord(char) >= 32)
+    return value[:max_length].strip()
+
+def process_user_data(raw_data: Dict[str, Any]) -> Union[ProcessedUser, Dict[str, str]]:
+    errors = {}
+    required = ['user_id', 'email', 'name']
+
+    for field in required:
+        if field not in raw_data:
+            errors[field] = f"Missing '{field}'"
+
+    if errors:
+        return {"status": "error", "errors": errors}
+
+    email = sanitize_string(raw_data['email'])
+    if not validate_email(email):
+        return {"status": "error", "errors": {"email": "Invalid format"}}
+
+    return ProcessedUser(
+        user_id=sanitize_string(str(raw_data['user_id']), 50),
+        email=email,
+        name=sanitize_string(raw_data['name'], 100),
+        metadata={k: v for k, v in raw_data.items() if k not in required}
+    )
+```
+
+### Self-Review
+✓ Input validation and sanitization
+✓ Injection prevention
+✓ Error handling
+✓ Performance: O(n) complexity
+"""
+```
+
+### 例4: メタプロンプトジェネレーター
+
+```python
+meta_prompt = """
+You are a meta-prompt engineer generating optimized prompts.
+
+## Process
+
+### 1. Task Analysis
+<decomposition>
+- Core objective: {goal}
+- Success criteria: {outcomes}
+- Constraints: {requirements}
+- Target model: {model}
+</decomposition>
+
+### 2. Architecture Selection
+IF reasoning: APPLY chain_of_thought
+ELIF creative: APPLY few_shot
+ELIF classification: APPLY structured_output
+ELSE: APPLY hybrid
+
+### 3. Component Generation
+1. Role: "You are {expert} with {experience}..."
+2. Context: "Given {background}..."
+3. Instructions: Numbered steps
+4. Examples: Representative cases
+5. Output: Structure specification
+6. Quality: Criteria checklist
+
+### 4. Optimization Passes
+- Pass 1: Clarity
+- Pass 2: Efficiency
+- Pass 3: Robustness
+- Pass 4: Safety
+- Pass 5: Testing
+
+### 5. Evaluation
+- Completeness: []/10
+- Clarity: []/10
+- Efficiency: []/10
+- Robustness: []/10
+- Effectiveness: []/10
+
+Overall: []/50
+Recommendation: use_as_is | iterate | redesign
+"""
+```
 
 ## 出力形式
 
-包括的な最適化レポートを提供:
+包括的な最適化レポートを提供してください:
 
 ### 最適化されたプロンプト
 ```markdown
@@ -338,10 +580,10 @@ next_steps:
 ```
 
 ### 使用ガイドライン
-1. **実装**: 最適化されたプロンプトをそのまま使用
-2. **パラメータ**: 推奨設定を適用
-3. **テスト**: 本番環境前にテストケースを実行
-4. **モニタリング**: 改善のためにメトリクスを追跡
-5. **反復**: パフォーマンスデータに基づいて更新
+1. **実装**: 最適化されたプロンプトをそのまま使用してください
+2. **パラメータ**: 推奨設定を適用してください
+3. **テスト**: 本番環境投入前にテストケースを実行してください
+4. **モニタリング**: 改善のためにメトリクスを追跡してください
+5. **反復**: パフォーマンスデータに基づいて更新してください
 
 覚えておいてください: 最高のプロンプトは、安全性と効率性を維持しながら、最小限の後処理で一貫して望ましい出力を生成するものです。最適な結果を得るには、定期的な評価が不可欠です。
