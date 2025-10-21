@@ -1,4 +1,4 @@
-> **[English](../../../shell-scripting/agents/bash-pro.md)** | **日本語**
+> **[English](../../../plugins/shell-scripting/agents/bash-pro.md)** | **日本語**
 
 ---
 name: bash-pro

@@ -1,4 +1,4 @@
-> **[English](../../../security-scanning/skills/sast-configuration/SKILL.md)** | **日本語**
+> **[English](../../../plugins/security-scanning/skills/sast-configuration/SKILL.md)** | **日本語**
 
 ---
 name: sast-configuration

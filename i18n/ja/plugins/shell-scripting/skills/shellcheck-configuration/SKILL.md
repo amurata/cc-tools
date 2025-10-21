@@ -1,4 +1,4 @@
-> **[English](../../../shell-scripting/skills/shellcheck-configuration/SKILL.md)** | **日本語**
+> **[English](../../../plugins/shell-scripting/skills/shellcheck-configuration/SKILL.md)** | **日本語**
 
 ---
 name: shellcheck-configuration

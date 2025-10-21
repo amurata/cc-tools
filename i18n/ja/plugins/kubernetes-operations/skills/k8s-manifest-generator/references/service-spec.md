@@ -1,4 +1,4 @@
-> **[English](../../../../../../../kubernetes-operations/skills/k8s-manifest-generator/references/service-spec.md)** | **日本語**
+> **[English](../../../../../plugins/kubernetes-operations/skills/k8s-manifest-generator/references/service-spec.md)** | **日本語**
 
 # Kubernetes Service 仕様リファレンス
 

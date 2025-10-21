@@ -1,4 +1,4 @@
-> **[English](../../../security-scanning/agents/security-auditor.md)** | **日本語**
+> **[English](../../../plugins/security-scanning/agents/security-auditor.md)** | **日本語**
 
 ---
 name: security-auditor

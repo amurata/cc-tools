@@ -1,4 +1,4 @@
-> **[English](../../../security-compliance/commands/compliance-check.md)** | **日本語**
+> **[English](../../../plugins/security-compliance/commands/compliance-check.md)** | **日本語**
 
 # 規制コンプライアンスチェック
 

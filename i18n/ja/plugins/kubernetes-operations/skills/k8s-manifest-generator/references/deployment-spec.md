@@ -1,4 +1,4 @@
-> **[English](../../../../../../../kubernetes-operations/skills/k8s-manifest-generator/references/deployment-spec.md)** | **日本語**
+> **[English](../../../../../plugins/kubernetes-operations/skills/k8s-manifest-generator/references/deployment-spec.md)** | **日本語**
 
 # Kubernetes Deployment 仕様リファレンス
 

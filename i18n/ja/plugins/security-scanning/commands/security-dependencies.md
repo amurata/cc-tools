@@ -1,4 +1,4 @@
-> **[English](../../../security-scanning/commands/security-dependencies.md)** | **日本語**
+> **[English](../../../plugins/security-scanning/commands/security-dependencies.md)** | **日本語**
 
 # 依存関係脆弱性スキャン
 

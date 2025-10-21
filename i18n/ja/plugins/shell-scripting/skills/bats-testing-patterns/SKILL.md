@@ -7,7 +7,7 @@ cat > "systems-programming/commands/rust-project.md" << 'RUST_PROJECT_END' && \
 cat > "web-scripting/agents/ruby-pro.md" << 'RUBY_END' && \
 cat > "web-scripting/agents/php-pro.md" << 'PHP_END' && \
 echo "✓ Created all 10 remaining translations"
-> **[English](../../../shell-scripting/skills/bats-testing-patterns/SKILL.md)** | **日本語**
+> **[English](../../../plugins/shell-scripting/skills/bats-testing-patterns/SKILL.md)** | **日本語**
 
 ---
 name: bats-testing-patterns

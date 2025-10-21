@@ -1,4 +1,4 @@
-> **[English](../../../shell-scripting/skills/bash-defensive-patterns/SKILL.md)** | **日本語**
+> **[English](../../../plugins/shell-scripting/skills/bash-defensive-patterns/SKILL.md)** | **日本語**
 
 ---
 name: bash-defensive-patterns  

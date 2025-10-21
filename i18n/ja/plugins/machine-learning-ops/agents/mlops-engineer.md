@@ -1,4 +1,4 @@
-> **[English](../../../../../machine-learning-ops/agents/mlops-engineer.md)** | **日本語**
+> **[English](../../../../../plugins/machine-learning-ops/agents/mlops-engineer.md)** | **日本語**
 
 ---
 name: mlops-engineer

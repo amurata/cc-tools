@@ -1,4 +1,4 @@
-> **[English](../../../../../machine-learning-ops/commands/ml-pipeline.md)** | **日本語**
+> **[English](../../../../../plugins/machine-learning-ops/commands/ml-pipeline.md)** | **日本語**
 
 # 機械学習パイプライン - マルチエージェントMLOpsオーケストレーション
 

@@ -1,4 +1,4 @@
-> **[English](../../../security-scanning/commands/security-hardening.md)** | **日本語**
+> **[English](../../../plugins/security-scanning/commands/security-hardening.md)** | **日本語**
 
 多重エージェントオーケストレーションによる協調的な多層防御戦略を通じて、包括的なセキュリティ強化を実装します。
 

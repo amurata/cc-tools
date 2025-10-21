@@ -1,4 +1,4 @@
-> **[English](../../../security-scanning/commands/security-sast.md)** | **日本語**
+> **[English](../../../plugins/security-scanning/commands/security-sast.md)** | **日本語**
 
 # 静的アプリケーションセキュリティテスト（SAST）
 

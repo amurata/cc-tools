@@ -1,4 +1,4 @@
-> **[English](../../../shell-scripting/agents/posix-shell-pro.md)** | **日本語**
+> **[English](../../../plugins/shell-scripting/agents/posix-shell-pro.md)** | **日本語**
 
 ---
 name: posix-shell-pro

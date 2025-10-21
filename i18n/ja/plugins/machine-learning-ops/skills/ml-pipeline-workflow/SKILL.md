@@ -1,4 +1,4 @@
-> **[English](../../../../../../../machine-learning-ops/skills/ml-pipeline-workflow/SKILL.md)** | **日本語**
+> **[English](../../../../../../../plugins/machine-learning-ops/skills/ml-pipeline-workflow/SKILL.md)** | **日本語**
 
 ---
 name: ml-pipeline-workflow
