@@ -1,4 +1,4 @@
-[EN](../../../../../../plugins/unit-testing/agents/debugger.md) | JA
+> **[English](../../../../../../plugins/unit-testing/agents/debugger.md)** | **日本語**
 
 ---
 name: debugger

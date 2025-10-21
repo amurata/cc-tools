@@ -1,58 +1,58 @@
-[EN](../../../../../../plugins/payment-processing/skills/pci-compliance/SKILL.md) | JA
-
 ---
 name: pci-compliance
-description: Implement PCI DSS compliance requirements for secure handling of payment card data and payment systems. Use when securing payment processing, achieving PCI compliance, or implementing payment card security measures.
+description: 決済カードデータおよび決済システムの安全な取り扱いのためのPCI DSS準拠要件を実装します。決済処理の保護、PCI準拠の達成、決済カードセキュリティ対策の実装時に使用します。
 ---
 
-# PCI Compliance
+> **[English](../../../../../plugins/payment-processing/skills/pci-compliance/SKILL.md)** | **日本語**
 
-Master PCI DSS (Payment Card Industry Data Security Standard) compliance for secure payment processing and handling of cardholder data.
+# PCI準拠
 
-## When to Use This Skill
+安全な決済処理およびカード会員データの取り扱いのためのPCI DSS（Payment Card Industry Data Security Standard）準拠をマスターします。
 
-- Building payment processing systems
-- Handling credit card information
-- Implementing secure payment flows
-- Conducting PCI compliance audits
-- Reducing PCI compliance scope
-- Implementing tokenization and encryption
-- Preparing for PCI DSS assessments
+## このスキルを使用する場面
 
-## PCI DSS Requirements (12 Core Requirements)
+- 決済処理システムの構築
+- クレジットカード情報の取り扱い
+- 安全な決済フローの実装
+- PCI準拠監査の実施
+- PCI準拠範囲の削減
+- トークン化および暗号化の実装
+- PCI DSS評価の準備
 
-### Build and Maintain Secure Network
-1. Install and maintain firewall configuration
-2. Don't use vendor-supplied defaults for passwords
+## PCI DSS要件（12の中核要件）
 
-### Protect Cardholder Data
-3. Protect stored cardholder data
-4. Encrypt transmission of cardholder data across public networks
+### 安全なネットワークの構築と維持
+1. ファイアウォール設定のインストールと維持
+2. パスワードにベンダー提供のデフォルトを使用しない
 
-### Maintain Vulnerability Management
-5. Protect systems against malware
-6. Develop and maintain secure systems and applications
+### カード会員データの保護
+3. 保存されたカード会員データの保護
+4. 公開ネットワーク経由でのカード会員データ送信の暗号化
 
-### Implement Strong Access Control
-7. Restrict access to cardholder data by business need-to-know
-8. Identify and authenticate access to system components
-9. Restrict physical access to cardholder data
+### 脆弱性管理プログラムの維持
+5. マルウェアからシステムを保護
+6. 安全なシステムおよびアプリケーションの開発と維持
 
-### Monitor and Test Networks
-10. Track and monitor all access to network resources and cardholder data
-11. Regularly test security systems and processes
+### 強力なアクセス制御対策の実装
+7. ビジネス上の必要性に基づいてカード会員データへのアクセスを制限
+8. システムコンポーネントへのアクセスの識別と認証
+9. カード会員データへの物理的アクセスの制限
 
-### Maintain Information Security Policy
-12. Maintain a policy that addresses information security
+### ネットワークの監視とテスト
+10. ネットワークリソースおよびカード会員データへのすべてのアクセスの追跡と監視
+11. セキュリティシステムとプロセスの定期的なテスト
 
-## Compliance Levels
+### 情報セキュリティポリシーの維持
+12. 情報セキュリティに対処するポリシーの維持
 
-**Level 1**: > 6 million transactions/year (annual ROC required)
-**Level 2**: 1-6 million transactions/year (annual SAQ)
-**Level 3**: 20,000-1 million e-commerce transactions/year
-**Level 4**: < 20,000 e-commerce or < 1 million total transactions
+## 準拠レベル
 
-## Data Minimization (Never Store)
+**レベル1**: 年間600万件以上の取引（年次ROCが必要）
+**レベル2**: 年間100万～600万件の取引（年次SAQ）
+**レベル3**: 年間2万～100万件のEコマース取引
+**レベル4**: 年間2万件未満のEコマースまたは100万件未満の総取引
+
+## データ最小化（決して保存しない）
 
 ```python
 # NEVER STORE THESE
@@ -98,9 +98,9 @@ class PaymentData:
                 raise SecurityError(f"Attempting to store prohibited field: {field}")
 ```
 
-## Tokenization
+## トークン化
 
-### Using Payment Processor Tokens
+### 決済プロセッサートークンの使用
 ```python
 import stripe
 
@@ -162,7 +162,7 @@ class TokenizedPayment:
         }
 ```
 
-### Custom Tokenization (Advanced)
+### カスタムトークン化（上級）
 ```python
 import secrets
 from cryptography.fernet import Fernet
@@ -202,9 +202,9 @@ class TokenVault:
         self.vault.pop(token, None)
 ```
 
-## Encryption
+## 暗号化
 
-### Data at Rest
+### 保存データ
 ```python
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 import os
@@ -246,7 +246,7 @@ encrypted_pan = storage.encrypt("4242424242424242")
 # Store encrypted_pan in database
 ```
 
-### Data in Transit
+### 転送中のデータ
 ```python
 # Always use TLS 1.2 or higher
 # Flask/Django example
@@ -259,7 +259,7 @@ from flask_talisman import Talisman
 Talisman(app, force_https=True)
 ```
 
-## Access Control
+## アクセス制御
 
 ```python
 from functools import wraps
@@ -294,7 +294,7 @@ def get_payment_methods():
     pass
 ```
 
-## Audit Logging
+## 監査ログ
 
 ```python
 import logging
@@ -338,9 +338,9 @@ audit = PCIAuditLogger()
 audit.log_access(user_id=123, resource='payment_methods', action='read', result='success')
 ```
 
-## Security Best Practices
+## セキュリティベストプラクティス
 
-### Input Validation
+### 入力検証
 ```python
 import re
 
@@ -376,24 +376,24 @@ def sanitize_input(user_input):
     pass
 ```
 
-## PCI DSS SAQ (Self-Assessment Questionnaire)
+## PCI DSS SAQ（自己評価質問票）
 
-### SAQ A (Least Requirements)
-- E-commerce using hosted payment page
-- No card data on your systems
-- ~20 questions
+### SAQ A（最小要件）
+- ホスト型決済ページを使用するEコマース
+- システム上にカードデータなし
+- 約20問
 
 ### SAQ A-EP
-- E-commerce with embedded payment form
-- Uses JavaScript to handle card data
-- ~180 questions
+- 埋め込み決済フォームを使用するEコマース
+- JavaScriptを使用してカードデータを処理
+- 約180問
 
-### SAQ D (Most Requirements)
-- Store, process, or transmit card data
-- Full PCI DSS requirements
-- ~300 questions
+### SAQ D（最大要件）
+- カードデータの保存、処理、または送信
+- 完全なPCI DSS要件
+- 約300問
 
-## Compliance Checklist
+## 準拠チェックリスト
 
 ```python
 PCI_COMPLIANCE_CHECKLIST = {
@@ -435,34 +435,34 @@ PCI_COMPLIANCE_CHECKLIST = {
 }
 ```
 
-## Resources
+## リソース
 
-- **references/data-minimization.md**: Never store prohibited data
-- **references/tokenization.md**: Tokenization strategies
-- **references/encryption.md**: Encryption requirements
-- **references/access-control.md**: Role-based access
-- **references/audit-logging.md**: Comprehensive logging
-- **assets/pci-compliance-checklist.md**: Complete checklist
-- **assets/encrypted-storage.py**: Encryption utilities
-- **scripts/audit-payment-system.sh**: Compliance audit script
+- **references/data-minimization.md**: 禁止データの非保存
+- **references/tokenization.md**: トークン化戦略
+- **references/encryption.md**: 暗号化要件
+- **references/access-control.md**: ロールベースアクセス
+- **references/audit-logging.md**: 包括的なログ記録
+- **assets/pci-compliance-checklist.md**: 完全なチェックリスト
+- **assets/encrypted-storage.py**: 暗号化ユーティリティ
+- **scripts/audit-payment-system.sh**: 準拠監査スクリプト
 
-## Common Violations
+## よくある違反
 
-1. **Storing CVV**: Never store card verification codes
-2. **Unencrypted PAN**: Card numbers must be encrypted at rest
-3. **Weak Encryption**: Use AES-256 or equivalent
-4. **No Access Controls**: Restrict who can access cardholder data
-5. **Missing Audit Logs**: Must log all access to payment data
-6. **Insecure Transmission**: Always use TLS 1.2+
-7. **Default Passwords**: Change all default credentials
-8. **No Security Testing**: Regular penetration testing required
+1. **CVVの保存**: カード検証コードを決して保存しない
+2. **暗号化されていないPAN**: カード番号は保存時に暗号化する必要がある
+3. **弱い暗号化**: AES-256または同等のものを使用
+4. **アクセス制御なし**: カード会員データにアクセスできる人を制限
+5. **監査ログの欠落**: 決済データへのすべてのアクセスをログ記録する必要がある
+6. **安全でない送信**: 常にTLS 1.2以上を使用
+7. **デフォルトパスワード**: すべてのデフォルト認証情報を変更
+8. **セキュリティテストなし**: 定期的な侵入テストが必要
 
-## Reducing PCI Scope
+## PCI範囲の削減
 
-1. **Use Hosted Payments**: Stripe Checkout, PayPal, etc.
-2. **Tokenization**: Replace card data with tokens
-3. **Network Segmentation**: Isolate cardholder data environment
-4. **Outsource**: Use PCI-compliant payment processors
-5. **No Storage**: Never store full card details
+1. **ホスト型決済の使用**: Stripeチェックアウト、PayPalなど
+2. **トークン化**: カードデータをトークンに置き換え
+3. **ネットワークセグメント化**: カード会員データ環境を分離
+4. **アウトソーシング**: PCI準拠の決済プロセッサーを使用
+5. **保存なし**: 完全なカード詳細を決して保存しない
 
-By minimizing systems that touch card data, you reduce compliance burden significantly.
+カードデータに接触するシステムを最小化することで、準拠負担を大幅に削減できます。

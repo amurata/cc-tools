@@ -1,4 +1,4 @@
-[EN](../../../../plugins/multi-platform-apps/agents/ui-ux-designer.md) | JA
+> **[English](../../../../plugins/multi-platform-apps/agents/ui-ux-designer.md)** | **日本語**
 
 ---
 name: ui-ux-designer

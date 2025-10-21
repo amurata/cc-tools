@@ -1,4 +1,4 @@
-[EN](../../../../../../plugins/multi-platform-apps/agents/flutter-expert.md) | JA
+> **[English](../../../../../../plugins/multi-platform-apps/agents/flutter-expert.md)** | **日本語**
 
 ---
 name: flutter-expert

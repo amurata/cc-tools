@@ -1,4 +1,4 @@
-[EN](../../../../../../plugins/seo-content-creation/agents/seo-content-writer.md) | JA
+> **[English](../../../../../../plugins/seo-content-creation/agents/seo-content-writer.md)** | **日本語**
 
 ---
 name: seo-content-writer

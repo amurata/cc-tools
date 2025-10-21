@@ -1,4 +1,4 @@
-[EN](../../../../plugins/tdd-workflows/agents/tdd-orchestrator.md) | JA
+> **[English](../../../../plugins/tdd-workflows/agents/tdd-orchestrator.md)** | **日本語**
 
 ---
 name: tdd-orchestrator

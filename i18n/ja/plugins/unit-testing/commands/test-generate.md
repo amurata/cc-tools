@@ -1,4 +1,4 @@
-[EN](../../../../plugins/unit-testing/commands/test-generate.md) | JA
+> **[English](../../../../plugins/unit-testing/commands/test-generate.md)** | **日本語**
 
 # 自動化されたユニットテスト生成
 

@@ -1,4 +1,4 @@
-[EN](../../../../../plugins/multi-platform-apps/agents/ios-developer.md) | JA
+> **[English](../../../../../plugins/multi-platform-apps/agents/ios-developer.md)** | **日本語**
 
 ---
 name: ios-developer

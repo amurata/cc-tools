@@ -1,4 +1,4 @@
-[EN](../../../../plugins/team-collaboration/commands/issue.md) | JA
+> **[English](../../../../plugins/team-collaboration/commands/issue.md)** | **日本語**
 
 # GitHub Issue解決エキスパート
 

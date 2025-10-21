@@ -1,4 +1,4 @@
-[EN](../../../../../../plugins/seo-analysis-monitoring/agents/seo-authority-builder.md) | JA
+> **[English](../../../../../../plugins/seo-analysis-monitoring/agents/seo-authority-builder.md)** | **日本語**
 
 ---
 name: seo-authority-builder

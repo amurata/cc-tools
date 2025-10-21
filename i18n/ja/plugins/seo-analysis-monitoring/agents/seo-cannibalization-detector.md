@@ -1,4 +1,4 @@
-[EN](../../../../../../plugins/seo-analysis-monitoring/agents/seo-cannibalization-detector.md) | JA
+> **[English](../../../../../../plugins/seo-analysis-monitoring/agents/seo-cannibalization-detector.md)** | **日本語**
 
 ---
 name: seo-cannibalization-detector

@@ -1,67 +1,67 @@
-[EN](../../../../../../plugins/payment-processing/skills/stripe-integration/SKILL.md) | JA
-
 ---
 name: stripe-integration
-description: Implement Stripe payment processing for robust, PCI-compliant payment flows including checkout, subscriptions, and webhooks. Use when integrating Stripe payments, building subscription systems, or implementing secure checkout flows.
+description: 堅牢でPCI準拠の決済フロー（チェックアウト、サブスクリプション、Webhook）を含むStripe決済処理を実装します。Stripe決済の統合、サブスクリプションシステムの構築、安全なチェックアウトフローの実装時に使用します。
 ---
 
-# Stripe Integration
+> **[English](../../../../../plugins/payment-processing/skills/stripe-integration/SKILL.md)** | **日本語**
 
-Master Stripe payment processing integration for robust, PCI-compliant payment flows including checkout, subscriptions, webhooks, and refunds.
+# Stripe統合
 
-## When to Use This Skill
+堅牢でPCI準拠の決済フロー（チェックアウト、サブスクリプション、Webhook、返金）を含むStripe決済処理統合をマスターします。
 
-- Implementing payment processing in web/mobile applications
-- Setting up subscription billing systems
-- Handling one-time payments and recurring charges
-- Processing refunds and disputes
-- Managing customer payment methods
-- Implementing SCA (Strong Customer Authentication) for European payments
-- Building marketplace payment flows with Stripe Connect
+## このスキルを使用する場面
 
-## Core Concepts
+- Webおよびモバイルアプリケーションでの決済処理の実装
+- サブスクリプション課金システムの構築
+- 一回限りの支払いと定期課金の処理
+- 返金および紛争処理
+- 顧客の支払い方法の管理
+- ヨーロッパでの決済向けSCA（強力な顧客認証）の実装
+- Stripe Connectによるマーケットプレイス決済フローの構築
 
-### 1. Payment Flows
-**Checkout Session (Hosted)**
-- Stripe-hosted payment page
-- Minimal PCI compliance burden
-- Fastest implementation
-- Supports one-time and recurring payments
+## コアコンセプト
 
-**Payment Intents (Custom UI)**
-- Full control over payment UI
-- Requires Stripe.js for PCI compliance
-- More complex implementation
-- Better customization options
+### 1. 決済フロー
+**チェックアウトセッション（ホスト型）**
+- Stripeがホストする決済ページ
+- PCI準拠の負担が最小限
+- 最速の実装
+- 一回限りおよび定期支払いをサポート
 
-**Setup Intents (Save Payment Methods)**
-- Collect payment method without charging
-- Used for subscriptions and future payments
-- Requires customer confirmation
+**ペイメントインテント（カスタムUI）**
+- 決済UIの完全な制御
+- PCI準拠のためにStripe.jsが必要
+- より複雑な実装
+- 優れたカスタマイズオプション
 
-### 2. Webhooks
-**Critical Events:**
-- `payment_intent.succeeded`: Payment completed
-- `payment_intent.payment_failed`: Payment failed
-- `customer.subscription.updated`: Subscription changed
-- `customer.subscription.deleted`: Subscription canceled
-- `charge.refunded`: Refund processed
-- `invoice.payment_succeeded`: Subscription payment successful
+**セットアップインテント（支払い方法の保存）**
+- 課金せずに支払い方法を収集
+- サブスクリプションおよび将来の支払いに使用
+- 顧客の確認が必要
 
-### 3. Subscriptions
-**Components:**
-- **Product**: What you're selling
-- **Price**: How much and how often
-- **Subscription**: Customer's recurring payment
-- **Invoice**: Generated for each billing cycle
+### 2. Webhook
+**重要なイベント：**
+- `payment_intent.succeeded`: 支払い完了
+- `payment_intent.payment_failed`: 支払い失敗
+- `customer.subscription.updated`: サブスクリプション変更
+- `customer.subscription.deleted`: サブスクリプションキャンセル
+- `charge.refunded`: 返金処理済み
+- `invoice.payment_succeeded`: サブスクリプション支払い成功
 
-### 4. Customer Management
-- Create and manage customer records
-- Store multiple payment methods
-- Track customer metadata
-- Manage billing details
+### 3. サブスクリプション
+**コンポーネント：**
+- **プロダクト**: 販売しているもの
+- **価格**: 金額と頻度
+- **サブスクリプション**: 顧客の定期支払い
+- **インボイス**: 各請求サイクルごとに生成
 
-## Quick Start
+### 4. 顧客管理
+- 顧客レコードの作成および管理
+- 複数の支払い方法の保存
+- 顧客メタデータの追跡
+- 請求詳細の管理
+
+## クイックスタート
 
 ```python
 import stripe
@@ -93,9 +93,9 @@ session = stripe.checkout.Session.create(
 print(session.url)
 ```
 
-## Payment Implementation Patterns
+## 決済実装パターン
 
-### Pattern 1: One-Time Payment (Hosted Checkout)
+### パターン1: 一回限りの支払い（ホストチェックアウト）
 ```python
 def create_checkout_session(amount, currency='usd'):
     """Create a one-time payment checkout session."""
@@ -128,7 +128,7 @@ def create_checkout_session(amount, currency='usd'):
         raise
 ```
 
-### Pattern 2: Custom Payment Intent Flow
+### パターン2: カスタムペイメントインテントフロー
 ```python
 def create_payment_intent(amount, currency='usd', customer_id=None):
     """Create a payment intent for custom checkout UI."""
@@ -172,7 +172,7 @@ if (error) {
 """
 ```
 
-### Pattern 3: Subscription Creation
+### パターン3: サブスクリプション作成
 ```python
 def create_subscription(customer_id, price_id):
     """Create a subscription for a customer."""
@@ -194,7 +194,7 @@ def create_subscription(customer_id, price_id):
         raise
 ```
 
-### Pattern 4: Customer Portal
+### パターン4: カスタマーポータル
 ```python
 def create_customer_portal_session(customer_id):
     """Create a portal session for customers to manage subscriptions."""
@@ -205,9 +205,9 @@ def create_customer_portal_session(customer_id):
     return session.url  # Redirect customer here
 ```
 
-## Webhook Handling
+## Webhook処理
 
-### Secure Webhook Endpoint
+### 安全なWebhookエンドポイント
 ```python
 from flask import Flask, request
 import stripe
@@ -271,7 +271,7 @@ def handle_subscription_canceled(subscription):
     print(f"Subscription canceled: {subscription['id']}")
 ```
 
-### Webhook Best Practices
+### Webhookベストプラクティス
 ```python
 import hashlib
 import hmac
@@ -302,7 +302,7 @@ def handle_webhook_idempotently(event_id, handler):
         raise
 ```
 
-## Customer Management
+## 顧客管理
 
 ```python
 def create_customer(email, name, payment_method_id=None):
@@ -344,7 +344,7 @@ def list_customer_payment_methods(customer_id):
     return payment_methods.data
 ```
 
-## Refund Handling
+## 返金処理
 
 ```python
 def create_refund(payment_intent_id, amount=None, reason=None):
@@ -375,7 +375,7 @@ def handle_dispute(charge_id, evidence):
     )
 ```
 
-## Testing
+## テスト
 
 ```python
 # Use test mode keys
@@ -413,32 +413,32 @@ def test_payment_flow():
     assert confirmed.status == 'succeeded'
 ```
 
-## Resources
+## リソース
 
-- **references/checkout-flows.md**: Detailed checkout implementation
-- **references/webhook-handling.md**: Webhook security and processing
-- **references/subscription-management.md**: Subscription lifecycle
-- **references/customer-management.md**: Customer and payment method handling
-- **references/invoice-generation.md**: Invoicing and billing
-- **assets/stripe-client.py**: Production-ready Stripe client wrapper
-- **assets/webhook-handler.py**: Complete webhook processor
-- **assets/checkout-config.json**: Checkout configuration templates
+- **references/checkout-flows.md**: 詳細なチェックアウト実装
+- **references/webhook-handling.md**: Webhookセキュリティと処理
+- **references/subscription-management.md**: サブスクリプションライフサイクル
+- **references/customer-management.md**: 顧客および支払い方法の処理
+- **references/invoice-generation.md**: インボイス発行および請求
+- **assets/stripe-client.py**: 本番環境対応のStripeクライアントラッパー
+- **assets/webhook-handler.py**: 完全なWebhookプロセッサー
+- **assets/checkout-config.json**: チェックアウト設定テンプレート
 
-## Best Practices
+## ベストプラクティス
 
-1. **Always Use Webhooks**: Don't rely solely on client-side confirmation
-2. **Idempotency**: Handle webhook events idempotently
-3. **Error Handling**: Gracefully handle all Stripe errors
-4. **Test Mode**: Thoroughly test with test keys before production
-5. **Metadata**: Use metadata to link Stripe objects to your database
-6. **Monitoring**: Track payment success rates and errors
-7. **PCI Compliance**: Never handle raw card data on your server
-8. **SCA Ready**: Implement 3D Secure for European payments
+1. **常にWebhookを使用**: クライアント側の確認のみに依存しない
+2. **冪等性**: Webhookイベントを冪等的に処理
+3. **エラー処理**: すべてのStripeエラーを適切に処理
+4. **テストモード**: 本番環境前にテストキーで徹底的にテスト
+5. **メタデータ**: メタデータを使用してStripeオブジェクトをデータベースにリンク
+6. **モニタリング**: 支払い成功率とエラーを追跡
+7. **PCI準拠**: サーバー上で生のカードデータを処理しない
+8. **SCA対応**: ヨーロッパでの決済向けに3Dセキュアを実装
 
-## Common Pitfalls
+## よくある落とし穴
 
-- **Not Verifying Webhooks**: Always verify webhook signatures
-- **Missing Webhook Events**: Handle all relevant webhook events
-- **Hardcoded Amounts**: Use cents/smallest currency unit
-- **No Retry Logic**: Implement retries for API calls
-- **Ignoring Test Mode**: Test all edge cases with test cards
+- **Webhookの検証なし**: 常にWebhook署名を検証
+- **Webhookイベントの欠落**: すべての関連するWebhookイベントを処理
+- **金額のハードコーディング**: セント/最小通貨単位を使用
+- **リトライロジックなし**: APIコールのリトライを実装
+- **テストモードの無視**: テストカードですべてのエッジケースをテスト

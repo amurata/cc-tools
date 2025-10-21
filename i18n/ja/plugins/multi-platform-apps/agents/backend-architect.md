@@ -1,4 +1,4 @@
-[EN](../../../../../../plugins/multi-platform-apps/agents/backend-architect.md) | JA
+> **[English](../../../../../../plugins/multi-platform-apps/agents/backend-architect.md)** | **日本語**
 
 ---
 name: backend-architect

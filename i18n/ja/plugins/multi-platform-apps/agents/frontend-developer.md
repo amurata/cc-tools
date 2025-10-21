@@ -1,4 +1,4 @@
-[EN](../../../../plugins/multi-platform-apps/agents/frontend-developer.md) | JA
+> **[English](../../../../plugins/multi-platform-apps/agents/frontend-developer.md)** | **日本語**
 
 ---
 name: frontend-developer

@@ -1,4 +1,4 @@
-[EN](../../../../../plugins/backend-development/agents/graphql-architect.md) | JA
+> **[English](../../../../../plugins/backend-development/agents/graphql-architect.md)** | **日本語**
 
 ---
 name: graphql-architect

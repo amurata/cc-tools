@@ -1,4 +1,4 @@
-[EN](../../../../plugins/team-collaboration/commands/standup-notes.md) | JA
+> **[English](../../../../plugins/team-collaboration/commands/standup-notes.md)** | **日本語**
 
 # Standup Notes Generator
 

@@ -1,4 +1,4 @@
-[EN](../../../../../../plugins/seo-technical-optimization/agents/seo-keyword-strategist.md) | JA
+> **[English](../../../../../../plugins/seo-technical-optimization/agents/seo-keyword-strategist.md)** | **日本語**
 
 ---
 name: seo-keyword-strategist

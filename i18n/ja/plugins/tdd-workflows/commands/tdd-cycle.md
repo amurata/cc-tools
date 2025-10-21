@@ -1,201 +1,205 @@
-[EN](../../../../plugins/tdd-workflows/commands/tdd-cycle.md) | JA
+---
+description: 厳格なレッド-グリーン-リファクタ規律を伴う包括的なテスト駆動開発(TDD)ワークフローを実行します。
+---
 
-Execute a comprehensive Test-Driven Development (TDD) workflow with strict red-green-refactor discipline:
+> **[English](../../../plugins/tdd-workflows/commands/tdd-cycle.md)** | **日本語**
 
-[Extended thinking: This workflow enforces test-first development through coordinated agent orchestration. Each phase of the TDD cycle is strictly enforced with fail-first verification, incremental implementation, and continuous refactoring. The workflow supports both single test and test suite approaches with configurable coverage thresholds.]
+厳格なレッド-グリーン-リファクタ規律を伴う包括的なテスト駆動開発(TDD)ワークフローを実行します。
 
-## Configuration
+[拡張思考: このワークフローは、調整されたエージェントオーケストレーションを通じてテストファーストの開発を強制します。TDDサイクルの各フェーズは、失敗優先の検証、段階的な実装、継続的なリファクタリングで厳格に強制されます。ワークフローは、設定可能なカバレッジ閾値を持つ単一テストとテストスイートの両方のアプローチをサポートします。]
 
-### Coverage Thresholds
-- Minimum line coverage: 80%
-- Minimum branch coverage: 75%
-- Critical path coverage: 100%
+## 設定
 
-### Refactoring Triggers
-- Cyclomatic complexity > 10
-- Method length > 20 lines
-- Class length > 200 lines
-- Duplicate code blocks > 3 lines
+### カバレッジ閾値
+- 最小ラインカバレッジ: 80%
+- 最小ブランチカバレッジ: 75%
+- クリティカルパスカバレッジ: 100%
 
-## Phase 1: Test Specification and Design
+### リファクタリングトリガー
+- 循環的複雑度 > 10
+- メソッド長 > 20行
+- クラス長 > 200行
+- 重複コードブロック > 3行
 
-### 1. Requirements Analysis
-- Use Task tool with subagent_type="comprehensive-review::architect-review"
-- Prompt: "Analyze requirements for: $ARGUMENTS. Define acceptance criteria, identify edge cases, and create test scenarios. Output a comprehensive test specification."
-- Output: Test specification, acceptance criteria, edge case matrix
-- Validation: Ensure all requirements have corresponding test scenarios
+## フェーズ1: テスト仕様と設計
 
-### 2. Test Architecture Design
-- Use Task tool with subagent_type="unit-testing::test-automator"
-- Prompt: "Design test architecture for: $ARGUMENTS based on test specification. Define test structure, fixtures, mocks, and test data strategy. Ensure testability and maintainability."
-- Output: Test architecture, fixture design, mock strategy
-- Validation: Architecture supports isolated, fast, reliable tests
+### 1. 要件分析
+- Taskツールを使用し、subagent_type="comprehensive-review::architect-review"
+- プロンプト: "次の要件を分析してください: $ARGUMENTS。受け入れ基準を定義し、エッジケースを特定し、テストシナリオを作成してください。包括的なテスト仕様を出力してください。"
+- 出力: テスト仕様、受け入れ基準、エッジケースマトリックス
+- 検証: すべての要件に対応するテストシナリオがあることを確認
 
-## Phase 2: RED - Write Failing Tests
+### 2. テストアーキテクチャ設計
+- Taskツールを使用し、subagent_type="unit-testing::test-automator"
+- プロンプト: "テスト仕様に基づいて次のテストアーキテクチャを設計してください: $ARGUMENTS。テスト構造、フィクスチャ、モック、テストデータ戦略を定義してください。テスト可能性と保守性を確保してください。"
+- 出力: テストアーキテクチャ、フィクスチャ設計、モック戦略
+- 検証: アーキテクチャが独立した、高速で信頼性の高いテストをサポート
 
-### 3. Write Unit Tests (Failing)
-- Use Task tool with subagent_type="unit-testing::test-automator"
-- Prompt: "Write FAILING unit tests for: $ARGUMENTS. Tests must fail initially. Include edge cases, error scenarios, and happy paths. DO NOT implement production code."
-- Output: Failing unit tests, test documentation
-- **CRITICAL**: Verify all tests fail with expected error messages
+## フェーズ2: レッド - 失敗するテストを書く
 
-### 4. Verify Test Failure
-- Use Task tool with subagent_type="tdd-workflows::code-reviewer"
-- Prompt: "Verify that all tests for: $ARGUMENTS are failing correctly. Ensure failures are for the right reasons (missing implementation, not test errors). Confirm no false positives."
-- Output: Test failure verification report
-- **GATE**: Do not proceed until all tests fail appropriately
+### 3. ユニットテストを書く(失敗)
+- Taskツールを使用し、subagent_type="unit-testing::test-automator"
+- プロンプト: "次の失敗するユニットテストを書いてください: $ARGUMENTS。テストは最初に失敗しなければなりません。エッジケース、エラーシナリオ、ハッピーパスを含めてください。プロダクションコードは実装しないでください。"
+- 出力: 失敗するユニットテスト、テストドキュメント
+- **重要**: すべてのテストが期待されるエラーメッセージで失敗することを検証
 
-## Phase 3: GREEN - Make Tests Pass
+### 4. テスト失敗を検証
+- Taskツールを使用し、subagent_type="tdd-workflows::code-reviewer"
+- プロンプト: "次のすべてのテストが正しく失敗していることを検証してください: $ARGUMENTS。失敗が正しい理由(実装の欠如、テストエラーではない)であることを確認してください。偽陽性がないことを確認してください。"
+- 出力: テスト失敗検証レポート
+- **ゲート**: すべてのテストが適切に失敗するまで続行しない
 
-### 5. Minimal Implementation
-- Use Task tool with subagent_type="backend-development::backend-architect"
-- Prompt: "Implement MINIMAL code to make tests pass for: $ARGUMENTS. Focus only on making tests green. Do not add extra features or optimizations. Keep it simple."
-- Output: Minimal working implementation
-- Constraint: No code beyond what's needed to pass tests
+## フェーズ3: グリーン - テストを成功させる
 
-### 6. Verify Test Success
-- Use Task tool with subagent_type="unit-testing::test-automator"
-- Prompt: "Run all tests for: $ARGUMENTS and verify they pass. Check test coverage metrics. Ensure no tests were accidentally broken."
-- Output: Test execution report, coverage metrics
-- **GATE**: All tests must pass before proceeding
+### 5. 最小限の実装
+- Taskツールを使用し、subagent_type="backend-development::backend-architect"
+- プロンプト: "次のテストを成功させるための最小限のコードを実装してください: $ARGUMENTS。テストをグリーンにすることにのみ焦点を当ててください。追加機能や最適化は加えないでください。シンプルに保ってください。"
+- 出力: 最小限の動作する実装
+- 制約: テストを成功させるために必要なコードのみ
 
-## Phase 4: REFACTOR - Improve Code Quality
+### 6. テスト成功を検証
+- Taskツールを使用し、subagent_type="unit-testing::test-automator"
+- プロンプト: "次のすべてのテストを実行し、成功することを検証してください: $ARGUMENTS。テストカバレッジメトリクスをチェックしてください。誤って壊れたテストがないことを確認してください。"
+- 出力: テスト実行レポート、カバレッジメトリクス
+- **ゲート**: 続行する前にすべてのテストが成功しなければならない
 
-### 7. Code Refactoring
-- Use Task tool with subagent_type="tdd-workflows::code-reviewer"
-- Prompt: "Refactor implementation for: $ARGUMENTS while keeping tests green. Apply SOLID principles, remove duplication, improve naming, and optimize performance. Run tests after each refactoring."
-- Output: Refactored code, refactoring report
-- Constraint: Tests must remain green throughout
+## フェーズ4: リファクタ - コード品質を改善
 
-### 8. Test Refactoring
-- Use Task tool with subagent_type="unit-testing::test-automator"
-- Prompt: "Refactor tests for: $ARGUMENTS. Remove test duplication, improve test names, extract common fixtures, and enhance test readability. Ensure tests still provide same coverage."
-- Output: Refactored tests, improved test structure
-- Validation: Coverage metrics unchanged or improved
+### 7. コードリファクタリング
+- Taskツールを使用し、subagent_type="tdd-workflows::code-reviewer"
+- プロンプト: "テストをグリーンに保ちながら次の実装をリファクタリングしてください: $ARGUMENTS。SOLID原則を適用し、重複を削除し、命名を改善し、パフォーマンスを最適化してください。各リファクタリング後にテストを実行してください。"
+- 出力: リファクタリング済みコード、リファクタリングレポート
+- 制約: テストは全体を通してグリーンに保つ必要がある
 
-## Phase 5: Integration and System Tests
+### 8. テストリファクタリング
+- Taskツールを使用し、subagent_type="unit-testing::test-automator"
+- プロンプト: "次のテストをリファクタリングしてください: $ARGUMENTS。テストの重複を削除し、テスト名を改善し、共通フィクスチャを抽出し、テストの可読性を向上させてください。テストが同じカバレッジを提供することを確認してください。"
+- 出力: リファクタリング済みテスト、改善されたテスト構造
+- 検証: カバレッジメトリクスが変わらないか改善
 
-### 9. Write Integration Tests (Failing First)
-- Use Task tool with subagent_type="unit-testing::test-automator"
-- Prompt: "Write FAILING integration tests for: $ARGUMENTS. Test component interactions, API contracts, and data flow. Tests must fail initially."
-- Output: Failing integration tests
-- Validation: Tests fail due to missing integration logic
+## フェーズ5: 統合とシステムテスト
 
-### 10. Implement Integration
-- Use Task tool with subagent_type="backend-development::backend-architect"
-- Prompt: "Implement integration code for: $ARGUMENTS to make integration tests pass. Focus on component interaction and data flow."
-- Output: Integration implementation
-- Validation: All integration tests pass
+### 9. 統合テストを書く(まず失敗)
+- Taskツールを使用し、subagent_type="unit-testing::test-automator"
+- プロンプト: "次の失敗する統合テストを書いてください: $ARGUMENTS。コンポーネント間の相互作用、API契約、データフローをテストしてください。テストは最初に失敗しなければなりません。"
+- 出力: 失敗する統合テスト
+- 検証: テストが統合ロジックの欠如により失敗
 
-## Phase 6: Continuous Improvement Cycle
+### 10. 統合を実装
+- Taskツールを使用し、subagent_type="backend-development::backend-architect"
+- プロンプト: "統合テストを成功させるために次の統合コードを実装してください: $ARGUMENTS。コンポーネント間の相互作用とデータフローにフォーカスしてください。"
+- 出力: 統合実装
+- 検証: すべての統合テストが成功
 
-### 11. Performance and Edge Case Tests
-- Use Task tool with subagent_type="unit-testing::test-automator"
-- Prompt: "Add performance tests and additional edge case tests for: $ARGUMENTS. Include stress tests, boundary tests, and error recovery tests."
-- Output: Extended test suite
-- Metric: Increased test coverage and scenario coverage
+## フェーズ6: 継続的改善サイクル
 
-### 12. Final Code Review
-- Use Task tool with subagent_type="comprehensive-review::architect-review"
-- Prompt: "Perform comprehensive review of: $ARGUMENTS. Verify TDD process was followed, check code quality, test quality, and coverage. Suggest improvements."
-- Output: Review report, improvement suggestions
-- Action: Implement critical suggestions while maintaining green tests
+### 11. パフォーマンスとエッジケーステスト
+- Taskツールを使用し、subagent_type="unit-testing::test-automator"
+- プロンプト: "次のパフォーマンステストと追加のエッジケーステストを追加してください: $ARGUMENTS。ストレステスト、境界テスト、エラー回復テストを含めてください。"
+- 出力: 拡張テストスイート
+- メトリクス: テストカバレッジとシナリオカバレッジの増加
 
-## Incremental Development Mode
+### 12. 最終コードレビュー
+- Taskツールを使用し、subagent_type="comprehensive-review::architect-review"
+- プロンプト: "次の包括的なレビューを実行してください: $ARGUMENTS。TDDプロセスが守られたことを検証し、コード品質、テスト品質、カバレッジをチェックしてください。改善提案をしてください。"
+- 出力: レビューレポート、改善提案
+- アクション: グリーンテストを維持しながら重要な提案を実装
 
-For test-by-test development:
-1. Write ONE failing test
-2. Make ONLY that test pass
-3. Refactor if needed
-4. Repeat for next test
+## 段階的開発モード
 
-Use this approach by adding `--incremental` flag to focus on one test at a time.
+テストごとの開発の場合:
+1. 1つの失敗するテストを書く
+2. そのテストのみを成功させる
+3. 必要に応じてリファクタリング
+4. 次のテストで繰り返し
 
-## Test Suite Mode
+一度に1つのテストにフォーカスするには`--incremental`フラグを追加してこのアプローチを使用します。
 
-For comprehensive test suite development:
-1. Write ALL tests for a feature/module (failing)
-2. Implement code to pass ALL tests
-3. Refactor entire module
-4. Add integration tests
+## テストスイートモード
 
-Use this approach by adding `--suite` flag for batch test development.
+包括的なテストスイート開発の場合:
+1. 機能/モジュールのすべてのテストを書く(失敗)
+2. すべてのテストを成功させるコードを実装
+3. モジュール全体をリファクタリング
+4. 統合テストを追加
 
-## Validation Checkpoints
+バッチテスト開発には`--suite`フラグを追加してこのアプローチを使用します。
 
-### RED Phase Validation
-- [ ] All tests written before implementation
-- [ ] All tests fail with meaningful error messages
-- [ ] Test failures are due to missing implementation
-- [ ] No test passes accidentally
+## 検証チェックポイント
 
-### GREEN Phase Validation
-- [ ] All tests pass
-- [ ] No extra code beyond test requirements
-- [ ] Coverage meets minimum thresholds
-- [ ] No test was modified to make it pass
+### レッドフェーズ検証
+- [ ] すべてのテストが実装前に書かれている
+- [ ] すべてのテストが意味のあるエラーメッセージで失敗
+- [ ] テスト失敗が実装の欠如による
+- [ ] 偶然成功するテストがない
 
-### REFACTOR Phase Validation
-- [ ] All tests still pass after refactoring
-- [ ] Code complexity reduced
-- [ ] Duplication eliminated
-- [ ] Performance improved or maintained
-- [ ] Test readability improved
+### グリーンフェーズ検証
+- [ ] すべてのテストが成功
+- [ ] テスト要件を超える追加コードなし
+- [ ] カバレッジが最小閾値を満たす
+- [ ] 成功させるためにテストが修正されていない
 
-## Coverage Reports
+### リファクタフェーズ検証
+- [ ] リファクタリング後もすべてのテストが成功
+- [ ] コード複雑度が削減
+- [ ] 重複が排除
+- [ ] パフォーマンスが改善または維持
+- [ ] テストの可読性が改善
 
-Generate coverage reports after each phase:
-- Line coverage
-- Branch coverage
-- Function coverage
-- Statement coverage
+## カバレッジレポート
 
-## Failure Recovery
+各フェーズ後にカバレッジレポートを生成:
+- ラインカバレッジ
+- ブランチカバレッジ
+- 関数カバレッジ
+- ステートメントカバレッジ
 
-If TDD discipline is broken:
-1. **STOP** immediately
-2. Identify which phase was violated
-3. Rollback to last valid state
-4. Resume from correct phase
-5. Document lesson learned
+## 失敗リカバリ
 
-## TDD Metrics Tracking
+TDD規律が破られた場合:
+1. **即座に停止**
+2. どのフェーズが違反されたかを特定
+3. 最後の有効な状態にロールバック
+4. 正しいフェーズから再開
+5. 学んだ教訓を文書化
 
-Track and report:
-- Time in each phase (Red/Green/Refactor)
-- Number of test-implementation cycles
-- Coverage progression
-- Refactoring frequency
-- Defect escape rate
+## TDDメトリクス追跡
 
-## Anti-Patterns to Avoid
+追跡とレポート:
+- 各フェーズの時間(レッド/グリーン/リファクタ)
+- テスト-実装サイクルの数
+- カバレッジの進行
+- リファクタリング頻度
+- 欠陥逃避率
 
-- Writing implementation before tests
-- Writing tests that already pass
-- Skipping the refactor phase
-- Writing multiple features without tests
-- Modifying tests to make them pass
-- Ignoring failing tests
-- Writing tests after implementation
+## 避けるべきアンチパターン
 
-## Success Criteria
+- テスト前に実装を書く
+- すでに成功するテストを書く
+- リファクタフェーズをスキップ
+- テストなしで複数の機能を書く
+- テストを成功させるために修正
+- 失敗するテストを無視
+- 実装後にテストを書く
 
-- 100% of code written test-first
-- All tests pass continuously
-- Coverage exceeds thresholds
-- Code complexity within limits
-- Zero defects in covered code
-- Clear test documentation
-- Fast test execution (< 5 seconds for unit tests)
+## 成功基準
 
-## Notes
+- 100%のコードがテストファースト
+- すべてのテストが継続的に成功
+- カバレッジが閾値を超える
+- コード複雑度が制限内
+- カバーされたコードで欠陥ゼロ
+- 明確なテストドキュメント
+- 高速なテスト実行(ユニットテストは5秒未満)
 
-- Enforce strict RED-GREEN-REFACTOR discipline
-- Each phase must be completed before moving to next
-- Tests are the specification
-- If a test is hard to write, the design needs improvement
-- Refactoring is NOT optional
-- Keep test execution fast
-- Tests should be independent and isolated
+## 注記
 
-TDD implementation for: $ARGUMENTS
+- 厳格なレッド-グリーン-リファクタ規律を強制
+- 各フェーズは次に進む前に完了しなければならない
+- テストが仕様
+- テストが書きにくい場合、設計の改善が必要
+- リファクタリングはオプションではない
+- テスト実行を高速に保つ
+- テストは独立して分離されるべき
+
+TDD実装対象: $ARGUMENTS

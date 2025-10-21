@@ -1,4 +1,4 @@
-[EN](../../../../../../plugins/seo-technical-optimization/agents/seo-snippet-hunter.md) | JA
+> **[English](../../../../../../plugins/seo-technical-optimization/agents/seo-snippet-hunter.md)** | **日本語**
 
 ---
 name: seo-snippet-hunter

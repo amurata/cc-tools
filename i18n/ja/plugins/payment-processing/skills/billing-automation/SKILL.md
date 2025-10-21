@@ -1,54 +1,54 @@
-[EN](../../../../../../plugins/payment-processing/skills/billing-automation/SKILL.md) | JA
-
 ---
 name: billing-automation
-description: Build automated billing systems for recurring payments, invoicing, subscription lifecycle, and dunning management. Use when implementing subscription billing, automating invoicing, or managing recurring payment systems.
+description: 定期支払い、インボイス発行、サブスクリプションライフサイクル、督促管理のための自動請求システムを構築します。サブスクリプション請求の実装、インボイス発行の自動化、定期支払いシステムの管理時に使用します。
 ---
 
-# Billing Automation
+> **[English](../../../../../plugins/payment-processing/skills/billing-automation/SKILL.md)** | **日本語**
 
-Master automated billing systems including recurring billing, invoice generation, dunning management, proration, and tax calculation.
+# 請求自動化
 
-## When to Use This Skill
+定期請求、インボイス生成、督促管理、日割り計算、税計算を含む自動請求システムをマスターします。
 
-- Implementing SaaS subscription billing
-- Automating invoice generation and delivery
-- Managing failed payment recovery (dunning)
-- Calculating prorated charges for plan changes
-- Handling sales tax, VAT, and GST
-- Processing usage-based billing
-- Managing billing cycles and renewals
+## このスキルを使用する場面
 
-## Core Concepts
+- SaaSサブスクリプション請求の実装
+- インボイス生成および配信の自動化
+- 失敗した支払い回収（督促）の管理
+- プラン変更時の日割り料金の計算
+- 売上税、VAT、GSTの処理
+- 使用量ベース請求の処理
+- 請求サイクルと更新の管理
 
-### 1. Billing Cycles
-**Common Intervals:**
-- Monthly (most common for SaaS)
-- Annual (discounted long-term)
-- Quarterly
-- Weekly
-- Custom (usage-based, per-seat)
+## コアコンセプト
 
-### 2. Subscription States
+### 1. 請求サイクル
+**一般的な間隔：**
+- 月次（SaaSで最も一般的）
+- 年次（長期割引）
+- 四半期
+- 週次
+- カスタム（使用量ベース、シート単位）
+
+### 2. サブスクリプションステータス
 ```
 trial → active → past_due → canceled
               → paused → resumed
 ```
 
-### 3. Dunning Management
-Automated process to recover failed payments through:
-- Retry schedules
-- Customer notifications
-- Grace periods
-- Account restrictions
+### 3. 督促管理
+以下を通じて失敗した支払いを回収する自動プロセス：
+- リトライスケジュール
+- 顧客への通知
+- 猶予期間
+- アカウント制限
 
-### 4. Proration
-Adjusting charges when:
-- Upgrading/downgrading mid-cycle
-- Adding/removing seats
-- Changing billing frequency
+### 4. 日割り計算
+以下の場合に料金を調整：
+- サイクル途中でのアップグレード/ダウングレード
+- シートの追加/削除
+- 請求頻度の変更
 
-## Quick Start
+## クイックスタート
 
 ```python
 from billing import BillingEngine, Subscription
@@ -68,7 +68,7 @@ subscription = billing.create_subscription(
 billing.process_billing_cycle(subscription.id)
 ```
 
-## Subscription Lifecycle Management
+## サブスクリプションライフサイクル管理
 
 ```python
 from datetime import datetime, timedelta
@@ -128,7 +128,7 @@ class Subscription:
             return self.current_period_start + timedelta(days=7)
 ```
 
-## Billing Cycle Processing
+## 請求サイクル処理
 
 ```python
 class BillingEngine:
@@ -207,7 +207,7 @@ class BillingEngine:
             return PaymentResult(success=False, error=str(e))
 ```
 
-## Dunning Management
+## 督促管理
 
 ```python
 class DunningManager:
@@ -280,7 +280,7 @@ class DunningManager:
         )
 ```
 
-## Proration
+## 日割り計算
 
 ```python
 class ProrationCalculator:
@@ -330,7 +330,7 @@ class ProrationCalculator:
         }
 ```
 
-## Tax Calculation
+## 税計算
 
 ```python
 class TaxCalculator:
@@ -399,7 +399,7 @@ class TaxCalculator:
         pass
 ```
 
-## Invoice Generation
+## インボイス生成
 
 ```python
 class Invoice:
@@ -478,7 +478,7 @@ class Invoice:
         )
 ```
 
-## Usage-Based Billing
+## 使用量ベース請求
 
 ```python
 class UsageBillingEngine:
@@ -531,31 +531,31 @@ class UsageBillingEngine:
         return charge
 ```
 
-## Resources
+## リソース
 
-- **references/billing-cycles.md**: Billing cycle management
-- **references/dunning-management.md**: Failed payment recovery
-- **references/proration.md**: Prorated charge calculations
-- **references/tax-calculation.md**: Tax/VAT/GST handling
-- **references/invoice-lifecycle.md**: Invoice state management
-- **assets/billing-state-machine.yaml**: Billing workflow
-- **assets/invoice-template.html**: Invoice templates
-- **assets/dunning-policy.yaml**: Dunning configuration
+- **references/billing-cycles.md**: 請求サイクル管理
+- **references/dunning-management.md**: 失敗した支払い回収
+- **references/proration.md**: 日割り料金計算
+- **references/tax-calculation.md**: 税/VAT/GST処理
+- **references/invoice-lifecycle.md**: インボイス状態管理
+- **assets/billing-state-machine.yaml**: 請求ワークフロー
+- **assets/invoice-template.html**: インボイステンプレート
+- **assets/dunning-policy.yaml**: 督促設定
 
-## Best Practices
+## ベストプラクティス
 
-1. **Automate Everything**: Minimize manual intervention
-2. **Clear Communication**: Notify customers of billing events
-3. **Flexible Retry Logic**: Balance recovery with customer experience
-4. **Accurate Proration**: Fair calculation for plan changes
-5. **Tax Compliance**: Calculate correct tax for jurisdiction
-6. **Audit Trail**: Log all billing events
-7. **Graceful Degradation**: Handle edge cases without breaking
+1. **すべてを自動化**: 手動介入を最小化
+2. **明確なコミュニケーション**: 請求イベントを顧客に通知
+3. **柔軟なリトライロジック**: 回収と顧客体験のバランス
+4. **正確な日割り計算**: プラン変更時の公平な計算
+5. **税務コンプライアンス**: 管轄区域の正しい税を計算
+6. **監査証跡**: すべての請求イベントをログ記録
+7. **グレースフル・デグラデーション**: 壊さずにエッジケースを処理
 
-## Common Pitfalls
+## よくある落とし穴
 
-- **Incorrect Proration**: Not accounting for partial periods
-- **Missing Tax**: Forgetting to add tax to invoices
-- **Aggressive Dunning**: Canceling too quickly
-- **No Notifications**: Not informing customers of failures
-- **Hardcoded Cycles**: Not supporting custom billing dates
+- **不正確な日割り計算**: 部分期間を考慮しない
+- **税の欠落**: インボイスに税を追加し忘れる
+- **積極的な督促**: キャンセルが早すぎる
+- **通知なし**: 顧客に失敗を通知しない
+- **ハードコードされたサイクル**: カスタム請求日をサポートしない

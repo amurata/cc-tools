@@ -1,4 +1,4 @@
-[EN](../../../../../../plugins/quantitative-trading/agents/quant-analyst.md) | JA
+> **[English](../../../../../../plugins/quantitative-trading/agents/quant-analyst.md)** | **日本語**
 
 ---
 name: quant-analyst

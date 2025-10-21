@@ -1,58 +1,58 @@
-[EN](../../../../../../plugins/payment-processing/skills/paypal-integration/SKILL.md) | JA
-
 ---
 name: paypal-integration
-description: Integrate PayPal payment processing with support for express checkout, subscriptions, and refund management. Use when implementing PayPal payments, processing online transactions, or building e-commerce checkout flows.
+description: エクスプレスチェックアウト、サブスクリプション、返金管理をサポートするPayPal決済処理を統合します。PayPal決済の実装、オンライン取引の処理、Eコマースチェックアウトフローの構築時に使用します。
 ---
 
-# PayPal Integration
+> **[English](../../../../../plugins/payment-processing/skills/paypal-integration/SKILL.md)** | **日本語**
 
-Master PayPal payment integration including Express Checkout, IPN handling, recurring billing, and refund workflows.
+# PayPal統合
 
-## When to Use This Skill
+エクスプレスチェックアウト、IPN処理、定期請求、返金ワークフローを含むPayPal決済統合をマスターします。
 
-- Integrating PayPal as a payment option
-- Implementing express checkout flows
-- Setting up recurring billing with PayPal
-- Processing refunds and payment disputes
-- Handling PayPal webhooks (IPN)
-- Supporting international payments
-- Implementing PayPal subscriptions
+## このスキルを使用する場面
 
-## Core Concepts
+- 支払いオプションとしてPayPalを統合
+- エクスプレスチェックアウトフローの実装
+- PayPalでの定期請求の設定
+- 返金および支払い紛争の処理
+- PayPal Webhook（IPN）の処理
+- 国際決済のサポート
+- PayPalサブスクリプションの実装
 
-### 1. Payment Products
-**PayPal Checkout**
-- One-time payments
-- Express checkout experience
-- Guest and PayPal account payments
+## コアコンセプト
 
-**PayPal Subscriptions**
-- Recurring billing
-- Subscription plans
-- Automatic renewals
+### 1. 決済プロダクト
+**PayPalチェックアウト**
+- 一回限りの支払い
+- エクスプレスチェックアウト体験
+- ゲストおよびPayPalアカウント決済
 
-**PayPal Payouts**
-- Send money to multiple recipients
-- Marketplace and platform payments
+**PayPalサブスクリプション**
+- 定期請求
+- サブスクリプションプラン
+- 自動更新
 
-### 2. Integration Methods
-**Client-Side (JavaScript SDK)**
-- Smart Payment Buttons
-- Hosted payment flow
-- Minimal backend code
+**PayPalペイアウト**
+- 複数の受取人への送金
+- マーケットプレイスおよびプラットフォーム決済
 
-**Server-Side (REST API)**
-- Full control over payment flow
-- Custom checkout UI
-- Advanced features
+### 2. 統合方法
+**クライアント側（JavaScript SDK）**
+- スマート決済ボタン
+- ホスト型決済フロー
+- 最小限のバックエンドコード
 
-### 3. IPN (Instant Payment Notification)
-- Webhook-like payment notifications
-- Asynchronous payment updates
-- Verification required
+**サーバー側（REST API）**
+- 決済フローの完全な制御
+- カスタムチェックアウトUI
+- 高度な機能
 
-## Quick Start
+### 3. IPN（即時支払い通知）
+- Webhookのような決済通知
+- 非同期決済更新
+- 検証が必要
+
+## クイックスタート
 
 ```javascript
 // Frontend - PayPal Smart Buttons
@@ -117,9 +117,9 @@ def capture_paypal_order(order_id):
         }
 ```
 
-## Express Checkout Implementation
+## エクスプレスチェックアウト実装
 
-### Server-Side Order Creation
+### サーバー側注文作成
 ```python
 import requests
 import json
@@ -188,9 +188,9 @@ class PayPalClient:
         return response.json()
 ```
 
-## IPN (Instant Payment Notification) Handling
+## IPN（即時支払い通知）処理
 
-### IPN Verification and Processing
+### IPN検証と処理
 ```python
 from flask import Flask, request
 import requests
@@ -267,9 +267,9 @@ def handle_chargeback(ipn_data):
     print(f"Chargeback: {txn_id}, Reason: {reason_code}")
 ```
 
-## Subscription/Recurring Billing
+## サブスクリプション/定期請求
 
-### Create Subscription Plan
+### サブスクリプションプラン作成
 ```python
 def create_subscription_plan(name, amount, interval='MONTH'):
     """Create a subscription plan."""
@@ -346,7 +346,7 @@ def create_subscription(plan_id, subscriber_email):
             }
 ```
 
-## Refund Workflows
+## 返金ワークフロー
 
 ```python
 def create_refund(capture_id, amount=None, note=None):
@@ -385,7 +385,7 @@ def get_refund_details(refund_id):
     return response.json()
 ```
 
-## Error Handling
+## エラー処理
 
 ```python
 class PayPalError(Exception):
@@ -412,7 +412,7 @@ except PayPalError as e:
     log_error(e)
 ```
 
-## Testing
+## テスト
 
 ```python
 # Use sandbox credentials
@@ -440,30 +440,30 @@ def test_payment_flow():
     # assert captured['status'] == 'COMPLETED'
 ```
 
-## Resources
+## リソース
 
-- **references/express-checkout.md**: Express Checkout implementation guide
-- **references/ipn-handling.md**: IPN verification and processing
-- **references/refund-workflows.md**: Refund handling patterns
-- **references/billing-agreements.md**: Recurring billing setup
-- **assets/paypal-client.py**: Production PayPal client
-- **assets/ipn-processor.py**: IPN webhook processor
-- **assets/recurring-billing.py**: Subscription management
+- **references/express-checkout.md**: エクスプレスチェックアウト実装ガイド
+- **references/ipn-handling.md**: IPN検証と処理
+- **references/refund-workflows.md**: 返金処理パターン
+- **references/billing-agreements.md**: 定期請求設定
+- **assets/paypal-client.py**: 本番環境対応PayPalクライアント
+- **assets/ipn-processor.py**: IPN Webhookプロセッサー
+- **assets/recurring-billing.py**: サブスクリプション管理
 
-## Best Practices
+## ベストプラクティス
 
-1. **Always Verify IPN**: Never trust IPN without verification
-2. **Idempotent Processing**: Handle duplicate IPN notifications
-3. **Error Handling**: Implement robust error handling
-4. **Logging**: Log all transactions and errors
-5. **Test Thoroughly**: Use sandbox extensively
-6. **Webhook Backup**: Don't rely solely on client-side callbacks
-7. **Currency Handling**: Always specify currency explicitly
+1. **常にIPNを検証**: 検証なしでIPNを信頼しない
+2. **冪等処理**: 重複したIPN通知を処理
+3. **エラー処理**: 堅牢なエラー処理を実装
+4. **ログ記録**: すべての取引とエラーをログ記録
+5. **徹底的にテスト**: サンドボックスを広範囲に使用
+6. **Webhookバックアップ**: クライアント側のコールバックのみに依存しない
+7. **通貨処理**: 常に通貨を明示的に指定
 
-## Common Pitfalls
+## よくある落とし穴
 
-- **Not Verifying IPN**: Accepting IPN without verification
-- **Duplicate Processing**: Not checking for duplicate transactions
-- **Wrong Environment**: Mixing sandbox and production URLs/credentials
-- **Missing Webhooks**: Not handling all payment states
-- **Hardcoded Values**: Not making configurable for different environments
+- **IPNを検証しない**: 検証なしでIPNを受け入れる
+- **重複処理**: 重複した取引をチェックしない
+- **間違った環境**: サンドボックスと本番環境のURL/認証情報を混在
+- **Webhookの欠落**: すべての支払い状態を処理しない
+- **ハードコードされた値**: 異なる環境に対して設定可能にしない

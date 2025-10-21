@@ -1,4 +1,4 @@
-[EN](../../../../../../plugins/seo-technical-optimization/agents/seo-meta-optimizer.md) | JA
+> **[English](../../../../../../plugins/seo-technical-optimization/agents/seo-meta-optimizer.md)** | **日本語**
 
 ---
 name: seo-meta-optimizer

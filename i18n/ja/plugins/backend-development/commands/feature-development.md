@@ -1,146 +1,146 @@
-[EN](../../../../plugins/backend-development/commands/feature-development.md) | JA
+> **[English](../../../plugins/backend-development/commands/feature-development.md)** | **日本語**
 
-Orchestrate end-to-end feature development from requirements to production deployment:
+要求から本番デプロイまでのエンドツーエンドの機能開発をオーケストレーション：
 
-[Extended thinking: This workflow orchestrates specialized agents through comprehensive feature development phases - from discovery and planning through implementation, testing, and deployment. Each phase builds on previous outputs, ensuring coherent feature delivery. The workflow supports multiple development methodologies (traditional, TDD/BDD, DDD), feature complexity levels, and modern deployment strategies including feature flags, gradual rollouts, and observability-first development. Agents receive detailed context from previous phases to maintain consistency and quality throughout the development lifecycle.]
+[Extended thinking: このワークフローは、発見・計画から実装、テスト、デプロイまでの包括的な機能開発フェーズを通じて、専門的なエージェントをオーケストレーションします。各フェーズは前のフェーズの出力に基づいて構築され、一貫性のある機能提供を保証します。このワークフローは、複数の開発手法（従来型、TDD/BDD、DDD）、機能の複雑さレベル、そしてフィーチャーフラグ、段階的ロールアウト、可観測性ファースト開発を含む最新のデプロイ戦略をサポートします。エージェントは、開発ライフサイクル全体を通じて一貫性と品質を維持するために、前のフェーズから詳細なコンテキストを受け取ります。]
 
-## Configuration Options
+## 設定オプション
 
-### Development Methodology
-- **traditional**: Sequential development with testing after implementation
-- **tdd**: Test-Driven Development with red-green-refactor cycles
-- **bdd**: Behavior-Driven Development with scenario-based testing
-- **ddd**: Domain-Driven Design with bounded contexts and aggregates
+### 開発手法
+- **traditional**: 実装後にテストを行う順次開発
+- **tdd**: レッド・グリーン・リファクタサイクルを用いたテスト駆動開発
+- **bdd**: シナリオベースのテストを用いた振る舞い駆動開発
+- **ddd**: 境界づけられたコンテキストと集約を用いたドメイン駆動設計
 
-### Feature Complexity
-- **simple**: Single service, minimal integration (1-2 days)
-- **medium**: Multiple services, moderate integration (3-5 days)
-- **complex**: Cross-domain, extensive integration (1-2 weeks)
-- **epic**: Major architectural changes, multiple teams (2+ weeks)
+### 機能の複雑さ
+- **simple**: 単一サービス、最小限の統合（1〜2日）
+- **medium**: 複数サービス、中程度の統合（3〜5日）
+- **complex**: クロスドメイン、広範な統合（1〜2週間）
+- **epic**: 主要なアーキテクチャ変更、複数チーム（2週間以上）
 
-### Deployment Strategy
-- **direct**: Immediate rollout to all users
-- **canary**: Gradual rollout starting with 5% of traffic
-- **feature-flag**: Controlled activation via feature toggles
-- **blue-green**: Zero-downtime deployment with instant rollback
-- **a-b-test**: Split traffic for experimentation and metrics
+### デプロイ戦略
+- **direct**: すべてのユーザーへの即時ロールアウト
+- **canary**: トラフィックの5%から始める段階的ロールアウト
+- **feature-flag**: フィーチャートグルによる制御されたアクティベーション
+- **blue-green**: 即座にロールバック可能なゼロダウンタイムデプロイ
+- **a-b-test**: 実験とメトリクスのためのトラフィック分割
 
-## Phase 1: Discovery & Requirements Planning
+## フェーズ1: 発見と要求計画
 
-1. **Business Analysis & Requirements**
-   - Use Task tool with subagent_type="business-analytics::business-analyst"
-   - Prompt: "Analyze feature requirements for: $ARGUMENTS. Define user stories, acceptance criteria, success metrics, and business value. Identify stakeholders, dependencies, and risks. Create feature specification document with clear scope boundaries."
-   - Expected output: Requirements document with user stories, success metrics, risk assessment
-   - Context: Initial feature request and business context
+1. **ビジネス分析と要求**
+   - subagent_type="business-analytics::business-analyst"でTaskツールを使用
+   - プロンプト: "$ARGUMENTSの機能要求を分析してください。ユーザーストーリー、受け入れ基準、成功メトリクス、ビジネス価値を定義してください。ステークホルダー、依存関係、リスクを特定してください。明確なスコープ境界を持つ機能仕様ドキュメントを作成してください。"
+   - 期待される出力: ユーザーストーリー、成功メトリクス、リスク評価を含む要求ドキュメント
+   - コンテキスト: 初期機能リクエストとビジネスコンテキスト
 
-2. **Technical Architecture Design**
-   - Use Task tool with subagent_type="comprehensive-review::architect-review"
-   - Prompt: "Design technical architecture for feature: $ARGUMENTS. Using requirements: [include business analysis from step 1]. Define service boundaries, API contracts, data models, integration points, and technology stack. Consider scalability, performance, and security requirements."
-   - Expected output: Technical design document with architecture diagrams, API specifications, data models
-   - Context: Business requirements, existing system architecture
+2. **技術アーキテクチャ設計**
+   - subagent_type="comprehensive-review::architect-review"でTaskツールを使用
+   - プロンプト: "機能の技術アーキテクチャを設計してください: $ARGUMENTS。要求を使用: [ステップ1のビジネス分析を含める]。サービス境界、APIコントラクト、データモデル、統合ポイント、技術スタックを定義してください。スケーラビリティ、パフォーマンス、セキュリティ要件を考慮してください。"
+   - 期待される出力: アーキテクチャ図、API仕様、データモデルを含む技術設計ドキュメント
+   - コンテキスト: ビジネス要求、既存のシステムアーキテクチャ
 
-3. **Feasibility & Risk Assessment**
-   - Use Task tool with subagent_type="security-scanning::security-auditor"
-   - Prompt: "Assess security implications and risks for feature: $ARGUMENTS. Review architecture: [include technical design from step 2]. Identify security requirements, compliance needs, data privacy concerns, and potential vulnerabilities."
-   - Expected output: Security assessment with risk matrix, compliance checklist, mitigation strategies
-   - Context: Technical design, regulatory requirements
+3. **実現可能性とリスク評価**
+   - subagent_type="security-scanning::security-auditor"でTaskツールを使用
+   - プロンプト: "機能のセキュリティ影響とリスクを評価してください: $ARGUMENTS。アーキテクチャをレビュー: [ステップ2の技術設計を含める]。セキュリティ要件、コンプライアンスニーズ、データプライバシーの懸念、潜在的な脆弱性を特定してください。"
+   - 期待される出力: リスクマトリクス、コンプライアンスチェックリスト、緩和戦略を含むセキュリティ評価
+   - コンテキスト: 技術設計、規制要件
 
-## Phase 2: Implementation & Development
+## フェーズ2: 実装と開発
 
-4. **Backend Services Implementation**
-   - Use Task tool with subagent_type="backend-architect"
-   - Prompt: "Implement backend services for: $ARGUMENTS. Follow technical design: [include architecture from step 2]. Build RESTful/GraphQL APIs, implement business logic, integrate with data layer, add resilience patterns (circuit breakers, retries), implement caching strategies. Include feature flags for gradual rollout."
-   - Expected output: Backend services with APIs, business logic, database integration, feature flags
-   - Context: Technical design, API contracts, data models
+4. **バックエンドサービス実装**
+   - subagent_type="backend-architect"でTaskツールを使用
+   - プロンプト: "次の機能のバックエンドサービスを実装してください: $ARGUMENTS。技術設計に従ってください: [ステップ2のアーキテクチャを含める]。RESTful/GraphQL APIを構築し、ビジネスロジックを実装し、データレイヤーと統合し、レジリエンスパターン（サーキットブレーカー、リトライ）を追加し、キャッシング戦略を実装してください。段階的ロールアウトのためのフィーチャーフラグを含めてください。"
+   - 期待される出力: API、ビジネスロジック、データベース統合、フィーチャーフラグを含むバックエンドサービス
+   - コンテキスト: 技術設計、APIコントラクト、データモデル
 
-5. **Frontend Implementation**
-   - Use Task tool with subagent_type="frontend-mobile-development::frontend-developer"
-   - Prompt: "Build frontend components for: $ARGUMENTS. Integrate with backend APIs: [include API endpoints from step 4]. Implement responsive UI, state management, error handling, loading states, and analytics tracking. Add feature flag integration for A/B testing capabilities."
-   - Expected output: Frontend components with API integration, state management, analytics
-   - Context: Backend APIs, UI/UX designs, user stories
+5. **フロントエンド実装**
+   - subagent_type="frontend-mobile-development::frontend-developer"でTaskツールを使用
+   - プロンプト: "次の機能のフロントエンドコンポーネントを構築してください: $ARGUMENTS。バックエンドAPIと統合: [ステップ4のAPIエンドポイントを含める]。レスポンシブUI、状態管理、エラーハンドリング、ローディング状態、分析トラッキングを実装してください。A/Bテスト機能のためのフィーチャーフラグ統合を追加してください。"
+   - 期待される出力: API統合、状態管理、分析を含むフロントエンドコンポーネント
+   - コンテキスト: バックエンドAPI、UI/UXデザイン、ユーザーストーリー
 
-6. **Data Pipeline & Integration**
-   - Use Task tool with subagent_type="data-engineering::data-engineer"
-   - Prompt: "Build data pipelines for: $ARGUMENTS. Design ETL/ELT processes, implement data validation, create analytics events, set up data quality monitoring. Integrate with product analytics platforms for feature usage tracking."
-   - Expected output: Data pipelines, analytics events, data quality checks
-   - Context: Data requirements, analytics needs, existing data infrastructure
+6. **データパイプラインと統合**
+   - subagent_type="data-engineering::data-engineer"でTaskツールを使用
+   - プロンプト: "次の機能のデータパイプラインを構築してください: $ARGUMENTS。ETL/ELTプロセスを設計し、データ検証を実装し、分析イベントを作成し、データ品質モニタリングを設定してください。機能使用追跡のためにプロダクト分析プラットフォームと統合してください。"
+   - 期待される出力: データパイプライン、分析イベント、データ品質チェック
+   - コンテキスト: データ要求、分析ニーズ、既存のデータインフラストラクチャ
 
-## Phase 3: Testing & Quality Assurance
+## フェーズ3: テストと品質保証
 
-7. **Automated Test Suite**
-   - Use Task tool with subagent_type="unit-testing::test-automator"
-   - Prompt: "Create comprehensive test suite for: $ARGUMENTS. Write unit tests for backend: [from step 4] and frontend: [from step 5]. Add integration tests for API endpoints, E2E tests for critical user journeys, performance tests for scalability validation. Ensure minimum 80% code coverage."
-   - Expected output: Test suites with unit, integration, E2E, and performance tests
-   - Context: Implementation code, acceptance criteria, test requirements
+7. **自動テストスイート**
+   - subagent_type="unit-testing::test-automator"でTaskツールを使用
+   - プロンプト: "次の機能の包括的なテストスイートを作成してください: $ARGUMENTS。バックエンド: [ステップ4から]とフロントエンド: [ステップ5から]のユニットテストを作成してください。APIエンドポイントの統合テスト、重要なユーザージャーニーのE2Eテスト、スケーラビリティ検証のためのパフォーマンステストを追加してください。最低80%のコードカバレッジを確保してください。"
+   - 期待される出力: ユニット、統合、E2E、パフォーマンステストを含むテストスイート
+   - コンテキスト: 実装コード、受け入れ基準、テスト要件
 
-8. **Security Validation**
-   - Use Task tool with subagent_type="security-scanning::security-auditor"
-   - Prompt: "Perform security testing for: $ARGUMENTS. Review implementation: [include backend and frontend from steps 4-5]. Run OWASP checks, penetration testing, dependency scanning, and compliance validation. Verify data encryption, authentication, and authorization."
-   - Expected output: Security test results, vulnerability report, remediation actions
-   - Context: Implementation code, security requirements
+8. **セキュリティ検証**
+   - subagent_type="security-scanning::security-auditor"でTaskツールを使用
+   - プロンプト: "次の機能のセキュリティテストを実行してください: $ARGUMENTS。実装をレビュー: [ステップ4〜5のバックエンドとフロントエンドを含める]。OWASPチェック、ペネトレーションテスト、依存関係スキャン、コンプライアンス検証を実行してください。データ暗号化、認証、認可を検証してください。"
+   - 期待される出力: セキュリティテスト結果、脆弱性レポート、修復アクション
+   - コンテキスト: 実装コード、セキュリティ要件
 
-9. **Performance Optimization**
-   - Use Task tool with subagent_type="application-performance::performance-engineer"
-   - Prompt: "Optimize performance for: $ARGUMENTS. Analyze backend services: [from step 4] and frontend: [from step 5]. Profile code, optimize queries, implement caching, reduce bundle sizes, improve load times. Set up performance budgets and monitoring."
-   - Expected output: Performance improvements, optimization report, performance metrics
-   - Context: Implementation code, performance requirements
+9. **パフォーマンス最適化**
+   - subagent_type="application-performance::performance-engineer"でTaskツールを使用
+   - プロンプト: "次の機能のパフォーマンスを最適化してください: $ARGUMENTS。バックエンドサービス: [ステップ4から]とフロントエンド: [ステップ5から]を分析してください。コードをプロファイリングし、クエリを最適化し、キャッシングを実装し、バンドルサイズを削減し、読み込み時間を改善してください。パフォーマンスバジェットとモニタリングを設定してください。"
+   - 期待される出力: パフォーマンス改善、最適化レポート、パフォーマンスメトリクス
+   - コンテキスト: 実装コード、パフォーマンス要件
 
-## Phase 4: Deployment & Monitoring
+## フェーズ4: デプロイとモニタリング
 
-10. **Deployment Strategy & Pipeline**
-    - Use Task tool with subagent_type="deployment-strategies::deployment-engineer"
-    - Prompt: "Prepare deployment for: $ARGUMENTS. Create CI/CD pipeline with automated tests: [from step 7]. Configure feature flags for gradual rollout, implement blue-green deployment, set up rollback procedures. Create deployment runbook and rollback plan."
-    - Expected output: CI/CD pipeline, deployment configuration, rollback procedures
-    - Context: Test suites, infrastructure requirements, deployment strategy
+10. **デプロイ戦略とパイプライン**
+    - subagent_type="deployment-strategies::deployment-engineer"でTaskツールを使用
+    - プロンプト: "次の機能のデプロイを準備してください: $ARGUMENTS。自動テストを含むCI/CDパイプラインを作成: [ステップ7から]。段階的ロールアウトのためのフィーチャーフラグを設定し、ブルーグリーンデプロイを実装し、ロールバック手順を設定してください。デプロイランブックとロールバック計画を作成してください。"
+    - 期待される出力: CI/CDパイプライン、デプロイ設定、ロールバック手順
+    - コンテキスト: テストスイート、インフラストラクチャ要件、デプロイ戦略
 
-11. **Observability & Monitoring**
-    - Use Task tool with subagent_type="observability-monitoring::observability-engineer"
-    - Prompt: "Set up observability for: $ARGUMENTS. Implement distributed tracing, custom metrics, error tracking, and alerting. Create dashboards for feature usage, performance metrics, error rates, and business KPIs. Set up SLOs/SLIs with automated alerts."
-    - Expected output: Monitoring dashboards, alerts, SLO definitions, observability infrastructure
-    - Context: Feature implementation, success metrics, operational requirements
+11. **可観測性とモニタリング**
+    - subagent_type="observability-monitoring::observability-engineer"でTaskツールを使用
+    - プロンプト: "次の機能の可観測性を設定してください: $ARGUMENTS。分散トレーシング、カスタムメトリクス、エラートラッキング、アラートを実装してください。機能使用、パフォーマンスメトリクス、エラー率、ビジネスKPIのダッシュボードを作成してください。自動アラート付きのSLO/SLIを設定してください。"
+    - 期待される出力: モニタリングダッシュボード、アラート、SLO定義、可観測性インフラストラクチャ
+    - コンテキスト: 機能実装、成功メトリクス、運用要件
 
-12. **Documentation & Knowledge Transfer**
-    - Use Task tool with subagent_type="documentation-generation::docs-architect"
-    - Prompt: "Generate comprehensive documentation for: $ARGUMENTS. Create API documentation, user guides, deployment guides, troubleshooting runbooks. Include architecture diagrams, data flow diagrams, and integration guides. Generate automated changelog from commits."
-    - Expected output: API docs, user guides, runbooks, architecture documentation
-    - Context: All previous phases' outputs
+12. **ドキュメントと知識移転**
+    - subagent_type="documentation-generation::docs-architect"でTaskツールを使用
+    - プロンプト: "次の機能の包括的なドキュメントを生成してください: $ARGUMENTS。APIドキュメント、ユーザーガイド、デプロイガイド、トラブルシューティングランブックを作成してください。アーキテクチャ図、データフロー図、統合ガイドを含めてください。コミットから自動変更ログを生成してください。"
+    - 期待される出力: APIドキュメント、ユーザーガイド、ランブック、アーキテクチャドキュメント
+    - コンテキスト: すべての前のフェーズの出力
 
-## Execution Parameters
+## 実行パラメータ
 
-### Required Parameters
-- **--feature**: Feature name and description
-- **--methodology**: Development approach (traditional|tdd|bdd|ddd)
-- **--complexity**: Feature complexity level (simple|medium|complex|epic)
+### 必須パラメータ
+- **--feature**: 機能名と説明
+- **--methodology**: 開発アプローチ (traditional|tdd|bdd|ddd)
+- **--complexity**: 機能の複雑さレベル (simple|medium|complex|epic)
 
-### Optional Parameters
-- **--deployment-strategy**: Deployment approach (direct|canary|feature-flag|blue-green|a-b-test)
-- **--test-coverage-min**: Minimum test coverage threshold (default: 80%)
-- **--performance-budget**: Performance requirements (e.g., <200ms response time)
-- **--rollout-percentage**: Initial rollout percentage for gradual deployment (default: 5%)
-- **--feature-flag-service**: Feature flag provider (launchdarkly|split|unleash|custom)
-- **--analytics-platform**: Analytics integration (segment|amplitude|mixpanel|custom)
-- **--monitoring-stack**: Observability tools (datadog|newrelic|grafana|custom)
+### オプションパラメータ
+- **--deployment-strategy**: デプロイアプローチ (direct|canary|feature-flag|blue-green|a-b-test)
+- **--test-coverage-min**: 最小テストカバレッジ閾値 (デフォルト: 80%)
+- **--performance-budget**: パフォーマンス要件 (例: <200msレスポンス時間)
+- **--rollout-percentage**: 段階的デプロイの初期ロールアウト割合 (デフォルト: 5%)
+- **--feature-flag-service**: フィーチャーフラグプロバイダー (launchdarkly|split|unleash|custom)
+- **--analytics-platform**: 分析統合 (segment|amplitude|mixpanel|custom)
+- **--monitoring-stack**: 可観測性ツール (datadog|newrelic|grafana|custom)
 
-## Success Criteria
+## 成功基準
 
-- All acceptance criteria from business requirements are met
-- Test coverage exceeds minimum threshold (80% default)
-- Security scan shows no critical vulnerabilities
-- Performance meets defined budgets and SLOs
-- Feature flags configured for controlled rollout
-- Monitoring and alerting fully operational
-- Documentation complete and approved
-- Successful deployment to production with rollback capability
-- Product analytics tracking feature usage
-- A/B test metrics configured (if applicable)
+- ビジネス要求からのすべての受け入れ基準が満たされている
+- テストカバレッジが最小閾値を超えている（デフォルト80%）
+- セキュリティスキャンで重大な脆弱性が見つからない
+- パフォーマンスが定義されたバジェットとSLOを満たしている
+- 制御されたロールアウトのためのフィーチャーフラグが設定されている
+- モニタリングとアラートが完全に稼働している
+- ドキュメントが完全で承認されている
+- ロールバック機能を備えた本番環境への成功したデプロイ
+- プロダクト分析が機能使用を追跡している
+- A/Bテストメトリクスが設定されている（該当する場合）
 
-## Rollback Strategy
+## ロールバック戦略
 
-If issues arise during or after deployment:
-1. Immediate feature flag disable (< 1 minute)
-2. Blue-green traffic switch (< 5 minutes)
-3. Full deployment rollback via CI/CD (< 15 minutes)
-4. Database migration rollback if needed (coordinate with data team)
-5. Incident post-mortem and fixes before re-deployment
+デプロイ中またはデプロイ後に問題が発生した場合：
+1. 即座のフィーチャーフラグ無効化（< 1分）
+2. ブルーグリーントラフィック切り替え（< 5分）
+3. CI/CDによる完全なデプロイロールバック（< 15分）
+4. 必要に応じてデータベースマイグレーションのロールバック（データチームと調整）
+5. インシデントポストモーテムと再デプロイ前の修正
 
-Feature description: $ARGUMENTS
+機能の説明: $ARGUMENTS

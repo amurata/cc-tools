@@ -1,183 +1,183 @@
-[EN](../../../../plugins/multi-platform-apps/commands/multi-platform.md) | JA
+> **[English](../../../plugins/multi-platform-apps/commands/multi-platform.md)** | **日本語**
 
-# Multi-Platform Feature Development Workflow
+# マルチプラットフォーム機能開発ワークフロー
 
-Build and deploy the same feature consistently across web, mobile, and desktop platforms using API-first architecture and parallel implementation strategies.
+APIファーストアーキテクチャと並列実装戦略を使用して、Web、モバイル、デスクトッププラットフォーム全体で同じ機能を一貫して構築およびデプロイします。
 
-[Extended thinking: This workflow orchestrates multiple specialized agents to ensure feature parity across platforms while maintaining platform-specific optimizations. The coordination strategy emphasizes shared contracts and parallel development with regular synchronization points. By establishing API contracts and data models upfront, teams can work independently while ensuring consistency. The workflow benefits include faster time-to-market, reduced integration issues, and maintainable cross-platform codebases.]
+[Extended thinking: このワークフローは、プラットフォーム固有の最適化を維持しながら、プラットフォーム全体で機能パリティを確保するために、複数の専門エージェントをオーケストレーションします。調整戦略は、定期的な同期ポイントを持つ共有コントラクトと並列開発を強調します。APIコントラクトとデータモデルを事前に確立することで、チームは一貫性を確保しながら独立して作業できます。このワークフローの利点には、市場投入までの時間の短縮、統合問題の削減、保守可能なクロスプラットフォームコードベースが含まれます。]
 
-## Phase 1: Architecture and API Design (Sequential)
+## フェーズ1: アーキテクチャとAPI設計（順次）
 
-### 1. Define Feature Requirements and API Contracts
-- Use Task tool with subagent_type="backend-architect"
-- Prompt: "Design the API contract for feature: $ARGUMENTS. Create OpenAPI 3.1 specification with:
-  - RESTful endpoints with proper HTTP methods and status codes
-  - GraphQL schema if applicable for complex data queries
-  - WebSocket events for real-time features
-  - Request/response schemas with validation rules
-  - Authentication and authorization requirements
-  - Rate limiting and caching strategies
-  - Error response formats and codes
-  Define shared data models that all platforms will consume."
-- Expected output: Complete API specification, data models, and integration guidelines
+### 1. 機能要求とAPIコントラクトの定義
+- subagent_type="backend-architect"でTaskツールを使用
+- プロンプト: "機能のAPIコントラクトを設計してください: $ARGUMENTS。以下を含むOpenAPI 3.1仕様を作成してください：
+  - 適切なHTTPメソッドとステータスコードを持つRESTfulエンドポイント
+  - 複雑なデータクエリのための該当する場合はGraphQLスキーマ
+  - リアルタイム機能のためのWebSocketイベント
+  - 検証ルールを持つリクエスト/レスポンススキーマ
+  - 認証と認可の要件
+  - レート制限とキャッシング戦略
+  - エラーレスポンスフォーマットとコード
+  すべてのプラットフォームが使用する共有データモデルを定義してください。"
+- 期待される出力: 完全なAPI仕様、データモデル、統合ガイドライン
 
-### 2. Design System and UI/UX Consistency
-- Use Task tool with subagent_type="ui-ux-designer"
-- Prompt: "Create cross-platform design system for feature using API spec: [previous output]. Include:
-  - Component specifications for each platform (Material Design, iOS HIG, Fluent)
-  - Responsive layouts for web (mobile-first approach)
-  - Native patterns for iOS (SwiftUI) and Android (Material You)
-  - Desktop-specific considerations (keyboard shortcuts, window management)
-  - Accessibility requirements (WCAG 2.2 Level AA)
-  - Dark/light theme specifications
-  - Animation and transition guidelines"
-- Context from previous: API endpoints, data structures, authentication flows
-- Expected output: Design system documentation, component library specs, platform guidelines
+### 2. デザインシステムとUI/UXの一貫性
+- subagent_type="ui-ux-designer"でTaskツールを使用
+- プロンプト: "API仕様を使用して機能のクロスプラットフォームデザインシステムを作成してください: [前の出力]。以下を含めてください：
+  - 各プラットフォームのコンポーネント仕様（Material Design、iOS HIG、Fluent）
+  - Webのためのレスポンシブレイアウト（モバイルファーストアプローチ）
+  - iOSとAndroidのためのネイティブパターン（SwiftUIとMaterial You）
+  - デスクトップ固有の考慮事項（キーボードショートカット、ウィンドウ管理）
+  - アクセシビリティ要件（WCAG 2.2 Level AA）
+  - ダーク/ライトテーマ仕様
+  - アニメーションとトランジションのガイドライン"
+- 前のコンテキスト: APIエンドポイント、データ構造、認証フロー
+- 期待される出力: デザインシステムドキュメント、コンポーネントライブラリ仕様、プラットフォームガイドライン
 
-### 3. Shared Business Logic Architecture
-- Use Task tool with subagent_type="comprehensive-review::architect-review"
-- Prompt: "Design shared business logic architecture for cross-platform feature. Define:
-  - Core domain models and entities (platform-agnostic)
-  - Business rules and validation logic
-  - State management patterns (MVI/Redux/BLoC)
-  - Caching and offline strategies
-  - Error handling and retry policies
-  - Platform-specific adapter patterns
-  Consider Kotlin Multiplatform for mobile or TypeScript for web/desktop sharing."
-- Context from previous: API contracts, data models, UI requirements
-- Expected output: Shared code architecture, platform abstraction layers, implementation guide
+### 3. 共有ビジネスロジックアーキテクチャ
+- subagent_type="comprehensive-review::architect-review"でTaskツールを使用
+- プロンプト: "クロスプラットフォーム機能の共有ビジネスロジックアーキテクチャを設計してください。以下を定義してください：
+  - コアドメインモデルとエンティティ（プラットフォームに依存しない）
+  - ビジネスルールと検証ロジック
+  - 状態管理パターン（MVI/Redux/BLoC）
+  - キャッシングとオフライン戦略
+  - エラーハンドリングとリトライポリシー
+  - プラットフォーム固有のアダプターパターン
+  モバイル用のKotlin MultiplatformまたはWeb/デスクトップ共有用のTypeScriptを検討してください。"
+- 前のコンテキスト: APIコントラクト、データモデル、UI要件
+- 期待される出力: 共有コードアーキテクチャ、プラットフォーム抽象化レイヤー、実装ガイド
 
-## Phase 2: Parallel Platform Implementation
+## フェーズ2: 並列プラットフォーム実装
 
-### 4a. Web Implementation (React/Next.js)
-- Use Task tool with subagent_type="frontend-developer"
-- Prompt: "Implement web version of feature using:
-  - React 18+ with Next.js 14+ App Router
-  - TypeScript for type safety
-  - TanStack Query for API integration: [API spec]
-  - Zustand/Redux Toolkit for state management
-  - Tailwind CSS with design system: [design specs]
-  - Progressive Web App capabilities
-  - SSR/SSG optimization where appropriate
-  - Web vitals optimization (LCP < 2.5s, FID < 100ms)
-  Follow shared business logic: [architecture doc]"
-- Context from previous: API contracts, design system, shared logic patterns
-- Expected output: Complete web implementation with tests
+### 4a. Web実装（React/Next.js）
+- subagent_type="frontend-developer"でTaskツールを使用
+- プロンプト: "以下を使用して機能のWeb版を実装してください：
+  - Next.js 14+ App Routerを使用したReact 18+
+  - 型安全性のためのTypeScript
+  - API統合のためのTanStack Query: [API仕様]
+  - 状態管理のためのZustand/Redux Toolkit
+  - デザインシステムを使用したTailwind CSS: [デザイン仕様]
+  - プログレッシブWebアプリ機能
+  - 適切な場合のSSR/SSG最適化
+  - Webバイタル最適化（LCP < 2.5s、FID < 100ms）
+  共有ビジネスロジックに従ってください: [アーキテクチャドキュメント]"
+- 前のコンテキスト: APIコントラクト、デザインシステム、共有ロジックパターン
+- 期待される出力: テスト付きの完全なWeb実装
 
-### 4b. iOS Implementation (SwiftUI)
-- Use Task tool with subagent_type="ios-developer"
-- Prompt: "Implement iOS version using:
-  - SwiftUI with iOS 17+ features
-  - Swift 5.9+ with async/await
-  - URLSession with Combine for API: [API spec]
-  - Core Data/SwiftData for persistence
-  - Design system compliance: [iOS HIG specs]
-  - Widget extensions if applicable
-  - Platform-specific features (Face ID, Haptics, Live Activities)
-  - Testable MVVM architecture
-  Follow shared patterns: [architecture doc]"
-- Context from previous: API contracts, iOS design guidelines, shared models
-- Expected output: Native iOS implementation with unit/UI tests
+### 4b. iOS実装（SwiftUI）
+- subagent_type="ios-developer"でTaskツールを使用
+- プロンプト: "以下を使用してiOS版を実装してください：
+  - iOS 17+機能を使用したSwiftUI
+  - async/awaitを使用したSwift 5.9+
+  - API用のCombineを使用したURLSession: [API仕様]
+  - 永続化のためのCore Data/SwiftData
+  - デザインシステムコンプライアンス: [iOS HIG仕様]
+  - 該当する場合のウィジェット拡張
+  - プラットフォーム固有の機能（Face ID、Haptics、Live Activities）
+  - テスト可能なMVVMアーキテクチャ
+  共有パターンに従ってください: [アーキテクチャドキュメント]"
+- 前のコンテキスト: APIコントラクト、iOSデザインガイドライン、共有モデル
+- 期待される出力: ユニット/UIテスト付きのネイティブiOS実装
 
-### 4c. Android Implementation (Kotlin/Compose)
-- Use Task tool with subagent_type="mobile-developer"
-- Prompt: "Implement Android version using:
-  - Jetpack Compose with Material 3
-  - Kotlin coroutines and Flow
-  - Retrofit/Ktor for API: [API spec]
-  - Room database for local storage
-  - Hilt for dependency injection
-  - Material You dynamic theming: [design specs]
-  - Platform features (biometric auth, widgets)
-  - Clean architecture with MVI pattern
-  Follow shared logic: [architecture doc]"
-- Context from previous: API contracts, Material Design specs, shared patterns
-- Expected output: Native Android implementation with tests
+### 4c. Android実装（Kotlin/Compose）
+- subagent_type="mobile-developer"でTaskツールを使用
+- プロンプト: "以下を使用してAndroid版を実装してください：
+  - Material 3を使用したJetpack Compose
+  - KotlinコルーチンとFlow
+  - API用のRetrofit/Ktor: [API仕様]
+  - ローカルストレージ用のRoomデータベース
+  - 依存性注入のためのHilt
+  - Material Youダイナミックテーマ: [デザイン仕様]
+  - プラットフォーム機能（生体認証、ウィジェット）
+  - MVIパターンを使用したクリーンアーキテクチャ
+  共有ロジックに従ってください: [アーキテクチャドキュメント]"
+- 前のコンテキスト: APIコントラクト、Material Design仕様、共有パターン
+- 期待される出力: テスト付きのネイティブAndroid実装
 
-### 4d. Desktop Implementation (Optional - Electron/Tauri)
-- Use Task tool with subagent_type="frontend-mobile-development::frontend-developer"
-- Prompt: "Implement desktop version using Tauri 2.0 or Electron with:
-  - Shared web codebase where possible
-  - Native OS integration (system tray, notifications)
-  - File system access if needed
-  - Auto-updater functionality
-  - Code signing and notarization setup
-  - Keyboard shortcuts and menu bar
-  - Multi-window support if applicable
-  Reuse web components: [web implementation]"
-- Context from previous: Web implementation, desktop-specific requirements
-- Expected output: Desktop application with platform packages
+### 4d. デスクトップ実装（オプション - Electron/Tauri）
+- subagent_type="frontend-mobile-development::frontend-developer"でTaskツールを使用
+- プロンプト: "以下を使用してTauri 2.0またはElectronでデスクトップ版を実装してください：
+  - 可能な限り共有Webコードベース
+  - ネイティブOS統合（システムトレイ、通知）
+  - 必要に応じたファイルシステムアクセス
+  - 自動更新機能
+  - コード署名とノータリゼーションの設定
+  - キーボードショートカットとメニューバー
+  - 該当する場合のマルチウィンドウサポート
+  Webコンポーネントを再利用してください: [Web実装]"
+- 前のコンテキスト: Web実装、デスクトップ固有の要件
+- 期待される出力: プラットフォームパッケージ付きのデスクトップアプリケーション
 
-## Phase 3: Integration and Validation
+## フェーズ3: 統合と検証
 
-### 5. API Documentation and Testing
-- Use Task tool with subagent_type="documentation-generation::api-documenter"
-- Prompt: "Create comprehensive API documentation including:
-  - Interactive OpenAPI/Swagger documentation
-  - Platform-specific integration guides
-  - SDK examples for each platform
-  - Authentication flow diagrams
-  - Rate limiting and quota information
-  - Postman/Insomnia collections
-  - WebSocket connection examples
-  - Error handling best practices
-  - API versioning strategy
-  Test all endpoints with platform implementations."
-- Context from previous: Implemented platforms, API usage patterns
-- Expected output: Complete API documentation portal, test results
+### 5. APIドキュメントとテスト
+- subagent_type="documentation-generation::api-documenter"でTaskツールを使用
+- プロンプト: "以下を含む包括的なAPIドキュメントを作成してください：
+  - インタラクティブなOpenAPI/Swaggerドキュメント
+  - プラットフォーム固有の統合ガイド
+  - 各プラットフォームのSDK例
+  - 認証フロー図
+  - レート制限とクォータ情報
+  - Postman/Insomniaコレクション
+  - WebSocket接続例
+  - エラーハンドリングのベストプラクティス
+  - APIバージョニング戦略
+  プラットフォーム実装ですべてのエンドポイントをテストしてください。"
+- 前のコンテキスト: 実装されたプラットフォーム、API使用パターン
+- 期待される出力: 完全なAPIドキュメントポータル、テスト結果
 
-### 6. Cross-Platform Testing and Feature Parity
-- Use Task tool with subagent_type="unit-testing::test-automator"
-- Prompt: "Validate feature parity across all platforms:
-  - Functional testing matrix (features work identically)
-  - UI consistency verification (follows design system)
-  - Performance benchmarks per platform
-  - Accessibility testing (platform-specific tools)
-  - Network resilience testing (offline, slow connections)
-  - Data synchronization validation
-  - Platform-specific edge cases
-  - End-to-end user journey tests
-  Create test report with any platform discrepancies."
-- Context from previous: All platform implementations, API documentation
-- Expected output: Test report, parity matrix, performance metrics
+### 6. クロスプラットフォームテストと機能パリティ
+- subagent_type="unit-testing::test-automator"でTaskツールを使用
+- プロンプト: "すべてのプラットフォーム全体で機能パリティを検証してください：
+  - 機能テストマトリクス（機能が同一に動作）
+  - UI一貫性検証（デザインシステムに従う）
+  - プラットフォームごとのパフォーマンスベンチマーク
+  - アクセシビリティテスト（プラットフォーム固有のツール）
+  - ネットワークレジリエンステスト（オフライン、低速接続）
+  - データ同期検証
+  - プラットフォーム固有のエッジケース
+  - エンドツーエンドユーザージャーニーテスト
+  プラットフォームの不一致を含むテストレポートを作成してください。"
+- 前のコンテキスト: すべてのプラットフォーム実装、APIドキュメント
+- 期待される出力: テストレポート、パリティマトリクス、パフォーマンスメトリクス
 
-### 7. Platform-Specific Optimizations
-- Use Task tool with subagent_type="application-performance::performance-engineer"
-- Prompt: "Optimize each platform implementation:
-  - Web: Bundle size, lazy loading, CDN setup, SEO
-  - iOS: App size, launch time, memory usage, battery
-  - Android: APK size, startup time, frame rate, battery
-  - Desktop: Binary size, resource usage, startup time
-  - API: Response time, caching, compression
-  Maintain feature parity while leveraging platform strengths.
-  Document optimization techniques and trade-offs."
-- Context from previous: Test results, performance metrics
-- Expected output: Optimized implementations, performance improvements
+### 7. プラットフォーム固有の最適化
+- subagent_type="application-performance::performance-engineer"でTaskツールを使用
+- プロンプト: "各プラットフォーム実装を最適化してください：
+  - Web: バンドルサイズ、遅延読み込み、CDNセットアップ、SEO
+  - iOS: アプリサイズ、起動時間、メモリ使用量、バッテリー
+  - Android: APKサイズ、起動時間、フレームレート、バッテリー
+  - デスクトップ: バイナリサイズ、リソース使用量、起動時間
+  - API: レスポンス時間、キャッシング、圧縮
+  プラットフォームの強みを活用しながら機能パリティを維持してください。
+  最適化技術とトレードオフをドキュメント化してください。"
+- 前のコンテキスト: テスト結果、パフォーマンスメトリクス
+- 期待される出力: 最適化された実装、パフォーマンス改善
 
-## Configuration Options
+## 設定オプション
 
-- **--platforms**: Specify target platforms (web,ios,android,desktop)
-- **--api-first**: Generate API before UI implementation (default: true)
-- **--shared-code**: Use Kotlin Multiplatform or similar (default: evaluate)
-- **--design-system**: Use existing or create new (default: create)
-- **--testing-strategy**: Unit, integration, e2e (default: all)
+- **--platforms**: ターゲットプラットフォームを指定（web,ios,android,desktop）
+- **--api-first**: UI実装の前にAPIを生成（デフォルト: true）
+- **--shared-code**: Kotlin Multiplatformまたは類似のものを使用（デフォルト: 評価）
+- **--design-system**: 既存のものを使用するか新規作成（デフォルト: 作成）
+- **--testing-strategy**: ユニット、統合、e2e（デフォルト: すべて）
 
-## Success Criteria
+## 成功基準
 
-- API contract defined and validated before implementation
-- All platforms achieve feature parity with <5% variance
-- Performance metrics meet platform-specific standards
-- Accessibility standards met (WCAG 2.2 AA minimum)
-- Cross-platform testing shows consistent behavior
-- Documentation complete for all platforms
-- Code reuse >40% between platforms where applicable
-- User experience optimized for each platform's conventions
+- 実装前にAPIコントラクトが定義され検証されている
+- すべてのプラットフォームが<5%の差異で機能パリティを達成している
+- パフォーマンスメトリクスがプラットフォーム固有の基準を満たしている
+- アクセシビリティ基準を満たしている（WCAG 2.2 AA最低）
+- クロスプラットフォームテストが一貫した動作を示している
+- すべてのプラットフォームのドキュメントが完全である
+- 該当する場合、プラットフォーム間でコードの再利用が>40%
+- ユーザーエクスペリエンスが各プラットフォームの慣習に最適化されている
 
-## Platform-Specific Considerations
+## プラットフォーム固有の考慮事項
 
-**Web**: PWA capabilities, SEO optimization, browser compatibility
-**iOS**: App Store guidelines, TestFlight distribution, iOS-specific features
-**Android**: Play Store requirements, Android App Bundles, device fragmentation
-**Desktop**: Code signing, auto-updates, OS-specific installers
+**Web**: PWA機能、SEO最適化、ブラウザ互換性
+**iOS**: App Storeガイドライン、TestFlight配布、iOS固有の機能
+**Android**: Play Store要件、Android App Bundles、デバイスの断片化
+**デスクトップ**: コード署名、自動更新、OS固有のインストーラー
 
-Initial feature specification: $ARGUMENTS
+初期機能仕様: $ARGUMENTS

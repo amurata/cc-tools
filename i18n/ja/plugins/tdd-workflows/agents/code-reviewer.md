@@ -1,4 +1,4 @@
-[EN](../../../../plugins/tdd-workflows/agents/code-reviewer.md) | JA
+> **[English](../../../../plugins/tdd-workflows/agents/code-reviewer.md)** | **日本語**
 
 ---
 name: code-reviewer

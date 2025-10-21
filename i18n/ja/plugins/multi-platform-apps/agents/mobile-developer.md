@@ -1,4 +1,4 @@
-[EN](../../../../plugins/multi-platform-apps/agents/mobile-developer.md) | JA
+> **[English](../../../../plugins/multi-platform-apps/agents/mobile-developer.md)** | **日本語**
 
 ---
 name: mobile-developer

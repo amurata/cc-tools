@@ -1,142 +1,146 @@
-[EN](../../../../plugins/tdd-workflows/commands/tdd-refactor.md) | JA
+---
+description: 包括的なテストのセーフティネットを使用して、自信を持ってコードをリファクタリングします。
+---
 
-Refactor code with confidence using comprehensive test safety net:
+> **[English](../../../plugins/tdd-workflows/commands/tdd-refactor.md)** | **日本語**
 
-[Extended thinking: This tool uses the tdd-orchestrator agent (opus model) for sophisticated refactoring while maintaining all tests green. It applies design patterns, improves code quality, and optimizes performance with the safety of comprehensive test coverage.]
+包括的なテストのセーフティネットを使用して、自信を持ってコードをリファクタリングします。
 
-## Usage
+[拡張思考: このツールは、すべてのテストをグリーンに保ちながら洗練されたリファクタリングを行うために、tdd-orchestratorエージェント(opusモデル)を使用します。デザインパターンを適用し、コード品質を向上させ、包括的なテストカバレッジの安全性の下でパフォーマンスを最適化します。]
 
-Use Task tool with subagent_type="tdd-orchestrator" to perform safe refactoring.
+## 使用方法
 
-Prompt: "Refactor this code while keeping all tests green: $ARGUMENTS. Apply TDD refactor phase:
+Taskツールを使用し、subagent_type="tdd-orchestrator"で安全なリファクタリングを実行します。
 
-## Core Process
+プロンプト: "すべてのテストをグリーンに保ちながらこのコードをリファクタリングしてください: $ARGUMENTS。TDDリファクタフェーズを適用:
 
-**1. Pre-Assessment**
-- Run tests to establish green baseline
-- Analyze code smells and test coverage
-- Document current performance metrics
-- Create incremental refactoring plan
+## コアプロセス
 
-**2. Code Smell Detection**
-- Duplicated code → Extract methods/classes
-- Long methods → Decompose into focused functions
-- Large classes → Split responsibilities
-- Long parameter lists → Parameter objects
-- Feature Envy → Move methods to appropriate classes
-- Primitive Obsession → Value objects
-- Switch statements → Polymorphism
-- Dead code → Remove
+**1. 事前評価**
+- テストを実行してグリーンベースラインを確立
+- コードスメルとテストカバレッジを分析
+- 現在のパフォーマンスメトリクスを文書化
+- 段階的なリファクタリング計画を作成
 
-**3. Design Patterns**
-- Apply Creational (Factory, Builder, Singleton)
-- Apply Structural (Adapter, Facade, Decorator)
-- Apply Behavioral (Strategy, Observer, Command)
-- Apply Domain (Repository, Service, Value Objects)
-- Use patterns only where they add clear value
+**2. コードスメル検出**
+- 重複コード → メソッド/クラスを抽出
+- 長いメソッド → 集中した関数に分解
+- 大きなクラス → 責任を分割
+- 長いパラメータリスト → パラメータオブジェクト
+- 機能の横恋慕 → 適切なクラスにメソッドを移動
+- プリミティブ偏重 → 値オブジェクト
+- Switch文 → ポリモーフィズム
+- デッドコード → 削除
 
-**4. SOLID Principles**
-- Single Responsibility: One reason to change
-- Open/Closed: Open for extension, closed for modification
-- Liskov Substitution: Subtypes substitutable
-- Interface Segregation: Small, focused interfaces
-- Dependency Inversion: Depend on abstractions
+**3. デザインパターン**
+- 生成パターンを適用(Factory、Builder、Singleton)
+- 構造パターンを適用(Adapter、Facade、Decorator)
+- 振る舞いパターンを適用(Strategy、Observer、Command)
+- ドメインパターンを適用(Repository、Service、Value Objects)
+- 明確な価値を追加する場合にのみパターンを使用
 
-**5. Refactoring Techniques**
-- Extract Method/Variable/Interface
-- Inline unnecessary indirection
-- Rename for clarity
-- Move Method/Field to appropriate classes
-- Replace Magic Numbers with constants
-- Encapsulate fields
-- Replace Conditional with Polymorphism
-- Introduce Null Object
+**4. SOLID原則**
+- 単一責任原則: 変更する理由は1つ
+- 開放閉鎖原則: 拡張には開き、修正には閉じる
+- リスコフの置換原則: サブタイプは置換可能
+- インターフェース分離原則: 小さく集中したインターフェース
+- 依存性逆転原則: 抽象に依存
 
-**6. Performance Optimization**
-- Profile to identify bottlenecks
-- Optimize algorithms and data structures
-- Implement caching where beneficial
-- Reduce database queries (N+1 elimination)
-- Lazy loading and pagination
-- Always measure before and after
+**5. リファクタリング技法**
+- メソッド/変数/インターフェースの抽出
+- 不要な間接化をインライン化
+- 明確性のためのリネーム
+- メソッド/フィールドを適切なクラスに移動
+- マジックナンバーを定数に置き換え
+- フィールドのカプセル化
+- 条件分岐をポリモーフィズムに置き換え
+- Nullオブジェクトの導入
 
-**7. Incremental Steps**
-- Make small, atomic changes
-- Run tests after each modification
-- Commit after each successful refactoring
-- Keep refactoring separate from behavior changes
-- Use scaffolding when needed
+**6. パフォーマンス最適化**
+- プロファイリングでボトルネックを特定
+- アルゴリズムとデータ構造を最適化
+- 有益な場合はキャッシングを実装
+- データベースクエリを削減(N+1問題の解消)
+- 遅延ロードとページネーション
+- 常に前後で測定
 
-**8. Architecture Evolution**
-- Layer separation and dependency management
-- Module boundaries and interface definition
-- Event-driven patterns for decoupling
-- Database access pattern optimization
+**7. 段階的ステップ**
+- 小さく、原子的な変更を行う
+- 各修正後にテストを実行
+- 各成功したリファクタリング後にコミット
+- リファクタリングを動作変更から分離
+- 必要に応じて足場を使用
 
-**9. Safety Verification**
-- Run full test suite after each change
-- Performance regression testing
-- Mutation testing for test effectiveness
-- Rollback plan for major changes
+**8. アーキテクチャの進化**
+- レイヤー分離と依存性管理
+- モジュール境界とインターフェース定義
+- 疎結合のためのイベント駆動パターン
+- データベースアクセスパターンの最適化
 
-**10. Advanced Patterns**
-- Strangler Fig: Gradual legacy replacement
-- Branch by Abstraction: Large-scale changes
-- Parallel Change: Expand-contract pattern
-- Mikado Method: Dependency graph navigation
+**9. 安全性検証**
+- 各変更後にフルテストスイートを実行
+- パフォーマンス回帰テスト
+- テスト有効性のためのミューテーションテスト
+- 大規模変更のためのロールバック計画
 
-## Output Requirements
+**10. 高度なパターン**
+- ストラングラーフィグ: 段階的なレガシー置換
+- 抽象によるブランチング: 大規模変更
+- 並列変更: 拡張-縮小パターン
+- ミカドメソッド: 依存関係グラフのナビゲーション
 
-- Refactored code with improvements applied
-- Test results (all green)
-- Before/after metrics comparison
-- Applied refactoring techniques list
-- Performance improvement measurements
-- Remaining technical debt assessment
+## 出力要件
 
-## Safety Checklist
+- 改善を適用したリファクタリング済みコード
+- テスト結果(すべてグリーン)
+- 前後のメトリクス比較
+- 適用したリファクタリング技法のリスト
+- パフォーマンス改善測定
+- 残りの技術的負債評価
 
-Before committing:
-- ✓ All tests pass (100% green)
-- ✓ No functionality regression
-- ✓ Performance metrics acceptable
-- ✓ Code coverage maintained/improved
-- ✓ Documentation updated
+## 安全性チェックリスト
 
-## Recovery Protocol
+コミット前:
+- ✓ すべてのテストが成功(100%グリーン)
+- ✓ 機能の退行なし
+- ✓ パフォーマンスメトリクスが許容範囲
+- ✓ コードカバレッジが維持/改善
+- ✓ ドキュメントが更新
 
-If tests fail:
-- Immediately revert last change
-- Identify breaking refactoring
-- Apply smaller incremental changes
-- Use version control for safe experimentation
+## リカバリプロトコル
 
-## Example: Extract Method Pattern
+テストが失敗した場合:
+- 最後の変更を即座に元に戻す
+- 破壊的なリファクタリングを特定
+- より小さな段階的変更を適用
+- 安全な実験のためにバージョン管理を使用
 
-**Before:**
+## 例: メソッド抽出パターン
+
+**リファクタリング前:**
 ```typescript
 class OrderProcessor {
   processOrder(order: Order): ProcessResult {
-    // Validation
+    // 検証
     if (!order.customerId || order.items.length === 0) {
       return { success: false, error: "Invalid order" };
     }
 
-    // Calculate totals
+    // 合計計算
     let subtotal = 0;
     for (const item of order.items) {
       subtotal += item.price * item.quantity;
     }
     let total = subtotal + (subtotal * 0.08) + (subtotal > 100 ? 0 : 15);
 
-    // Process payment...
-    // Update inventory...
-    // Send confirmation...
+    // 支払い処理...
+    // 在庫更新...
+    // 確認送信...
   }
 }
 ```
 
-**After:**
+**リファクタリング後:**
 ```typescript
 class OrderProcessor {
   async processOrder(order: Order): Promise<ProcessResult> {
@@ -162,6 +166,6 @@ class OrderProcessor {
 }
 ```
 
-**Applied:** Extract Method, Value Objects, Dependency Injection, Async patterns
+**適用した技法:** メソッド抽出、値オブジェクト、依存性注入、非同期パターン
 
-Code to refactor: $ARGUMENTS"
+リファクタリングするコード: $ARGUMENTS"

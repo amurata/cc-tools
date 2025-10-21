@@ -1,4 +1,4 @@
-[EN](../../../../../../plugins/seo-technical-optimization/agents/seo-structure-architect.md) | JA
+> **[English](../../../../../../plugins/seo-technical-optimization/agents/seo-structure-architect.md)** | **日本語**
 
 ---
 name: seo-structure-architect

@@ -1,140 +1,144 @@
-[EN](../../../../plugins/tdd-workflows/commands/tdd-green.md) | JA
+---
+description: TDDグリーンフェーズで失敗するテストを成功させるための最小限のコードを実装します。
+---
 
-Implement minimal code to make failing tests pass in TDD green phase:
+> **[English](../../../plugins/tdd-workflows/commands/tdd-green.md)** | **日本語**
 
-[Extended thinking: This tool uses the test-automator agent to implement the minimal code necessary to make tests pass. It focuses on simplicity, avoiding over-engineering while ensuring all tests become green.]
+TDDグリーンフェーズで失敗するテストを成功させるための最小限のコードを実装します。
 
-## Implementation Process
+[拡張思考: このツールは、test-automatorエージェントを使用して、テストを成功させるために必要な最小限のコードを実装します。過度な設計を避けながら、シンプルさに焦点を当て、すべてのテストがグリーンになることを保証します。]
 
-Use Task tool with subagent_type="unit-testing::test-automator" to implement minimal passing code.
+## 実装プロセス
 
-Prompt: "Implement MINIMAL code to make these failing tests pass: $ARGUMENTS. Follow TDD green phase principles:
+Taskツールを使用し、subagent_type="unit-testing::test-automator"で最小限の成功するコードを実装します。
 
-1. **Pre-Implementation Analysis**
-   - Review all failing tests and their error messages
-   - Identify the simplest path to make tests pass
-   - Map test requirements to minimal implementation needs
-   - Avoid premature optimization or over-engineering
-   - Focus only on making tests green, not perfect code
+プロンプト: "これらの失敗するテストを成功させるための最小限のコードを実装してください: $ARGUMENTS。TDDグリーンフェーズの原則に従ってください:
 
-2. **Implementation Strategy**
-   - **Fake It**: Return hard-coded values when appropriate
-   - **Obvious Implementation**: When solution is trivial and clear
-   - **Triangulation**: Generalize only when multiple tests require it
-   - Start with the simplest test and work incrementally
-   - One test at a time - don't try to pass all at once
+1. **実装前の分析**
+   - すべての失敗するテストとそのエラーメッセージをレビュー
+   - テストを成功させる最もシンプルなパスを特定
+   - テスト要件を最小限の実装ニーズにマッピング
+   - 早期の最適化や過度な設計を避ける
+   - テストをグリーンにすることにフォーカス、完璧なコードではない
 
-3. **Code Structure Guidelines**
-   - Write the minimal code that could possibly work
-   - Avoid adding functionality not required by tests
-   - Use simple data structures initially
-   - Defer architectural decisions until refactor phase
-   - Keep methods/functions small and focused
-   - Don't add error handling unless tests require it
+2. **実装戦略**
+   - **偽装実装(Fake It)**: 適切な場合はハードコードされた値を返す
+   - **明白な実装(Obvious Implementation)**: 解決策が些細で明確な場合
+   - **三角測量(Triangulation)**: 複数のテストが必要とする場合にのみ一般化
+   - 最もシンプルなテストから始めて段階的に進める
+   - 一度に1つのテスト - すべてを一度に成功させようとしない
 
-4. **Language-Specific Patterns**
-   - **JavaScript/TypeScript**: Simple functions, avoid classes initially
-   - **Python**: Functions before classes, simple returns
-   - **Java**: Minimal class structure, no patterns yet
-   - **C#**: Basic implementations, no interfaces yet
-   - **Go**: Simple functions, defer goroutines/channels
-   - **Ruby**: Procedural before object-oriented when possible
+3. **コード構造ガイドライン**
+   - 動作する可能性のある最小限のコードを記述
+   - テストで要求されていない機能の追加を避ける
+   - 最初はシンプルなデータ構造を使用
+   - アーキテクチャの決定はリファクタフェーズまで延期
+   - メソッド/関数を小さく集中させる
+   - テストで要求されない限りエラーハンドリングを追加しない
 
-5. **Progressive Implementation**
-   - Make first test pass with simplest possible code
-   - Run tests after each change to verify progress
-   - Add just enough code for next failing test
-   - Resist urge to implement beyond test requirements
-   - Keep track of technical debt for refactor phase
-   - Document assumptions and shortcuts taken
+4. **言語別パターン**
+   - **JavaScript/TypeScript**: シンプルな関数、最初はクラスを避ける
+   - **Python**: クラスより関数、シンプルな戻り値
+   - **Java**: 最小限のクラス構造、まだパターンなし
+   - **C#**: 基本的な実装、まだインターフェースなし
+   - **Go**: シンプルな関数、goroutine/channelは延期
+   - **Ruby**: 可能な場合は手続き型からオブジェクト指向へ
 
-6. **Common Green Phase Techniques**
-   - Hard-coded returns for initial tests
-   - Simple if/else for limited test cases
-   - Basic loops only when iteration tests require
-   - Minimal data structures (arrays before complex objects)
-   - In-memory storage before database integration
-   - Synchronous before asynchronous implementation
+5. **段階的実装**
+   - 最もシンプルなコードで最初のテストを成功させる
+   - 各変更後にテストを実行して進捗を検証
+   - 次の失敗するテストのために十分なコードだけを追加
+   - テスト要件を超えた実装への誘惑に抵抗
+   - リファクタフェーズのために技術的負債を記録
+   - 取ったショートカットと仮定を文書化
 
-7. **Success Criteria**
-   ✓ All tests pass (green)
-   ✓ No extra functionality beyond test requirements
-   ✓ Code is readable even if not optimal
-   ✓ No broken existing functionality
-   ✓ Implementation time is minimized
-   ✓ Clear path to refactoring identified
+6. **一般的なグリーンフェーズテクニック**
+   - 初期テストのためのハードコードされた戻り値
+   - 限定されたテストケースのためのシンプルなif/else
+   - イテレーションテストが必要な場合のみ基本的なループ
+   - 最小限のデータ構造(複雑なオブジェクトの前に配列)
+   - データベース統合の前にインメモリストレージ
+   - 非同期実装の前に同期
 
-8. **Anti-Patterns to Avoid**
-   - Gold plating or adding unrequested features
-   - Implementing design patterns prematurely
-   - Complex abstractions without test justification
-   - Performance optimizations without metrics
-   - Adding tests during green phase
-   - Refactoring during implementation
-   - Ignoring test failures to move forward
+7. **成功基準**
+   ✓ すべてのテストが成功(グリーン)
+   ✓ テスト要件を超える追加機能なし
+   ✓ コードが読みやすい(最適でなくても)
+   ✓ 既存の機能が壊れていない
+   ✓ 実装時間が最小化されている
+   ✓ リファクタリングへの明確なパスが特定されている
 
-9. **Implementation Metrics**
-   - Time to green: Track implementation duration
-   - Lines of code: Measure implementation size
-   - Cyclomatic complexity: Keep it low initially
-   - Test pass rate: Must reach 100%
-   - Code coverage: Verify all paths tested
+8. **避けるべきアンチパターン**
+   - ゴールドプレーティングや要求されていない機能の追加
+   - 時期尚早なデザインパターンの実装
+   - テストの正当性なしの複雑な抽象化
+   - メトリクスなしのパフォーマンス最適化
+   - グリーンフェーズ中のテスト追加
+   - 実装中のリファクタリング
+   - 前進するためにテスト失敗を無視
 
-10. **Validation Steps**
-    - Run all tests and confirm they pass
-    - Verify no regression in existing tests
-    - Check that implementation is truly minimal
-    - Document any technical debt created
-    - Prepare notes for refactoring phase
+9. **実装メトリクス**
+   - グリーンまでの時間: 実装期間を追跡
+   - コード行数: 実装サイズを測定
+   - 循環的複雑度: 最初は低く保つ
+   - テスト合格率: 100%に到達しなければならない
+   - コードカバレッジ: すべてのパスがテストされていることを検証
 
-Output should include:
-- Complete implementation code
-- Test execution results showing all green
-- List of shortcuts taken for later refactoring
-- Implementation time metrics
-- Technical debt documentation
-- Readiness assessment for refactor phase"
+10. **検証ステップ**
+    - すべてのテストを実行して成功を確認
+    - 既存のテストに退行がないことを検証
+    - 実装が本当に最小限であることをチェック
+    - 作成した技術的負債を文書化
+    - リファクタリングフェーズのためのノートを準備
 
-## Post-Implementation Checks
+出力には以下を含めるべき:
+- 完全な実装コード
+- すべてグリーンを示すテスト実行結果
+- 後のリファクタリングのために取ったショートカットのリスト
+- 実装時間メトリクス
+- 技術的負債の文書
+- リファクタフェーズへの準備状況評価"
 
-After implementation:
-1. Run full test suite to confirm all tests pass
-2. Verify no existing tests were broken
-3. Document areas needing refactoring
-4. Check implementation is truly minimal
-5. Record implementation time for metrics
+## 実装後のチェック
 
-## Recovery Process
+実装後:
+1. すべてのテストが成功することを確認するためにフルテストスイートを実行
+2. 既存のテストが壊れていないことを検証
+3. リファクタリングが必要な領域を文書化
+4. 実装が本当に最小限であることをチェック
+5. メトリクスのために実装時間を記録
 
-If tests still fail:
-- Review test requirements carefully
-- Check for misunderstood assertions
-- Add minimal code to address specific failures
-- Avoid the temptation to rewrite from scratch
-- Consider if tests themselves need adjustment
+## リカバリプロセス
 
-## Integration Points
+テストがまだ失敗する場合:
+- テスト要件を慎重にレビュー
+- 誤解されたアサーションをチェック
+- 特定の失敗に対処するための最小限のコードを追加
+- ゼロから書き直す誘惑を避ける
+- テスト自体が調整を必要とするかどうか検討
 
-- Follows from tdd-red.md test creation
-- Prepares for tdd-refactor.md improvements
-- Updates test coverage metrics
-- Triggers CI/CD pipeline verification
-- Documents technical debt for tracking
+## 統合ポイント
 
-## Best Practices
+- tdd-red.mdのテスト作成から続く
+- tdd-refactor.mdの改善に備える
+- テストカバレッジメトリクスを更新
+- CI/CDパイプライン検証をトリガー
+- 追跡のために技術的負債を文書化
 
-- Embrace "good enough" for this phase
-- Speed over perfection (perfection comes in refactor)
-- Make it work, then make it right, then make it fast
-- Trust that refactoring phase will improve code
-- Keep changes small and incremental
-- Celebrate reaching green state!
+## ベストプラクティス
 
-## Complete Implementation Examples
+- このフェーズでは「十分良い」を受け入れる
+- 完璧さより速度(完璧さはリファクタで)
+- 動かしてから、正しくしてから、速くする
+- リファクタリングフェーズがコードを改善すると信頼する
+- 変更を小さく段階的に保つ
+- グリーン状態に到達したら祝福！
 
-### Example 1: Minimal → Production-Ready (User Service)
+## 完全な実装例
 
-**Test Requirements:**
+### 例1: 最小限 → プロダクション対応(ユーザーサービス)
+
+**テスト要件:**
 ```typescript
 describe('UserService', () => {
   it('should create a new user', async () => {
@@ -151,7 +155,7 @@ describe('UserService', () => {
 });
 ```
 
-**Stage 1: Fake It (Minimal)**
+**ステージ1: 偽装実装(最小限)**
 ```typescript
 class UserService {
   create(data: { email: string; name: string }) {
@@ -163,9 +167,9 @@ class UserService {
   }
 }
 ```
-*Tests pass. Implementation is obviously fake but validates test structure.*
+*テストが成功。実装は明らかに偽物だが、テスト構造を検証。*
 
-**Stage 2: Simple Real Implementation**
+**ステージ2: シンプルな実際の実装**
 ```typescript
 class UserService {
   private users: Map<string, User> = new Map();
@@ -182,9 +186,9 @@ class UserService {
   }
 }
 ```
-*In-memory storage. Tests pass. Good enough for green phase.*
+*インメモリストレージ。テストが成功。グリーンフェーズには十分。*
 
-**Stage 3: Production-Ready (Refactor Phase)**
+**ステージ3: プロダクション対応(リファクタフェーズ)**
 ```typescript
 class UserService {
   constructor(private db: Database) {}
@@ -202,11 +206,11 @@ class UserService {
   }
 }
 ```
-*Database integration, error handling, validation - saved for refactor phase.*
+*データベース統合、エラーハンドリング、検証 - リファクタフェーズに保存。*
 
-### Example 2: API-First Implementation (Express)
+### 例2: API優先実装(Express)
 
-**Test Requirements:**
+**テスト要件:**
 ```javascript
 describe('POST /api/tasks', () => {
   it('should create task and return 201', async () => {
@@ -221,15 +225,15 @@ describe('POST /api/tasks', () => {
 });
 ```
 
-**Stage 1: Hardcoded Response**
+**ステージ1: ハードコードされたレスポンス**
 ```javascript
 app.post('/api/tasks', (req, res) => {
   res.status(201).json({ id: '1', title: req.body.title });
 });
 ```
-*Tests pass immediately. No logic needed yet.*
+*テストが即座に成功。まだロジックは不要。*
 
-**Stage 2: Simple Logic**
+**ステージ2: シンプルなロジック**
 ```javascript
 let tasks = [];
 let nextId = 1;
@@ -240,11 +244,11 @@ app.post('/api/tasks', (req, res) => {
   res.status(201).json(task);
 });
 ```
-*Minimal state management. Ready for more tests.*
+*最小限の状態管理。さらなるテストの準備完了。*
 
-**Stage 3: Layered Architecture (Refactor)**
+**ステージ3: レイヤードアーキテクチャ(リファクタ)**
 ```javascript
-// Controller
+// コントローラー
 app.post('/api/tasks', async (req, res) => {
   try {
     const task = await taskService.create(req.body);
@@ -254,7 +258,7 @@ app.post('/api/tasks', async (req, res) => {
   }
 });
 
-// Service layer
+// サービスレイヤー
 class TaskService {
   constructor(private repository: TaskRepository) {}
 
@@ -264,11 +268,11 @@ class TaskService {
   }
 }
 ```
-*Proper separation of concerns added during refactor phase.*
+*適切な関心の分離がリファクタフェーズで追加。*
 
-### Example 3: Database Integration (Django)
+### 例3: データベース統合(Django)
 
-**Test Requirements:**
+**テスト要件:**
 ```python
 def test_product_creation():
     product = Product.objects.create(name="Widget", price=9.99)
@@ -280,15 +284,15 @@ def test_product_price_validation():
         Product.objects.create(name="Widget", price=-1)
 ```
 
-**Stage 1: Model Only**
+**ステージ1: モデルのみ**
 ```python
 class Product(models.Model):
     name = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=10, decimal_places=2)
 ```
-*First test passes. Second test fails - validation not implemented.*
+*最初のテストが成功。2番目のテストは失敗 - 検証が実装されていない。*
 
-**Stage 2: Add Validation**
+**ステージ2: 検証を追加**
 ```python
 class Product(models.Model):
     name = models.CharField(max_length=200)
@@ -302,9 +306,9 @@ class Product(models.Model):
         self.clean()
         super().save(*args, **kwargs)
 ```
-*All tests pass. Minimal validation logic added.*
+*すべてのテストが成功。最小限の検証ロジックを追加。*
 
-**Stage 3: Rich Domain Model (Refactor)**
+**ステージ3: リッチドメインモデル(リファクタ)**
 ```python
 class Product(models.Model):
     name = models.CharField(max_length=200)
@@ -325,11 +329,11 @@ class Product(models.Model):
     def apply_discount(self, percentage: float) -> Decimal:
         return self.price * (1 - percentage / 100)
 ```
-*Additional features, indexes, business logic added when needed.*
+*必要に応じて追加機能、インデックス、ビジネスロジックを追加。*
 
-### Example 4: React Component Implementation
+### 例4: Reactコンポーネント実装
 
-**Test Requirements:**
+**テスト要件:**
 ```typescript
 describe('UserProfile', () => {
   it('should display user name', () => {
@@ -344,7 +348,7 @@ describe('UserProfile', () => {
 });
 ```
 
-**Stage 1: Minimal JSX**
+**ステージ1: 最小限のJSX**
 ```typescript
 interface UserProfileProps {
   user: { name: string; email: string };
@@ -357,9 +361,9 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => (
   </div>
 );
 ```
-*Tests pass. No styling, no structure.*
+*テストが成功。スタイリングなし、構造なし。*
 
-**Stage 2: Basic Structure**
+**ステージ2: 基本的な構造**
 ```typescript
 const UserProfile: React.FC<UserProfileProps> = ({ user }) => (
   <div className="user-profile">
@@ -368,9 +372,9 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => (
   </div>
 );
 ```
-*Added semantic HTML, className for styling hook.*
+*セマンティックHTML、スタイリングフックのためのclassNameを追加。*
 
-**Stage 3: Production Component (Refactor)**
+**ステージ3: プロダクションコンポーネント(リファクタ)**
 ```typescript
 const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -391,48 +395,48 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
   );
 };
 ```
-*Accessibility, interaction, additional features added incrementally.*
+*アクセシビリティ、インタラクション、追加機能を段階的に追加。*
 
-## Decision Frameworks
+## 意思決定フレームワーク
 
-### Framework 1: Fake vs. Real Implementation
+### フレームワーク1: 偽装 vs 実際の実装
 
-**When to Fake It:**
-- First test for a new feature
-- Complex external dependencies (payment gateways, APIs)
-- Implementation approach is still uncertain
-- Need to validate test structure first
-- Time pressure to see all tests green
+**偽装実装すべき時:**
+- 新機能の最初のテスト
+- 複雑な外部依存関係(決済ゲートウェイ、API)
+- 実装アプローチがまだ不確実
+- まずテスト構造を検証する必要がある
+- すべてのテストをグリーンにする時間的プレッシャー
 
-**When to Go Real:**
-- Second or third test reveals pattern
-- Implementation is obvious and simple
-- Faking would be more complex than real code
-- Need to test integration points
-- Tests explicitly require real behavior
+**実際の実装にすべき時:**
+- 2番目または3番目のテストがパターンを明らかにする
+- 実装が明白でシンプル
+- 偽装が実際のコードより複雑になる
+- 統合ポイントをテストする必要がある
+- テストが明示的に実際の動作を要求
 
-**Decision Matrix:**
+**意思決定マトリックス:**
 ```
-Complexity Low     | High
-         ↓         | ↓
-Simple   → REAL    | FAKE first, real later
-Complex  → REAL    | FAKE, evaluate alternatives
-```
-
-### Framework 2: Complexity Trade-off Analysis
-
-**Simplicity Score Calculation:**
-```
-Score = (Lines of Code) + (Cyclomatic Complexity × 2) + (Dependencies × 3)
-
-< 20  → Simple enough, implement directly
-20-50 → Consider simpler alternative
-> 50  → Defer complexity to refactor phase
+複雑度  低      | 高
+         ↓      | ↓
+シンプル → 実装  | まず偽装、後で実装
+複雑    → 実装  | 偽装、代替案を評価
 ```
 
-**Example Evaluation:**
+### フレームワーク2: 複雑性トレードオフ分析
+
+**シンプルさスコア計算:**
+```
+スコア = (コード行数) + (循環的複雑度 × 2) + (依存関係 × 3)
+
+< 20  → 十分シンプル、直接実装
+20-50 → よりシンプルな代替案を検討
+> 50  → リファクタフェーズに複雑性を延期
+```
+
+**評価例:**
 ```typescript
-// Option A: Direct implementation (Score: 45)
+// オプションA: 直接実装(スコア: 45)
 function calculateShipping(weight: number, distance: number, express: boolean): number {
   let base = weight * 0.5 + distance * 0.1;
   if (express) base *= 2;
@@ -441,39 +445,39 @@ function calculateShipping(weight: number, distance: number, express: boolean): 
   return base;
 }
 
-// Option B: Simplest for green phase (Score: 15)
+// オプションB: グリーンフェーズで最もシンプル(スコア: 15)
 function calculateShipping(weight: number, distance: number, express: boolean): number {
-  return express ? 50 : 25; // Fake it until more tests drive real logic
+  return express ? 50 : 25; // より多くのテストが実際のロジックを駆動するまで偽装
 }
 ```
-*Choose Option B for green phase, evolve to Option A as tests require.*
+*グリーンフェーズではオプションBを選択、テストが要求するにつれてオプションAに進化。*
 
-### Framework 3: Performance Consideration Timing
+### フレームワーク3: パフォーマンス考慮のタイミング
 
-**Green Phase: Focus on Correctness**
+**グリーンフェーズ: 正確性にフォーカス**
 ```
-❌ Avoid:
-- Caching strategies
-- Database query optimization
-- Algorithmic complexity improvements
-- Premature memory optimization
+❌ 避ける:
+- キャッシング戦略
+- データベースクエリ最適化
+- アルゴリズム複雑性の改善
+- 時期尚早なメモリ最適化
 
-✓ Accept:
-- O(n²) if it makes code simpler
-- Multiple database queries
-- Synchronous operations
-- Inefficient but clear algorithms
+✓ 受け入れる:
+- コードがシンプルになるならO(n²)
+- 複数のデータベースクエリ
+- 同期操作
+- 非効率だが明確なアルゴリズム
 ```
 
-**When Performance Matters in Green Phase:**
-1. Performance is explicit test requirement
-2. Implementation would cause timeout in test suite
-3. Memory leak would crash tests
-4. Resource exhaustion prevents testing
+**グリーンフェーズでパフォーマンスが重要な時:**
+1. パフォーマンスが明示的なテスト要件
+2. 実装がテストスイートでタイムアウトを引き起こす
+3. メモリリークがテストをクラッシュさせる
+4. リソース枯渇がテストを妨げる
 
-**Performance Testing Integration:**
+**パフォーマンステスト統合:**
 ```typescript
-// Add performance test AFTER functional tests pass
+// 機能テストが成功した後にパフォーマンステストを追加
 describe('Performance', () => {
   it('should handle 1000 users within 100ms', () => {
     const start = Date.now();
@@ -485,116 +489,116 @@ describe('Performance', () => {
 });
 ```
 
-## Framework-Specific Patterns
+## フレームワーク別パターン
 
-### React Patterns
+### Reactパターン
 
-**Simple Component → Hooks → Context:**
+**シンプルなコンポーネント → フック → コンテキスト:**
 ```typescript
-// Green Phase: Props only
+// グリーンフェーズ: プロップスのみ
 const Counter = ({ count, onIncrement }) => (
   <button onClick={onIncrement}>{count}</button>
 );
 
-// Refactor: Add hooks
+// リファクタ: フックを追加
 const Counter = () => {
   const [count, setCount] = useState(0);
   return <button onClick={() => setCount(c => c + 1)}>{count}</button>;
 };
 
-// Refactor: Extract to context
+// リファクタ: コンテキストに抽出
 const Counter = () => {
   const { count, increment } = useCounter();
   return <button onClick={increment}>{count}</button>;
 };
 ```
 
-### Django Patterns
+### Djangoパターン
 
-**Function View → Class View → Generic View:**
+**関数ビュー → クラスビュー → ジェネリックビュー:**
 ```python
-# Green Phase: Simple function
+# グリーンフェーズ: シンプルな関数
 def product_list(request):
     products = Product.objects.all()
     return JsonResponse({'products': list(products.values())})
 
-# Refactor: Class-based view
+# リファクタ: クラスベースビュー
 class ProductListView(View):
     def get(self, request):
         products = Product.objects.all()
         return JsonResponse({'products': list(products.values())})
 
-# Refactor: Generic view
+# リファクタ: ジェネリックビュー
 class ProductListView(ListView):
     model = Product
     context_object_name = 'products'
 ```
 
-### Express Patterns
+### Expressパターン
 
-**Inline → Middleware → Service Layer:**
+**インライン → ミドルウェア → サービスレイヤー:**
 ```javascript
-// Green Phase: Inline logic
+// グリーンフェーズ: インラインロジック
 app.post('/api/users', (req, res) => {
   const user = { id: Date.now(), ...req.body };
   users.push(user);
   res.json(user);
 });
 
-// Refactor: Extract middleware
+// リファクタ: ミドルウェアを抽出
 app.post('/api/users', validateUser, (req, res) => {
   const user = userService.create(req.body);
   res.json(user);
 });
 
-// Refactor: Full layering
+// リファクタ: 完全なレイヤリング
 app.post('/api/users',
   validateUser,
   asyncHandler(userController.create)
 );
 ```
 
-## Refactoring Resistance Patterns
+## リファクタリング抵抗パターン
 
-### Pattern 1: Test Anchor Points
+### パターン1: テストアンカーポイント
 
-Keep tests green during refactoring by maintaining interface contracts:
+インターフェース契約を維持することでリファクタリング中もテストをグリーンに保つ:
 
 ```typescript
-// Original implementation (tests green)
+// 元の実装(テストはグリーン)
 function calculateTotal(items: Item[]): number {
   return items.reduce((sum, item) => sum + item.price, 0);
 }
 
-// Refactoring: Add tax calculation (keep interface)
+// リファクタリング: 税計算を追加(インターフェースは維持)
 function calculateTotal(items: Item[]): number {
   const subtotal = items.reduce((sum, item) => sum + item.price, 0);
   const tax = subtotal * 0.1;
   return subtotal + tax;
 }
 
-// Tests still green because return type/behavior unchanged
+// 戻り値の型/動作が変わっていないためテストはまだグリーン
 ```
 
-### Pattern 2: Parallel Implementation
+### パターン2: 並列実装
 
-Run old and new implementations side by side:
+古い実装と新しい実装を並行して実行:
 
 ```python
 def process_order(order):
-    # Old implementation (tests depend on this)
+    # 古い実装(テストはこれに依存)
     result_old = legacy_process(order)
 
-    # New implementation (testing in parallel)
+    # 新しい実装(並列でテスト)
     result_new = new_process(order)
 
-    # Verify they match
+    # 一致を検証
     assert result_old == result_new, "Implementation mismatch"
 
-    return result_old  # Keep tests green
+    return result_old  # テストをグリーンに保つ
 ```
 
-### Pattern 3: Feature Flags for Refactoring
+### パターン3: リファクタリングのためのフィーチャーフラグ
 
 ```javascript
 class PaymentService {
@@ -607,20 +611,20 @@ class PaymentService {
 }
 ```
 
-## Performance-First Green Phase Strategies
+## パフォーマンス優先グリーンフェーズ戦略
 
-### Strategy 1: Type-Driven Development
+### 戦略1: 型駆動開発
 
-Use types to guide minimal implementation:
+型を使用して最小限の実装をガイド:
 
 ```typescript
-// Types define contract
+// 型が契約を定義
 interface UserRepository {
   findById(id: string): Promise<User | null>;
   save(user: User): Promise<void>;
 }
 
-// Green phase: In-memory implementation
+// グリーンフェーズ: インメモリ実装
 class InMemoryUserRepository implements UserRepository {
   private users = new Map<string, User>();
 
@@ -633,7 +637,7 @@ class InMemoryUserRepository implements UserRepository {
   }
 }
 
-// Refactor: Database implementation (same interface)
+// リファクタ: データベース実装(同じインターフェース)
 class DatabaseUserRepository implements UserRepository {
   constructor(private db: Database) {}
 
@@ -647,10 +651,10 @@ class DatabaseUserRepository implements UserRepository {
 }
 ```
 
-### Strategy 2: Contract Testing Integration
+### 戦略2: 契約テスト統合
 
 ```typescript
-// Define contract
+// 契約を定義
 const userServiceContract = {
   create: {
     input: { email: 'string', name: 'string' },
@@ -658,14 +662,14 @@ const userServiceContract = {
   }
 };
 
-// Green phase: Implementation matches contract
+// グリーンフェーズ: 実装が契約に一致
 class UserService {
   create(data: { email: string; name: string }) {
-    return { id: '123', ...data }; // Minimal but contract-compliant
+    return { id: '123', ...data }; // 最小限だが契約に準拠
   }
 }
 
-// Contract test ensures compliance
+// 契約テストがコンプライアンスを保証
 describe('UserService Contract', () => {
   it('should match create contract', () => {
     const result = userService.create({ email: 'test@test.com', name: 'Test' });
@@ -676,18 +680,18 @@ describe('UserService Contract', () => {
 });
 ```
 
-### Strategy 3: Continuous Refactoring Workflow
+### 戦略3: 継続的リファクタリングワークフロー
 
-**Micro-Refactoring During Green Phase:**
+**グリーンフェーズ中のマイクロリファクタリング:**
 
 ```python
-# Test passes with this
+# これでテストが成功
 def calculate_discount(price, customer_type):
     if customer_type == 'premium':
         return price * 0.8
     return price
 
-# Immediate micro-refactor (tests still green)
+# 即座のマイクロリファクタ(テストはまだグリーン)
 DISCOUNT_RATES = {
     'premium': 0.8,
     'standard': 1.0
@@ -698,18 +702,18 @@ def calculate_discount(price, customer_type):
     return price * rate
 ```
 
-**Safe Refactoring Checklist:**
-- ✓ Tests green before refactoring
-- ✓ Change one thing at a time
-- ✓ Run tests after each change
-- ✓ Commit after each successful refactor
-- ✓ No behavior changes, only structure
+**安全なリファクタリングチェックリスト:**
+- ✓ リファクタリング前にテストがグリーン
+- ✓ 一度に1つのことを変更
+- ✓ 各変更後にテストを実行
+- ✓ 各成功したリファクタ後にコミット
+- ✓ 動作変更なし、構造のみ
 
-## Modern Development Practices (2024/2025)
+## モダン開発プラクティス(2024/2025)
 
-### Type-Driven Development
+### 型駆動開発
 
-**Python Type Hints:**
+**Python型ヒント:**
 ```python
 from typing import Optional, List
 from dataclasses import dataclass
@@ -725,12 +729,12 @@ class UserService:
         return User(id="123", email=email, name=name)
 
     def find_by_email(self, email: str) -> Optional[User]:
-        return None  # Minimal implementation
+        return None  # 最小限の実装
 ```
 
-**TypeScript Strict Mode:**
+**TypeScript厳格モード:**
 ```typescript
-// Enable strict mode in tsconfig.json
+// tsconfig.jsonで厳格モードを有効化
 {
   "compilerOptions": {
     "strict": true,
@@ -739,7 +743,7 @@ class UserService:
   }
 }
 
-// Implementation guided by types
+// 型によってガイドされる実装
 interface CreateUserDto {
   email: string;
   name: string;
@@ -747,36 +751,36 @@ interface CreateUserDto {
 
 class UserService {
   create(data: CreateUserDto): User {
-    // Type system enforces contract
+    // 型システムが契約を強制
     return { id: '123', email: data.email, name: data.name };
   }
 }
 ```
 
-### AI-Assisted Green Phase
+### AI支援グリーンフェーズ
 
-**Using Copilot/AI Tools:**
-1. Write test first (human-driven)
-2. Let AI suggest minimal implementation
-3. Verify suggestion passes tests
-4. Accept if truly minimal, reject if over-engineered
-5. Iterate with AI for refactoring phase
+**Copilot/AIツールの使用:**
+1. まずテストを書く(人間主導)
+2. AIに最小限の実装を提案させる
+3. 提案がテストを通過することを検証
+4. 本当に最小限なら受け入れ、過度に設計されていれば拒否
+5. リファクタリングフェーズのためにAIと反復
 
-**AI Prompt Pattern:**
+**AIプロンプトパターン:**
 ```
-Given these failing tests:
-[paste tests]
+これらの失敗するテストが与えられた場合:
+[テストを貼り付け]
 
-Provide the MINIMAL implementation that makes tests pass.
-Do not add error handling, validation, or features beyond test requirements.
-Focus on simplicity over completeness.
+テストを成功させる最小限の実装を提供してください。
+エラーハンドリング、検証、またはテスト要件を超える機能を追加しないでください。
+完全性よりシンプルさにフォーカスしてください。
 ```
 
-### Cloud-Native Patterns
+### クラウドネイティブパターン
 
-**Local → Container → Cloud:**
+**ローカル → コンテナ → クラウド:**
 ```javascript
-// Green Phase: Local implementation
+// グリーンフェーズ: ローカル実装
 class CacheService {
   private cache = new Map();
 
@@ -784,7 +788,7 @@ class CacheService {
   set(key, value) { this.cache.set(key, value); }
 }
 
-// Refactor: Redis-compatible interface
+// リファクタ: Redis互換インターフェース
 class CacheService {
   constructor(private redis) {}
 
@@ -792,7 +796,7 @@ class CacheService {
   async set(key, value) { return this.redis.set(key, value); }
 }
 
-// Production: Distributed cache with fallback
+// プロダクション: フォールバック付き分散キャッシュ
 class CacheService {
   constructor(private redis, private fallback) {}
 
@@ -806,23 +810,23 @@ class CacheService {
 }
 ```
 
-### Observability-Driven Development
+### オブザーバビリティ駆動開発
 
-**Add observability hooks during green phase:**
+**グリーンフェーズ中にオブザーバビリティフックを追加:**
 ```typescript
 class OrderService {
   async createOrder(data: CreateOrderDto): Promise<Order> {
-    console.log('[OrderService] Creating order', { data }); // Simple logging
+    console.log('[OrderService] Creating order', { data }); // シンプルなロギング
 
     const order = { id: '123', ...data };
 
-    console.log('[OrderService] Order created', { orderId: order.id }); // Success log
+    console.log('[OrderService] Order created', { orderId: order.id }); // 成功ログ
 
     return order;
   }
 }
 
-// Refactor: Structured logging
+// リファクタ: 構造化ロギング
 class OrderService {
   constructor(private logger: Logger) {}
 
@@ -841,4 +845,4 @@ class OrderService {
 }
 ```
 
-Tests to make pass: $ARGUMENTS
+成功させるテスト: $ARGUMENTS

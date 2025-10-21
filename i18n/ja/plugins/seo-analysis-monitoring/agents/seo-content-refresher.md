@@ -1,4 +1,4 @@
-[EN](../../../../../../plugins/seo-analysis-monitoring/agents/seo-content-refresher.md) | JA
+> **[English](../../../../../../plugins/seo-analysis-monitoring/agents/seo-content-refresher.md)** | **日本語**
 
 ---
 name: seo-content-refresher

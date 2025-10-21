@@ -1,4 +1,4 @@
-[EN](../../../../../../plugins/payment-processing/agents/payment-integration.md) | JA
+> **[English](../../../../../../plugins/payment-processing/agents/payment-integration.md)** | **日本語**
 
 ---
 name: payment-integration

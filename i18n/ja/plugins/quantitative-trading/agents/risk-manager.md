@@ -1,4 +1,4 @@
-[EN](../../../../../../plugins/quantitative-trading/agents/risk-manager.md) | JA
+> **[English](../../../../../../plugins/quantitative-trading/agents/risk-manager.md)** | **日本語**
 
 ---
 name: risk-manager

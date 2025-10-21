@@ -56,7 +56,7 @@ Rustで書かれた非常に高速なPythonパッケージインストーラー�
 # macOS/Linux
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# Windows（PowerShell）
+# Windows (PowerShell)
 powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
 
 # pipを使用（すでにPythonがある場合）
@@ -138,10 +138,10 @@ uv venv /path/to/venv
 # Linux/macOS
 source .venv/bin/activate
 
-# Windows（コマンドプロンプト）
+# Windows (コマンドプロンプト)
 .venv\Scripts\activate.bat
 
-# Windows（PowerShell）
+# Windows (PowerShell)
 .venv\Scripts\Activate.ps1
 
 # またはuv runを使用（アクティベーション不要）

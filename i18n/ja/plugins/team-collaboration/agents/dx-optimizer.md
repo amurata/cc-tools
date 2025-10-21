@@ -1,4 +1,4 @@
-[EN](../../../../plugins/team-collaboration/agents/dx-optimizer.md) | JA
+> **[English](../../../../plugins/team-collaboration/agents/dx-optimizer.md)** | **日本語**
 
 ---
 name: dx-optimizer

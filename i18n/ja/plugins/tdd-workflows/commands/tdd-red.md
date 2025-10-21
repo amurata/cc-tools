@@ -1,106 +1,110 @@
-[EN](../../../../plugins/tdd-workflows/commands/tdd-red.md) | JA
+---
+description: TDDのレッド(失敗)フェーズの原則に従って、包括的な失敗するテストを記述します。
+---
 
-Write comprehensive failing tests following TDD red phase principles.
+> **[English](../../../plugins/tdd-workflows/commands/tdd-red.md)** | **日本語**
 
-[Extended thinking: Generates failing tests that properly define expected behavior using test-automator agent.]
+TDDのレッド(失敗)フェーズの原則に従って、包括的な失敗するテストを記述します。
 
-## Role
+[拡張思考: test-automatorエージェントを使用して、期待される動作を適切に定義する失敗するテストを生成します。]
 
-Generate failing tests using Task tool with subagent_type="unit-testing::test-automator".
+## 役割
 
-## Prompt Template
+Taskツールを使用し、subagent_type="unit-testing::test-automator"で失敗するテストを生成します。
 
-"Generate comprehensive FAILING tests for: $ARGUMENTS
+## プロンプトテンプレート
 
-## Core Requirements
+"以下に対する包括的な失敗するテストを生成してください: $ARGUMENTS
 
-1. **Test Structure**
-   - Framework-appropriate setup (Jest/pytest/JUnit/Go/RSpec)
-   - Arrange-Act-Assert pattern
-   - should_X_when_Y naming convention
-   - Isolated fixtures with no interdependencies
+## 中核要件
 
-2. **Behavior Coverage**
-   - Happy path scenarios
-   - Edge cases (empty, null, boundary values)
-   - Error handling and exceptions
-   - Concurrent access (if applicable)
+1. **テスト構造**
+   - フレームワークに適したセットアップ(Jest/pytest/JUnit/Go/RSpec)
+   - Arrange-Act-Assertパターン
+   - should_X_when_Y命名規則
+   - 相互依存のない独立したフィクスチャ
 
-3. **Failure Verification**
-   - Tests MUST fail when run
-   - Failures for RIGHT reasons (not syntax/import errors)
-   - Meaningful diagnostic error messages
-   - No cascading failures
+2. **動作カバレッジ**
+   - ハッピーパスシナリオ
+   - エッジケース(空、null、境界値)
+   - エラーハンドリングと例外
+   - 並行アクセス(該当する場合)
 
-4. **Test Categories**
-   - Unit: Isolated component behavior
-   - Integration: Component interaction
-   - Contract: API/interface contracts
-   - Property: Mathematical invariants
+3. **失敗の検証**
+   - テストは実行時に必ず失敗しなければならない
+   - 正しい理由での失敗(構文エラーやインポートエラーではない)
+   - 意味のある診断エラーメッセージ
+   - カスケード失敗なし
 
-## Framework Patterns
+4. **テストカテゴリ**
+   - ユニット: 独立したコンポーネントの動作
+   - インテグレーション: コンポーネント間の相互作用
+   - コントラクト: API/インターフェースの契約
+   - プロパティ: 数学的不変条件
+
+## フレームワークパターン
 
 **JavaScript/TypeScript (Jest/Vitest)**
-- Mock dependencies with `vi.fn()` or `jest.fn()`
-- Use `@testing-library` for React components
-- Property tests with `fast-check`
+- `vi.fn()`または`jest.fn()`で依存関係をモック化
+- Reactコンポーネントには`@testing-library`を使用
+- `fast-check`でプロパティテスト
 
 **Python (pytest)**
-- Fixtures with appropriate scopes
-- Parametrize for multiple test cases
-- Hypothesis for property-based tests
+- 適切なスコープのフィクスチャ
+- 複数のテストケースにはParametrizeを使用
+- プロパティベーステストにはHypothesisを使用
 
 **Go**
-- Table-driven tests with subtests
-- `t.Parallel()` for parallel execution
-- Use `testify/assert` for cleaner assertions
+- サブテストを使ったテーブル駆動テスト
+- 並列実行には`t.Parallel()`
+- よりクリーンなアサーションには`testify/assert`を使用
 
 **Ruby (RSpec)**
-- `let` for lazy loading, `let!` for eager
-- Contexts for different scenarios
-- Shared examples for common behavior
+- 遅延読み込みには`let`、即時読み込みには`let!`
+- 異なるシナリオにはコンテキストを使用
+- 共通の動作には共有サンプルを使用
 
-## Quality Checklist
+## 品質チェックリスト
 
-- Readable test names documenting intent
-- One behavior per test
-- No implementation leakage
-- Meaningful test data (not 'foo'/'bar')
-- Tests serve as living documentation
+- 意図を文書化する読みやすいテスト名
+- テストごとに1つの動作
+- 実装の漏洩なし
+- 意味のあるテストデータ('foo'/'bar'ではない)
+- テストが生きたドキュメントとして機能
 
-## Anti-Patterns to Avoid
+## 避けるべきアンチパターン
 
-- Tests passing immediately
-- Testing implementation vs behavior
-- Complex setup code
-- Multiple responsibilities per test
-- Brittle tests tied to specifics
+- すぐに成功するテスト
+- 動作ではなく実装をテスト
+- 複雑なセットアップコード
+- テストごとに複数の責任
+- 具体的な内容に依存した脆弱なテスト
 
-## Edge Case Categories
+## エッジケースのカテゴリ
 
-- **Null/Empty**: undefined, null, empty string/array/object
-- **Boundaries**: min/max values, single element, capacity limits
-- **Special Cases**: Unicode, whitespace, special characters
-- **State**: Invalid transitions, concurrent modifications
-- **Errors**: Network failures, timeouts, permissions
+- **Null/空**: undefined、null、空の文字列/配列/オブジェクト
+- **境界**: 最小/最大値、単一要素、容量制限
+- **特殊ケース**: Unicode、空白、特殊文字
+- **状態**: 無効な遷移、同時変更
+- **エラー**: ネットワーク障害、タイムアウト、権限
 
-## Output Requirements
+## 出力要件
 
-- Complete test files with imports
-- Documentation of test purpose
-- Commands to run and verify failures
-- Metrics: test count, coverage areas
-- Next steps for green phase"
+- インポートを含む完全なテストファイル
+- テストの目的の文書化
+- 失敗を実行・検証するコマンド
+- メトリクス: テスト数、カバレッジ領域
+- グリーンフェーズへの次のステップ"
 
-## Validation
+## 検証
 
-After generation:
-1. Run tests - confirm they fail
-2. Verify helpful failure messages
-3. Check test independence
-4. Ensure comprehensive coverage
+生成後:
+1. テストを実行 - 失敗することを確認
+2. 有用な失敗メッセージを検証
+3. テストの独立性をチェック
+4. 包括的なカバレッジを確保
 
-## Example (Minimal)
+## 例(最小限)
 
 ```typescript
 // auth.service.test.ts
@@ -134,4 +138,4 @@ describe('AuthService', () => {
 });
 ```
 
-Test requirements: $ARGUMENTS
+テスト要件: $ARGUMENTS

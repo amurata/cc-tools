@@ -1,4 +1,4 @@
-[EN](../../../../plugins/unit-testing/agents/test-automator.md) | JA
+> **[English](../../../../plugins/unit-testing/agents/test-automator.md)** | **日本語**
 
 ---
 name: test-automator
