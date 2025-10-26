@@ -1,12 +1,14 @@
-# Claude Code プラグイン：オーケストレーションと自動化
+# Claude Code プラグイン：オーケストレーションと自動化（日本語版）
 
 > **⚡ Sonnet 4.5 & Haiku 4.5 対応** — すべてのエージェントを最新モデル向けにハイブリッドオーケストレーションで最適化
 >
 > **🎯 エージェントスキル有効化** — 47個の専門スキルがプログレッシブ・ディスクロージャーでClaudeの機能をプラグイン全体に拡張
+>
+> **📚 日本語翻訳版** — [wshobson/agents](https://github.com/wshobson/agents) の日本語翻訳 | 翻訳者: [@amurata](https://github.com/amurata)
 
-[Claude Code](https://docs.claude.com/en/docs/claude-code/overview) 向けに、**85個の専門AIエージェント**、**15個のマルチエージェントワークフローオーケストレーター**、**47個のエージェントスキル**、**44個の開発ツール**を **63個の集中的・単一目的プラグイン** に整理した包括的な本番環境対応システムです。
+[Claude Code](https://docs.claude.com/en/docs/claude-code/overview) 向けに、**85個の専門AIエージェント**、**15個のマルチエージェントワークフローオーケストレーター**、**47個のエージェントスキル**、**44個の開発ツール**を **63個の集中的・単一目的プラグイン** に整理した包括的な本番環境対応システムの日本語翻訳版です。
 
-> **[English](../../README.md)** | **日本語**
+> **[English](https://github.com/wshobson/agents)** | **日本語**
 
 ## 概要
 
@@ -41,63 +43,81 @@
 
 ## クイックスタート
 
-### ステップ1: マーケットプレイスの追加
+### 方法1: インストールスクリプト使用（推奨）
 
-このマーケットプレイスをClaude Codeに追加します：
+**最も簡単な方法：**
 
 ```bash
-/plugin marketplace add wshobson/agents
+# リポジトリをクローン
+git clone https://github.com/amurata/cc-tools
+cd cc-tools
+
+# コマンド一発でインストール
+./i18n/scripts/install-ja-plugins.sh ~/your-project
 ```
 
-これにより、63個のプラグインすべてがインストール可能になりますが、**エージェントやツールはコンテキストにロードされません**。
+これで完了！日本語版プラグインがプロジェクトにインストールされます。
 
-### ステップ2: プラグインのインストール
+詳細は [インストールスクリプトガイド](../scripts/README.md) を参照してください。
 
-利用可能なプラグインを閲覧します：
+### 方法2: 手動インストール
+
+```bash
+# リポジトリをクローン
+git clone https://github.com/amurata/cc-tools
+cd cc-tools/i18n/ja
+
+# プロジェクトにコピー
+cp -r .claude-plugin ~/your-project/
+cp -r plugins ~/your-project/
+```
+
+### インストール確認
+
+Claude Code を起動して、プラグインが読み込まれたことを確認：
 
 ```bash
 /plugin
 ```
 
-必要なプラグインをインストールします：
+63個の日本語版プラグインが表示されます。
+
+### プラグインの使用
+
+インストール後、すぐに63個すべてのプラグインが使えます！
+
+利用可能なコマンドを確認：
 
 ```bash
-# 必須開発プラグイン
-/plugin install python-development          # 5つの専門スキルを持つPython
-/plugin install javascript-typescript       # 4つの専門スキルを持つJS/TS
-/plugin install backend-development         # 3つのアーキテクチャスキルを持つバックエンドAPI
-
-# インフラ＆運用
-/plugin install kubernetes-operations       # 4つのデプロイメントスキルを持つK8s
-/plugin install cloud-infrastructure        # 4つのクラウドスキルを持つAWS/Azure/GCP
-
-# セキュリティ＆品質
-/plugin install security-scanning           # セキュリティスキルを持つSAST
-/plugin install code-review-ai             # AI駆動のコードレビュー
-
-# フルスタックオーケストレーション
-/plugin install full-stack-orchestration   # マルチエージェントワークフロー
+/help
 ```
 
-インストールされた各プラグインは、**特定のエージェント、コマンド、スキルのみ**をClaudeのコンテキストにロードします。
+推奨プラグイン：
+
+- **開発**: `python-development`, `javascript-typescript`, `backend-development`
+- **インフラ**: `kubernetes-operations`, `cloud-infrastructure`  
+- **セキュリティ**: `security-scanning`, `code-review-ai`
+- **オーケストレーション**: `full-stack-orchestration`
+
+すべてのプラグインが日本語で利用できます。
 
 ## ドキュメント
 
 ### コアガイド
 
-- **[プラグインリファレンス](docs/plugins.md)** - 全63プラグインの完全なカタログ
-- **[エージェントリファレンス](docs/agents.md)** - カテゴリ別に整理された全85エージェント
-- **[エージェントスキル](docs/agent-skills.md)** - プログレッシブ・ディスクロージャーを備えた47の専門スキル
-- **[使用ガイド](docs/usage.md)** - コマンド、ワークフロー、ベストプラクティス
-- **[アーキテクチャ](docs/architecture.md)** - 設計原則とパターン
+- **[プラグインリファレンス](./docs/plugins.md)** - 全63プラグインの完全なカタログ
+- **[エージェントリファレンス](./docs/agents.md)** - カテゴリ別に整理された全85エージェント
+- **[エージェントスキル](./docs/agent-skills.md)** - プログレッシブ・ディスクロージャーを備えた47の専門スキル
+- **[使用ガイド](./docs/usage.md)** - コマンド、ワークフロー、ベストプラクティス
+- **[アーキテクチャ](./docs/architecture.md)** - 設計原則とパターン
 
 ### クイックリンク
 
 - [インストール](#クイックスタート) - 2ステップで開始
-- [必須プラグイン](docs/plugins.md#quick-start---essential-plugins) - すぐに生産性を上げるトッププラグイン
-- [コマンドリファレンス](docs/usage.md#command-reference-by-category) - カテゴリ別に整理されたすべてのスラッシュコマンド
-- [マルチエージェントワークフロー](docs/usage.md#multi-agent-workflow-examples) - 事前設定されたオーケストレーションの例
-- [モデル設定](docs/agents.md#model-configuration) - Haiku/Sonnetハイブリッドオーケストレーション
+- [必須プラグイン](./docs/plugins.md#quick-start---essential-plugins) - すぐに生産性を上げるトッププラグイン
+- [コマンドリファレンス](./docs/usage.md#command-reference-by-category) - カテゴリ別に整理されたすべてのスラッシュコマンド
+- [マルチエージェントワークフロー](./docs/usage.md#multi-agent-workflow-examples) - 事前設定されたオーケストレーションの例
+- [モデル設定](./docs/agents.md#model-configuration) - Haiku/Sonnetハイブリッドオーケストレーション
 
 ## 新着情報
 
@@ -122,7 +142,7 @@ Anthropicのプログレッシブ・ディスクロージャーアーキテク�
 
 **その他:** フレームワーク移行、オブザーバビリティ、決済処理、ML運用、セキュリティスキャン
 
-[→ 完全なスキルドキュメントを表示](docs/agent-skills.md)
+[→ 完全なスキルドキュメントを表示](./docs/agent-skills.md)
 
 ### ハイブリッドモデルオーケストレーション
 
@@ -135,7 +155,7 @@ Anthropicのプログレッシブ・ディスクロージャーアーキテク�
 Sonnet（計画） → Haiku（実行） → Sonnet（レビュー）
 ```
 
-[→ モデル設定の詳細を表示](docs/agents.md#model-configuration)
+[→ モデル設定の詳細を表示](./docs/agents.md#model-configuration)
 
 ## 人気のユースケース
 
@@ -147,7 +167,7 @@ Sonnet（計画） → Haiku（実行） → Sonnet（レビュー）
 
 7つ以上のエージェントを調整: backend-architect → database-architect → frontend-developer → test-automator → security-auditor → deployment-engineer → observability-engineer
 
-[→ すべてのワークフロー例を表示](docs/usage.md#multi-agent-workflow-examples)
+[→ すべてのワークフロー例を表示](./docs/usage.md#multi-agent-workflow-examples)
 
 ### セキュリティ強化
 
@@ -177,7 +197,7 @@ SAST、依存関係スキャン、コードレビューを含むマルチエー�
 
 本番グレードの設定のために4つの専門スキルを持つkubernetes-architectエージェントを使用します。
 
-[→ 完全な使用ガイドを表示](docs/usage.md)
+[→ 完全な使用ガイドを表示](./docs/usage.md)
 
 ## プラグインカテゴリ
 
@@ -204,7 +224,7 @@ SAST、依存関係スキャン、コードレビューを含むマルチエー�
 - 💼 **ビジネス**（3） - 分析、HR/法務、顧客/販売
 - その他...
 
-[→ 完全なプラグインカタログを表示](docs/plugins.md)
+[→ 完全なプラグインカタログを表示](./docs/plugins.md)
 
 ## アーキテクチャのハイライト
 
@@ -242,7 +262,7 @@ claude-agents/
 └── README.md                      # このファイル
 ```
 
-[→ アーキテクチャの詳細を表示](docs/architecture.md)
+[→ アーキテクチャの詳細を表示](./docs/architecture.md)
 
 ## 貢献
 
@@ -257,7 +277,7 @@ claude-agents/
 4. 明確な起動基準と包括的なコンテンツを記述
 5. `.claude-plugin/marketplace.json` のプラグイン定義を更新
 
-詳細なガイドラインについては、[アーキテクチャドキュメント](docs/architecture.md)を参照してください。
+詳細なガイドラインについては、[アーキテクチャドキュメント](./docs/architecture.md)を参照してください。
 
 ## リソース
 
@@ -269,16 +289,38 @@ claude-agents/
 - [スラッシュコマンドリファレンス](https://docs.claude.com/en/docs/claude-code/slash-commands)
 
 ### このリポジトリ
-- [プラグインリファレンス](docs/plugins.md)
-- [エージェントリファレンス](docs/agents.md)
-- [エージェントスキルガイド](docs/agent-skills.md)
-- [使用ガイド](docs/usage.md)
-- [アーキテクチャ](docs/architecture.md)
+- [プラグインリファレンス](./docs/plugins.md)
+- [エージェントリファレンス](./docs/agents.md)
+- [エージェントスキルガイド](./docs/agent-skills.md)
+- [使用ガイド](./docs/usage.md)
+- [アーキテクチャ](./docs/architecture.md)
+
+## 翻訳とクレジット
+
+### 日本語翻訳版について
+
+このリポジトリは [wshobson/agents](https://github.com/wshobson/agents) の日本語翻訳版です。
+
+- **オリジナル作者**: [Seth Hobson](https://github.com/wshobson)
+- **オリジナルリポジトリ**: https://github.com/wshobson/agents
+- **翻訳者**: [amurata](https://github.com/amurata)
+- **翻訳版リポジトリ**: https://github.com/amurata/cc-tools
+
+### オリジナル版との違い
+
+- **言語**: すべてのエージェント、コマンド、スキル、ドキュメントを日本語に翻訳
+- **構造**: 翻訳版は `i18n/ja/` 配下に配置
+- **メンテナンス**: 翻訳版は独立して管理されています
+
+### フィードバックとサポート
+
+- **翻訳に関する問題**: [cc-tools Issues](https://github.com/amurata/cc-tools/issues)
+- **オリジナルの機能要望**: [wshobson/agents Issues](https://github.com/wshobson/agents/issues)
 
 ## ライセンス
 
-MIT License - 詳細については[LICENSE](LICENSE)ファイルを参照してください。
+MIT License - オリジナルと同じライセンスです。詳細については[LICENSE](../../LICENSE)ファイルを参照してください。
 
-## スター履歴
+オリジナル版のスター履歴:
 
 [![Star History Chart](https://api.star-history.com/svg?repos=wshobson/agents&type=date&legend=top-left)](https://www.star-history.com/#wshobson/agents&type=date&legend=top-left)

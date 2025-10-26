@@ -1,26 +1,26 @@
 {
-  "name": "claude-code-workflows",
+  "name": "claude-code-workflows-ja",
   "owner": {
-    "name": "Seth Hobson",
-    "email": "seth@major7apps.com",
-    "url": "https://github.com/wshobson"
+    "name": "amurata",
+    "email": "murata.atsuo.95@gmail.com",
+    "url": "https://github.com/amurata"
   },
   "metadata": {
-    "description": "64個の焦点を絞ったプラグイン、87個の専門エージェント、44個のツールを備えた本番環境対応ワークフローオーケストレーション - 粒度の高いインストールと最小限のトークン使用に最適化",
-    "version": "1.2.0"
+    "description": "日本語翻訳版: 64個の焦点を絞ったプラグイン、87個の専門エージェント、44個のツールを備えた本番環境対応ワークフローオーケストレーション - 粒度の高いインストールと最小限のトークン使用に最適化 | 元リポジトリ: https://github.com/wshobson/agents",
+    "version": "1.2.0-ja.1"
   },
   "plugins": [
     {
       "name": "code-documentation",
-      "source": "./plugins/code-documentation",
+      "source": "../plugins/code-documentation",
       "description": "自動ドキュメント生成とチュートリアル作成を備えたドキュメント生成、コード説明、テクニカルライティング",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "documentation",
@@ -42,15 +42,15 @@
     },
     {
       "name": "debugging-toolkit",
-      "source": "./plugins/debugging-toolkit",
+      "source": "../plugins/debugging-toolkit",
       "description": "インタラクティブデバッグ、開発者エクスペリエンス最適化、スマートデバッグワークフロー",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "debugging",
@@ -70,15 +70,15 @@
     },
     {
       "name": "git-pr-workflows",
-      "source": "./plugins/git-pr-workflows",
+      "source": "../plugins/git-pr-workflows",
       "description": "Gitワークフロー自動化、プルリクエスト機能強化、チームオンボーディングプロセス",
       "version": "1.2.1",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "git",
@@ -100,15 +100,15 @@
     },
     {
       "name": "backend-development",
-      "source": "./plugins/backend-development",
+      "source": "../plugins/backend-development",
       "description": "バックエンドAPI設計、GraphQLアーキテクチャ、テスト駆動バックエンド開発",
       "version": "1.2.2",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "backend",
@@ -135,15 +135,15 @@
     },
     {
       "name": "frontend-mobile-development",
-      "source": "./plugins/frontend-mobile-development",
+      "source": "../plugins/frontend-mobile-development",
       "description": "プラットフォーム全体でのフロントエンドUI開発とモバイルアプリケーション実装",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "frontend",
@@ -164,15 +164,15 @@
     },
     {
       "name": "full-stack-orchestration",
-      "source": "./plugins/full-stack-orchestration",
+      "source": "../plugins/full-stack-orchestration",
       "description": "テスト、セキュリティ、パフォーマンス、デプロイメントを含むエンドツーエンド機能オーケストレーション",
       "version": "1.2.1",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "full-stack",
@@ -195,15 +195,15 @@
     },
     {
       "name": "unit-testing",
-      "source": "./plugins/unit-testing",
+      "source": "../plugins/unit-testing",
       "description": "デバッグサポート付きPythonとJavaScriptのユニットおよび統合テスト自動化",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "testing",
@@ -224,15 +224,15 @@
     },
     {
       "name": "tdd-workflows",
-      "source": "./plugins/tdd-workflows",
+      "source": "../plugins/tdd-workflows",
       "description": "レッド-グリーン-リファクタサイクルとコードレビューを含むテスト駆動開発手法",
       "version": "1.2.1",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "tdd",
@@ -255,15 +255,15 @@
     },
     {
       "name": "code-review-ai",
-      "source": "./plugins/code-review-ai",
+      "source": "../plugins/code-review-ai",
       "description": "AI駆動アーキテクチャレビューとコード品質分析",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "code-review",
@@ -282,15 +282,15 @@
     },
     {
       "name": "code-refactoring",
-      "source": "./plugins/code-refactoring",
+      "source": "../plugins/code-refactoring",
       "description": "コンテキスト復元を備えたコードクリーンアップ、リファクタリング自動化、技術的負債管理",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "refactoring",
@@ -312,15 +312,15 @@
     },
     {
       "name": "dependency-management",
-      "source": "./plugins/dependency-management",
+      "source": "../plugins/dependency-management",
       "description": "依存関係監査、バージョン管理、セキュリティ脆弱性スキャン",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "dependencies",
@@ -340,15 +340,15 @@
     },
     {
       "name": "error-debugging",
-      "source": "./plugins/error-debugging",
+      "source": "../plugins/error-debugging",
       "description": "エラー分析、トレースデバッグ、マルチエージェント問題診断",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "error-handling",
@@ -370,15 +370,15 @@
     },
     {
       "name": "team-collaboration",
-      "source": "./plugins/team-collaboration",
+      "source": "../plugins/team-collaboration",
       "description": "チームワークフロー、Issue管理、スタンドアップ自動化、開発者エクスペリエンス最適化",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "collaboration",
@@ -398,15 +398,15 @@
     },
     {
       "name": "llm-application-dev",
-      "source": "./plugins/llm-application-dev",
+      "source": "../plugins/llm-application-dev",
       "description": "LLMアプリケーション開発、プロンプトエンジニアリング、AIアシスタント最適化",
       "version": "1.2.1",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "llm",
@@ -436,15 +436,15 @@
     },
     {
       "name": "agent-orchestration",
-      "source": "./plugins/agent-orchestration",
+      "source": "../plugins/agent-orchestration",
       "description": "マルチエージェントシステム最適化、エージェント改善ワークフロー、コンテキスト管理",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "multi-agent",
@@ -464,15 +464,15 @@
     },
     {
       "name": "context-management",
-      "source": "./plugins/context-management",
+      "source": "../plugins/context-management",
       "description": "コンテキスト永続化、復元、長期実行会話管理",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "context",
@@ -492,15 +492,15 @@
     },
     {
       "name": "machine-learning-ops",
-      "source": "./plugins/machine-learning-ops",
+      "source": "../plugins/machine-learning-ops",
       "description": "MLモデルトレーニングパイプライン、ハイパーパラメータチューニング、モデルデプロイメント自動化、実験追跡、MLOpsワークフロー",
       "version": "1.2.1",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "machine-learning",
@@ -526,15 +526,15 @@
     },
     {
       "name": "data-engineering",
-      "source": "./plugins/data-engineering",
+      "source": "../plugins/data-engineering",
       "description": "ETLパイプライン構築、データウェアハウス設計、バッチ処理ワークフロー、データ駆動機能開発",
       "version": "1.2.1",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "data-engineering",
@@ -556,15 +556,15 @@
     },
     {
       "name": "incident-response",
-      "source": "./plugins/incident-response",
+      "source": "../plugins/incident-response",
       "description": "本番環境インシデント管理、トリアージワークフロー、自動インシデント解決",
       "version": "1.2.1",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "incident-response",
@@ -585,15 +585,15 @@
     },
     {
       "name": "error-diagnostics",
-      "source": "./plugins/error-diagnostics",
+      "source": "../plugins/error-diagnostics",
       "description": "本番環境システムのためのエラートレーシング、根本原因分析、スマートデバッグ",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "diagnostics",
@@ -615,15 +615,15 @@
     },
     {
       "name": "distributed-debugging",
-      "source": "./plugins/distributed-debugging",
+      "source": "../plugins/distributed-debugging",
       "description": "マイクロサービス全体での分散システムトレーシングとデバッグ",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "distributed-tracing",
@@ -643,15 +643,15 @@
     },
     {
       "name": "observability-monitoring",
-      "source": "./plugins/observability-monitoring",
+      "source": "../plugins/observability-monitoring",
       "description": "メトリクス収集、ロギングインフラストラクチャ、分散トレーシング、SLO実装、監視ダッシュボード",
       "version": "1.2.1",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "observability",
@@ -684,15 +684,15 @@
     },
     {
       "name": "deployment-strategies",
-      "source": "./plugins/deployment-strategies",
+      "source": "../plugins/deployment-strategies",
       "description": "デプロイメントパターン、ロールバック自動化、インフラストラクチャテンプレート",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "deployment",
@@ -711,15 +711,15 @@
     },
     {
       "name": "deployment-validation",
-      "source": "./plugins/deployment-validation",
+      "source": "../plugins/deployment-validation",
       "description": "デプロイメント前チェック、設定検証、デプロイメント準備評価",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "validation",
@@ -738,15 +738,15 @@
     },
     {
       "name": "kubernetes-operations",
-      "source": "./plugins/kubernetes-operations",
+      "source": "../plugins/kubernetes-operations",
       "description": "Kubernetesマニフェスト生成、ネットワーク設定、セキュリティポリシー、可観測性セットアップ、GitOpsワークフロー、自動スケーリング",
       "version": "1.2.1",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "kubernetes",
@@ -771,15 +771,15 @@
     },
     {
       "name": "cloud-infrastructure",
-      "source": "./plugins/cloud-infrastructure",
+      "source": "../plugins/cloud-infrastructure",
       "description": "AWS/Azure/GCP向けクラウドアーキテクチャ設計、Kubernetesクラスター設定、Terraform Infrastructure-as-Code、ハイブリッドクラウドネットワーキング、マルチクラウドコスト最適化",
       "version": "1.2.1",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "cloud",
@@ -810,15 +810,15 @@
     },
     {
       "name": "cicd-automation",
-      "source": "./plugins/cicd-automation",
+      "source": "../plugins/cicd-automation",
       "description": "CI/CDパイプライン設定、GitHub Actions/GitLab CIワークフローセットアップ、自動デプロイメントパイプラインオーケストレーション",
       "version": "1.2.1",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "ci-cd",
@@ -848,15 +848,15 @@
     },
     {
       "name": "application-performance",
-      "source": "./plugins/application-performance",
+      "source": "../plugins/application-performance",
       "description": "フロントエンドおよびバックエンドシステムのためのアプリケーションプロファイリング、パフォーマンス最適化、可観測性",
       "version": "1.2.1",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "performance",
@@ -877,15 +877,15 @@
     },
     {
       "name": "database-cloud-optimization",
-      "source": "./plugins/database-cloud-optimization",
+      "source": "../plugins/database-cloud-optimization",
       "description": "データベースクエリ最適化、クラウドコスト最適化、スケーラビリティ改善",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "database-optimization",
@@ -907,15 +907,15 @@
     },
     {
       "name": "comprehensive-review",
-      "source": "./plugins/comprehensive-review",
+      "source": "../plugins/comprehensive-review",
       "description": "アーキテクチャ、セキュリティ、ベストプラクティスをカバーする多角的コード分析",
       "version": "1.2.1",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "code-review",
@@ -938,15 +938,15 @@
     },
     {
       "name": "performance-testing-review",
-      "source": "./plugins/performance-testing-review",
+      "source": "../plugins/performance-testing-review",
       "description": "パフォーマンス分析、テストカバレッジレビュー、AI駆動コード品質評価",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "performance-review",
@@ -966,15 +966,15 @@
     },
     {
       "name": "framework-migration",
-      "source": "./plugins/framework-migration",
+      "source": "../plugins/framework-migration",
       "description": "フレームワーク更新、マイグレーション計画、アーキテクチャ変換ワークフロー",
       "version": "1.2.2",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "migration",
@@ -1003,15 +1003,15 @@
     },
     {
       "name": "codebase-cleanup",
-      "source": "./plugins/codebase-cleanup",
+      "source": "../plugins/codebase-cleanup",
       "description": "技術的負債削減、依存関係更新、コードリファクタリング自動化",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "technical-debt",
@@ -1033,15 +1033,15 @@
     },
     {
       "name": "database-design",
-      "source": "./plugins/database-design",
+      "source": "../plugins/database-design",
       "description": "本番環境システムのためのデータベースアーキテクチャ、スキーマ設計、SQL最適化",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "database-design",
@@ -1059,15 +1059,15 @@
     },
     {
       "name": "database-migrations",
-      "source": "./plugins/database-migrations",
+      "source": "../plugins/database-migrations",
       "description": "データベースマイグレーション自動化、可観測性、クロスデータベースマイグレーション戦略",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "migrations",
@@ -1089,15 +1089,15 @@
     },
     {
       "name": "security-scanning",
-      "source": "./plugins/security-scanning",
+      "source": "../plugins/security-scanning",
       "description": "SAST分析、依存関係脆弱性スキャン、OWASP Top 10準拠、コンテナセキュリティスキャン、自動セキュリティ強化",
       "version": "1.2.2",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "security",
@@ -1122,15 +1122,15 @@
     },
     {
       "name": "security-compliance",
-      "source": "./plugins/security-compliance",
+      "source": "../plugins/security-compliance",
       "description": "SOC2、HIPAA、GDPR準拠検証、シークレットスキャン、準拠チェックリスト、規制文書",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "compliance",
@@ -1151,15 +1151,15 @@
     },
     {
       "name": "backend-api-security",
-      "source": "./plugins/backend-api-security",
+      "source": "../plugins/backend-api-security",
       "description": "APIセキュリティ強化、認証実装、認可パターン、レート制限、入力検証",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "api-security",
@@ -1178,15 +1178,15 @@
     },
     {
       "name": "frontend-mobile-security",
-      "source": "./plugins/frontend-mobile-security",
+      "source": "../plugins/frontend-mobile-security",
       "description": "XSS防止、CSRF保護、コンテンツセキュリティポリシー、モバイルアプリセキュリティ、安全なストレージパターン",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "frontend-security",
@@ -1208,15 +1208,15 @@
     },
     {
       "name": "data-validation-suite",
-      "source": "./plugins/data-validation-suite",
+      "source": "../plugins/data-validation-suite",
       "description": "スキーマ検証、データ品質監視、ストリーミング検証パイプライン、バックエンドAPIの入力検証",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "validation",
@@ -1234,15 +1234,15 @@
     },
     {
       "name": "api-scaffolding",
-      "source": "./plugins/api-scaffolding",
+      "source": "../plugins/api-scaffolding",
       "description": "RESTおよびGraphQL APIスキャフォールディング、フレームワーク選択、バックエンドアーキテクチャ、API生成",
       "version": "1.2.1",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "api",
@@ -1267,15 +1267,15 @@
     },
     {
       "name": "api-testing-observability",
-      "source": "./plugins/api-testing-observability",
+      "source": "../plugins/api-testing-observability",
       "description": "APIテスト自動化、リクエストモック、OpenAPIドキュメント生成、可観測性セットアップ、監視",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "api-testing",
@@ -1295,15 +1295,15 @@
     },
     {
       "name": "seo-content-creation",
-      "source": "./plugins/seo-content-creation",
+      "source": "../plugins/seo-content-creation",
       "description": "E-E-A-T最適化を備えたSEOコンテンツ作成、計画、品質監査",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "seo",
@@ -1322,15 +1322,15 @@
     },
     {
       "name": "seo-technical-optimization",
-      "source": "./plugins/seo-technical-optimization",
+      "source": "../plugins/seo-technical-optimization",
       "description": "メタタグ、キーワード、構造、強調スニペットを含む技術的SEO最適化",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "seo",
@@ -1351,15 +1351,15 @@
     },
     {
       "name": "seo-analysis-monitoring",
-      "source": "./plugins/seo-analysis-monitoring",
+      "source": "../plugins/seo-analysis-monitoring",
       "description": "SEOのためのコンテンツ鮮度分析、カニバリゼーション検出、権威構築",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "seo",
@@ -1379,15 +1379,15 @@
     },
     {
       "name": "documentation-generation",
-      "source": "./plugins/documentation-generation",
+      "source": "../plugins/documentation-generation",
       "description": "OpenAPI仕様生成、Mermaid図作成、チュートリアル作成、APIリファレンスドキュメント",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "documentation",
@@ -1412,15 +1412,15 @@
     },
     {
       "name": "multi-platform-apps",
-      "source": "./plugins/multi-platform-apps",
+      "source": "../plugins/multi-platform-apps",
       "description": "Web、iOS、Android、デスクトップ実装を調整するクロスプラットフォームアプリケーション開発",
       "version": "1.2.1",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "cross-platform",
@@ -1446,15 +1446,15 @@
     },
     {
       "name": "business-analytics",
-      "source": "./plugins/business-analytics",
+      "source": "../plugins/business-analytics",
       "description": "ビジネスメトリクス分析、KPI追跡、財務レポート、データ駆動意思決定",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "business",
@@ -1473,15 +1473,15 @@
     },
     {
       "name": "hr-legal-compliance",
-      "source": "./plugins/hr-legal-compliance",
+      "source": "../plugins/hr-legal-compliance",
       "description": "HRポリシードキュメント、法務準拠テンプレート(GDPR/SOC2/HIPAA)、雇用契約、規制文書",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "hr",
@@ -1502,15 +1502,15 @@
     },
     {
       "name": "customer-sales-automation",
-      "source": "./plugins/customer-sales-automation",
+      "source": "../plugins/customer-sales-automation",
       "description": "カスタマーサポートワークフロー自動化、セールスパイプライン管理、メールキャンペーン、CRM統合",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "customer-support",
@@ -1529,15 +1529,15 @@
     },
     {
       "name": "content-marketing",
-      "source": "./plugins/content-marketing",
+      "source": "../plugins/content-marketing",
       "description": "マーケティング運用のためのコンテンツマーケティング戦略、Web調査、情報統合",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "content-marketing",
@@ -1555,15 +1555,15 @@
     },
     {
       "name": "blockchain-web3",
-      "source": "./plugins/blockchain-web3",
+      "source": "../plugins/blockchain-web3",
       "description": "Solidityを使用したスマートコントラクト開発、DeFiプロトコル実装、NFTプラットフォーム、Web3アプリケーションアーキテクチャ",
       "version": "1.2.1",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "blockchain",
@@ -1589,15 +1589,15 @@
     },
     {
       "name": "quantitative-trading",
-      "source": "./plugins/quantitative-trading",
+      "source": "../plugins/quantitative-trading",
       "description": "定量分析、アルゴリズム取引戦略、財務モデリング、ポートフォリオリスク管理、バックテスト",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "fintech",
@@ -1616,15 +1616,15 @@
     },
     {
       "name": "payment-processing",
-      "source": "./plugins/payment-processing",
+      "source": "../plugins/payment-processing",
       "description": "Stripe、PayPalとの決済ゲートウェイ統合、チェックアウトフロー実装、サブスクリプション請求、PCI準拠",
       "version": "1.2.1",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "payments",
@@ -1650,15 +1650,15 @@
     },
     {
       "name": "game-development",
-      "source": "./plugins/game-development",
+      "source": "../plugins/game-development",
       "description": "C#スクリプティングを使用したUnityゲーム開発、Bukkit/Spigot APIを使用したMinecraftサーバープラグイン開発",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "gaming",
@@ -1678,15 +1678,15 @@
     },
     {
       "name": "accessibility-compliance",
-      "source": "./plugins/accessibility-compliance",
+      "source": "../plugins/accessibility-compliance",
       "description": "WCAGアクセシビリティ監査、準拠検証、スクリーンリーダー向けUIテスト、キーボードナビゲーション、インクルーシブデザイン",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "accessibility",
@@ -1706,15 +1706,15 @@
     },
     {
       "name": "python-development",
-      "source": "./plugins/python-development",
+      "source": "../plugins/python-development",
       "description": "Python 3.12+、Django、FastAPI、非同期パターン、本番環境ベストプラクティスを使用したモダンPython開発",
       "version": "1.2.1",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "python",
@@ -1743,15 +1743,15 @@
     },
     {
       "name": "javascript-typescript",
-      "source": "./plugins/javascript-typescript",
+      "source": "../plugins/javascript-typescript",
       "description": "ES6+、Node.js、React、モダンWebフレームワークを使用したJavaScriptおよびTypeScript開発",
       "version": "1.2.1",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "javascript",
@@ -1778,15 +1778,15 @@
     },
     {
       "name": "systems-programming",
-      "source": "./plugins/systems-programming",
+      "source": "../plugins/systems-programming",
       "description": "パフォーマンスクリティカルおよび低レベル開発のためのRust、Go、C、C++を使用したシステムプログラミング",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "rust",
@@ -1810,15 +1810,15 @@
     },
     {
       "name": "jvm-languages",
-      "source": "./plugins/jvm-languages",
+      "source": "../plugins/jvm-languages",
       "description": "エンタープライズパターンとフレームワークを使用したJava、Scala、C#を含むJVM言語開発",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "java",
@@ -1839,15 +1839,15 @@
     },
     {
       "name": "web-scripting",
-      "source": "./plugins/web-scripting",
+      "source": "../plugins/web-scripting",
       "description": "Webアプリケーション、CMS開発、バックエンドサービスのためのPHPとRubyを使用したWebスクリプティング",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "php",
@@ -1866,15 +1866,15 @@
     },
     {
       "name": "functional-programming",
-      "source": "./plugins/functional-programming",
+      "source": "../plugins/functional-programming",
       "description": "Elixir、OTPパターン、Phoenixフレームワーク、分散システムを使用した関数型プログラミング",
       "version": "1.2.0",
       "author": {
         "name": "Seth Hobson",
         "url": "https://github.com/wshobson"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "elixir",
@@ -1892,15 +1892,15 @@
     },
     {
       "name": "arm-cortex-microcontrollers",
-      "source": "./plugins/arm-cortex-microcontrollers",
+      "source": "../plugins/arm-cortex-microcontrollers",
       "description": "ペリフェラルドライバーとメモリ安全性パターンを備えたTeensy、STM32、nRF52、SAMD向けARM Cortex-Mファームウェア開発",
       "version": "1.2.0",
       "author": {
         "name": "Ryan Snodgrass",
         "url": "https://github.com/rsnodgrass"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "embedded",
@@ -1920,15 +1920,15 @@
     },
     {
       "name": "shell-scripting",
-      "source": "./plugins/shell-scripting",
+      "source": "../plugins/shell-scripting",
       "description": "防御的プログラミング、POSIX準拠、包括的テストを備えた本番環境グレードBashスクリプティング",
       "version": "1.2.1",
       "author": {
         "name": "Ryan Snodgrass",
         "url": "https://github.com/rsnodgrass"
       },
-      "homepage": "https://github.com/wshobson/agents",
-      "repository": "https://github.com/wshobson/agents",
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
       "license": "MIT",
       "keywords": [
         "bash",

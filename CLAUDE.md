@@ -30,7 +30,6 @@ alwaysApply: true
 |------|------------|---------|
 | Git操作 | [Git運用](./instructions/workflows/git-complete.md) | commit/PR/branch操作時 |
 | TDD開発 | [TDD手法](./instructions/methodologies/tdd.md) | テスト駆動開発時 |
-| Issue管理 | [Issue駆動](./instructions/methodologies/github-idd.md) | Issue関連作業時 |
 | デバッグ | [デバッグ思考](./instructions/core/debugging-thinking.md) | 問題調査・原因分析時 |
 | 協働作業 | [協働インターフェース](./instructions/core/collaboration-interface.md) | 人間/AI間の情報交換時 |
 

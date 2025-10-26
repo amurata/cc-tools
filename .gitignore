@@ -21,4 +21,6 @@ venv
 .venv
 node_modules
 .sass-cache
-.claude
+
+# Serena MCP personal settings
+.serena/
