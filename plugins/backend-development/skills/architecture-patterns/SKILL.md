@@ -3,8 +3,6 @@ name: architecture-patterns
 description: Implement proven backend architecture patterns including Clean Architecture, Hexagonal Architecture, and Domain-Driven Design. Use when architecting complex backend systems or refactoring existing applications for better maintainability.
 ---
 
-> **English** | **[日本語](../../../../i18n/ja/plugins/backend-development/skills/architecture-patterns/SKILL.md)**
-
 # Architecture Patterns
 
 Master proven backend architecture patterns including Clean Architecture, Hexagonal Architecture, and Domain-Driven Design to build maintainable, testable, and scalable systems.

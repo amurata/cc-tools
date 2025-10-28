@@ -10,12 +10,17 @@ body:
         Thank you for suggesting a feature! Please provide detailed
         information to help us understand your request.
 
+        **Note**: For new subagent proposals, please use the
+        "New Subagent Proposal" template instead.
+
   - type: checkboxes
     id: preliminary-checks
     attributes:
       label: Preliminary Checks
       description: Please confirm you have completed these steps
       options:
+        - label: I have read the [Code of Conduct](.github/CODE_OF_CONDUCT.md)
+          required: true
         - label: >-
             I have searched existing issues to ensure this is not a duplicate
           required: true
@@ -23,13 +28,13 @@ body:
           required: true
 
   - type: input
-    id: component
+    id: subagent
     attributes:
-      label: Target Component
-      description: Which component or area would this feature enhance?
-      placeholder: e.g., git workflow, issue management, documentation, etc.
+      label: Target Subagent
+      description: Which subagent would this feature enhance?
+      placeholder: e.g., python-pro, frontend-developer, etc.
     validations:
-      required: false
+      required: true
 
   - type: textarea
     id: problem-description

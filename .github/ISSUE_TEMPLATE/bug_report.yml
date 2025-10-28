@@ -20,19 +20,21 @@ body:
       label: Preliminary Checks
       description: Please confirm you have completed these steps
       options:
+        - label: I have read the [Code of Conduct](.github/CODE_OF_CONDUCT.md)
+          required: true
         - label: >-
             I have searched existing issues to ensure this is not a duplicate
           required: true
         - label: This report contains only technical information about a bug
 
   - type: input
-    id: component
+    id: subagent
     attributes:
-      label: Affected Component
-      description: Which component or module is experiencing the issue?
-      placeholder: e.g., git workflow, task analysis, specific tool, etc.
+      label: Affected Subagent
+      description: Which subagent is experiencing the issue?
+      placeholder: e.g., python-pro, frontend-developer, etc.
     validations:
-      required: false
+      required: true
 
   - type: textarea
     id: bug-description
