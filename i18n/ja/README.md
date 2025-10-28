@@ -295,6 +295,98 @@ claude-agents/
 - [使用ガイド](./docs/usage.md)
 - [アーキテクチャ](./docs/architecture.md)
 
+## 翻訳版メンテナンス（開発者向け）
+
+### upstream リポジトリ設定
+
+この翻訳版は、オリジナルリポジトリ（upstream）からの最新変更を取り込むために以下の設定を使用しています：
+
+```bash
+# upstream リモートの設定確認
+git remote -v
+
+# 出力例：
+# origin    https://github.com/amurata/cc-tools.git (fetch)
+# upstream  https://github.com/wshobson/agents.git (fetch)
+```
+
+**upstreamが未設定の場合：**
+
+```bash
+git remote add upstream https://github.com/wshobson/agents.git
+```
+
+### upstream からの変更取得
+
+最新のプラグインや機能を翻訳版に反映する手順：
+
+```bash
+# 1. upstreamの最新変更を取得
+git fetch upstream
+
+# 2. 差分を確認
+git log --oneline main..upstream/main
+git diff --name-status main upstream/main
+
+# 3. 変更をマージ（コンフリクト時はリモート優先）
+git pull upstream main --allow-unrelated-histories
+
+# 4. コンフリクト解決（plugins/, docs/, .claude-plugin/はリモート優先）
+git checkout --theirs <conflicted-files>
+git add .
+git commit
+
+# 5. 新規・更新ファイルの翻訳
+# 詳細は i18n/scripts/translation-tasks.md を参照
+```
+
+### 翻訳タスク管理
+
+翻訳作業の詳細なガイドと進捗管理：
+
+- **タスクリスト**: [`i18n/scripts/translation-tasks.md`](./scripts/translation-tasks.md)
+  - 全翻訳対象ファイル一覧（行数、優先度付き）
+  - 標準翻訳手順
+  - 品質チェックリスト
+  - 技術用語対訳表
+
+**翻訳手順の例**：
+
+```bash
+# 1. 新規プラグインディレクトリ作成
+mkdir -p i18n/ja/plugins/new-plugin/skills/skill-name
+
+# 2. 元ファイルの行数確認
+wc -l plugins/new-plugin/skills/skill-name/SKILL.md
+
+# 3. 翻訳実施（既存スタイル踏襲）
+# - YAMLフロントマター: name, description を日本語化
+# - 英語リンク: [English](相対パス) | 日本語
+# - コード: コメントのみ日本語化
+
+# 4. 品質確認
+wc -l i18n/ja/plugins/new-plugin/skills/skill-name/SKILL.md
+head -n 10 i18n/ja/plugins/new-plugin/skills/skill-name/SKILL.md
+```
+
+### 翻訳進捗（2025-10-29時点）
+
+**完了済み**：
+- ✅ 63プラグイン（v1.2.0時点）
+- ✅ 85エージェント
+- ✅ 44コマンド
+- ✅ 39スキル
+
+**今回追加（upstream merge: commit 005896c）**：
+- ✅ `developer-essentials` プラグイン（新規8スキル中2スキル完了）
+  - ✅ auth-implementation-patterns（認証・認可）
+  - ✅ error-handling-patterns（エラーハンドリング）
+  - ⏳ 残り6スキル（次回以降）
+
+**翻訳待ち**：
+- ⏳ `developer-essentials` 残り6スキル
+- ⏳ 既存ファイル5個の差分更新
+
 ## 翻訳とクレジット
 
 ### 日本語翻訳版について
