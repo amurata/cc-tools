@@ -2,7 +2,7 @@
 
 > **[English](../../../docs/agent-skills.md)** | **日本語**
 
-エージェントスキルは、Anthropicの[エージェントスキル仕様](https://github.com/anthropics/skills/blob/main/agent_skills_spec.md)に準拠した、専門的なドメイン知識でClaudeの機能を拡張するモジュラーパッケージです。このプラグインエコシステムには、14個のプラグインにまたがる **47個の専門スキル** が含まれており、プログレッシブ・ディスクロージャーと効率的なトークン使用を可能にします。
+エージェントスキルは、Anthropicの[エージェントスキル仕様](https://github.com/anthropics/skills/blob/main/agent_skills_spec.md)に準拠した、専門的なドメイン知識でClaudeの機能を拡張するモジュラーパッケージです。このプラグインエコシステムには、15個のプラグインにまたがる **55個の専門スキル** が含まれており、プログレッシブ・ディスクロージャーと効率的なトークン使用を可能にします。
 
 ## 概要
 
@@ -13,6 +13,19 @@
 - **アクティベーショントリガー**: 自動呼び出しのための明確な「Use when」句
 
 ## プラグイン別スキル
+
+### Developer Essentials (8スキル)
+
+| スキル | 説明 |
+|-------|-------------|
+| **git-advanced-workflows** | rebase、cherry-pick、bisect、worktree、reflogを含む高度なGitワークフローをマスター |
+| **sql-optimization-patterns** | データベースパフォーマンスのためのSQLクエリ、インデックス戦略、EXPLAIN分析を最適化 |
+| **error-handling-patterns** | 例外、Result型、グレースフルデグラデーションで堅牢なエラーハンドリングを実装 |
+| **code-review-excellence** | 建設的なフィードバックと体系的な分析で効果的なコードレビューを提供 |
+| **e2e-testing-patterns** | 重要なユーザーワークフロー用にPlaywrightとCypressで信頼性の高いE2Eテストスイートを構築 |
+| **auth-implementation-patterns** | JWT、OAuth2、セッション、RBACで認証・認可を実装 |
+| **debugging-strategies** | 体系的なデバッグ技術、プロファイリングツール、根本原因分析をマスター |
+| **monorepo-management** | Turborepo、Nx、pnpmワークスペースでモノレポを管理し、ビルドを最適化 |
 
 ### Kubernetes Operations (4スキル)
 
@@ -174,7 +187,7 @@ fastapi-templates スキル → 本番環境対応テンプレートを供給
 
 ## 仕様準拠
 
-全47スキルは[エージェントスキル仕様](https://github.com/anthropics/skills/blob/main/agent_skills_spec.md)に準拠しています:
+全55スキルは[エージェントスキル仕様](https://github.com/anthropics/skills/blob/main/agent_skills_spec.md)に準拠しています:
 
 - ✓ 必須の`name`フィールド(ハイフンケース)
 - ✓ 必須の`description`フィールドと「Use when」句

@@ -99,6 +99,43 @@
       ]
     },
     {
+      "name": "developer-essentials",
+      "source": "../plugins/developer-essentials",
+      "description": "Git ワークフロー、SQL 最適化、エラーハンドリング、コードレビュー、E2E テスト、認証、デバッグ、モノレポ管理を含む開発者必須スキル",
+      "version": "1.0.0",
+      "author": {
+        "name": "Seth Hobson",
+        "url": "https://github.com/wshobson"
+      },
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja",
+      "repository": "https://github.com/amurata/cc-tools",
+      "license": "MIT",
+      "keywords": [
+        "git",
+        "sql",
+        "debugging",
+        "testing",
+        "authentication",
+        "code-review",
+        "monorepo",
+        "essential"
+      ],
+      "category": "development",
+      "strict": false,
+      "commands": [],
+      "agents": [],
+      "skills": [
+        "./skills/git-advanced-workflows",
+        "./skills/sql-optimization-patterns",
+        "./skills/error-handling-patterns",
+        "./skills/code-review-excellence",
+        "./skills/e2e-testing-patterns",
+        "./skills/auth-implementation-patterns",
+        "./skills/debugging-strategies",
+        "./skills/monorepo-management"
+      ]
+    },
+    {
       "name": "backend-development",
       "source": "../plugins/backend-development",
       "description": "バックエンドAPI設計、GraphQLアーキテクチャ、テスト駆動バックエンド開発",
