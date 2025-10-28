@@ -1,9 +1,9 @@
-> **[English](../../../../../../plugins/cloud-infrastructure/skills/multi-cloud-architecture/SKILL.md)** | **日本語**
-
 ---
 name: multi-cloud-architecture
 description: AWS、Azure、GCPにまたがるサービスを選択・統合するための意思決定フレームワークを使用してマルチクラウドアーキテクチャを設計します。マルチクラウドシステム構築、ベンダーロックイン回避、複数プロバイダーからのベストオブブリードサービス活用時に使用します。
 ---
+
+> **[English](../../../../../../plugins/cloud-infrastructure/skills/multi-cloud-architecture/SKILL.md)** | **日本語**
 
 # マルチクラウドアーキテクチャ
 

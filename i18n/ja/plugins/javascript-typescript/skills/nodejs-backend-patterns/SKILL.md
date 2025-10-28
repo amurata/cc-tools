@@ -1,9 +1,9 @@
-> **[English](../../../../../plugins/javascript-typescript/skills/nodejs-backend-patterns/SKILL.md)** | **日本語**
-
 ---
 name: nodejs-backend-patterns
 description: Express/Fastifyを使用した本番環境対応のNode.jsバックエンドサービスを構築し、ミドルウェアパターン、エラーハンドリング、認証、データベース統合、APIデザインのベストプラクティスを実装します。Node.jsサーバー、REST API、GraphQLバックエンド、マイクロサービスアーキテクチャの作成時に使用してください。
 ---
+
+> **[English](../../../../../plugins/javascript-typescript/skills/nodejs-backend-patterns/SKILL.md)** | **日本語**
 
 # Node.jsバックエンドパターン
 

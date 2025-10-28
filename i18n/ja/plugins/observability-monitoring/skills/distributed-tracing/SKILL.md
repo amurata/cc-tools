@@ -1,9 +1,9 @@
-> **[English](../../../../../plugins/observability-monitoring/skills/distributed-tracing/SKILL.md)** | **日本語**
-
 ---
 name: distributed-tracing
 description: JaegerとTempoによる分散トレーシングを実装して、マイクロサービス間のリクエストを追跡し、パフォーマンスボトルネックを特定します。マイクロサービスのデバッグ、リクエストフローの分析、分散システムの可観測性実装時に使用します。
 ---
+
+> **[English](../../../../../plugins/observability-monitoring/skills/distributed-tracing/SKILL.md)** | **日本語**
 
 # 分散トレーシング
 

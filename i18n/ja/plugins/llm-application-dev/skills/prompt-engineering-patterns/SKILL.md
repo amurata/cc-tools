@@ -1,9 +1,9 @@
-> **[English](../../../../../plugins/llm-application-dev/skills/prompt-engineering-patterns/SKILL.md)** | **日本語**
-
 ---
 name: prompt-engineering-patterns
 description: LLMのパフォーマンス、信頼性、制御性を本番環境で最大化するための高度なプロンプトエンジニアリング技術をマスターします。プロンプトの最適化、LLM出力の改善、または本番環境プロンプトテンプレートの設計時に使用します。
 ---
+
+> **[English](../../../../../plugins/llm-application-dev/skills/prompt-engineering-patterns/SKILL.md)** | **日本語**
 
 # プロンプトエンジニアリングパターン
 

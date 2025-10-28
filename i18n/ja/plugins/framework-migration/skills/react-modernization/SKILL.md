@@ -1,9 +1,9 @@
-> **[English](../../../../../plugins/framework-migration/skills/react-modernization/SKILL.md)** | **日本語**
-
 ---
 name: react-modernization
 description: Reactアプリケーションを最新バージョンにアップグレードし、クラスコンポーネントからフックへ移行し、並行機能を採用します。Reactコードベースのモダナイゼーション、React Hooksへの移行、または最新Reactバージョンへのアップグレード時に使用します。
 ---
+
+> **[English](../../../../../plugins/framework-migration/skills/react-modernization/SKILL.md)** | **日本語**
 
 # Reactモダナイゼーション
 

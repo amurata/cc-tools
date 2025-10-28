@@ -1,9 +1,9 @@
-> **[English](../../../../../plugins/observability-monitoring/skills/grafana-dashboards/SKILL.md)** | **日本語**
-
 ---
 name: grafana-dashboards
 description: システムとアプリケーションメトリクスのリアルタイム可視化のための本番環境Grafanaダッシュボードを作成・管理します。モニタリングダッシュボードの構築、メトリクスの可視化、運用可観測性インターフェースの作成時に使用します。
 ---
+
+> **[English](../../../../../plugins/observability-monitoring/skills/grafana-dashboards/SKILL.md)** | **日本語**
 
 # Grafanaダッシュボード
 

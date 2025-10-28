@@ -1,9 +1,9 @@
-> **[English](../../../../../plugins/llm-application-dev/skills/langchain-architecture/SKILL.md)** | **日本語**
-
 ---
 name: langchain-architecture
 description: エージェント、メモリ、ツール統合パターンを備えたLangChainフレームワークを使用してLLMアプリケーションを設計します。LangChainアプリケーションの構築、AIエージェントの実装、または複雑なLLMワークフローの作成時に使用します。
 ---
+
+> **[English](../../../../../plugins/llm-application-dev/skills/langchain-architecture/SKILL.md)** | **日本語**
 
 # LangChainアーキテクチャ
 

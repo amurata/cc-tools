@@ -1,9 +1,9 @@
-> **[English](../../../../plugins/kubernetes-operations/skills/k8s-manifest-generator/SKILL.md)** | **日本語**
-
 ---
 name: k8s-manifest-generator
 description: ベストプラクティスとセキュリティ標準に従った、Deployment、Service、ConfigMap、Secret用の本番環境対応Kubernetesマニフェストの作成。KubernetesYAMLマニフェストの生成、K8sリソースの作成、本番グレードのKubernetes構成の実装に使用します。
 ---
+
+> **[English](../../../../plugins/kubernetes-operations/skills/k8s-manifest-generator/SKILL.md)** | **日本語**
 
 # Kubernetesマニフェストジェネレーター
 

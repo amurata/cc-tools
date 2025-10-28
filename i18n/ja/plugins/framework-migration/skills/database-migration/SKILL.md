@@ -1,9 +1,9 @@
-> **[English](../../../../../plugins/framework-migration/skills/database-migration/SKILL.md)** | **日本語**
-
 ---
 name: database-migration
 description: ゼロダウンタイム戦略、データ変換、ロールバック手順を使用して、ORM間およびプラットフォーム間でデータベース移行を実行します。データベースの移行、スキーマの変更、データ変換の実行、またはゼロダウンタイムデプロイメント戦略の実装時に使用します。
 ---
+
+> **[English](../../../../../plugins/framework-migration/skills/database-migration/SKILL.md)** | **日本語**
 
 # データベース移行
 

@@ -1,9 +1,9 @@
-> **[English](../../../../plugins/kubernetes-operations/skills/helm-chart-scaffolding/SKILL.md)** | **日本語**
-
 ---
 name: helm-chart-scaffolding
 description: 再利用可能な構成でKubernetesアプリケーションをテンプレート化およびパッケージ化するためのHelmチャートの設計、整理、管理。Helmチャートの作成、Kubernetesアプリケーションのパッケージング、テンプレート化されたデプロイメントの実装に使用します。
 ---
+
+> **[English](../../../../plugins/kubernetes-operations/skills/helm-chart-scaffolding/SKILL.md)** | **日本語**
 
 # Helmチャートスキャフォールディング
 

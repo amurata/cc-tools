@@ -1,9 +1,9 @@
-> **[English](../../../../plugins/shell-scripting/skills/bats-testing-patterns/SKILL.md)** | **日本語**
-
 ---
 name: bats-testing-patterns
 description: シェルスクリプトの包括的なテストのためのBash自動化テストシステム（Bats）をマスター。シェルスクリプトのテスト作成、CI/CDパイプライン、またはシェルユーティリティのテスト駆動開発が必要な場合に使用してください。
 ---
+
+> **[English](../../../../plugins/shell-scripting/skills/bats-testing-patterns/SKILL.md)** | **日本語**
 
 # Batsテストパターン
 

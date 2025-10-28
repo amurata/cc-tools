@@ -1,9 +1,9 @@
-> **[English](../../../../../../plugins/python-development/skills/python-performance-optimization/SKILL.md)** | **日本語**
-
 ---
 name: python-performance-optimization
 description: cProfile、メモリプロファイラー、パフォーマンスベストプラクティスを使用してPythonコードをプロファイルおよび最適化。低速なPythonコードのデバッグ、ボトルネックの最適化、アプリケーションパフォーマンスの改善時に使用。
 ---
+
+> **[English](../../../../../../plugins/python-development/skills/python-performance-optimization/SKILL.md)** | **日本語**
 
 # Pythonパフォーマンス最適化
 

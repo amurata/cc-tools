@@ -1,9 +1,9 @@
-> **[English](../../../../../../plugins/python-development/skills/async-python-patterns/SKILL.md)** | **日本語**
-
 ---
 name: async-python-patterns
 description: Python asyncio、並行プログラミング、高性能アプリケーション向けの非同期/awaitパターンをマスター。非同期API、並行システム、ノンブロッキング操作が必要なI/OバウンドアプリケーションをPythonで構築する際に使用。
 ---
+
+> **[English](../../../../../../plugins/python-development/skills/async-python-patterns/SKILL.md)** | **日本語**
 
 # 非同期Pythonパターン
 

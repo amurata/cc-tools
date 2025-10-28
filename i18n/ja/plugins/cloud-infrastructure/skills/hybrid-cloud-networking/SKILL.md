@@ -1,9 +1,9 @@
-> **[English](../../../../../../plugins/cloud-infrastructure/skills/hybrid-cloud-networking/SKILL.md)** | **日本語**
-
 ---
 name: hybrid-cloud-networking
 description: VPNと専用接続を使用してオンプレミスインフラとクラウドプラットフォーム間のセキュアで高性能な接続を構成します。ハイブリッドクラウドアーキテクチャ構築、データセンターとクラウドの接続、セキュアなクロスプレミスネットワーキング実装時に使用します。
 ---
+
+> **[English](../../../../../../plugins/cloud-infrastructure/skills/hybrid-cloud-networking/SKILL.md)** | **日本語**
 
 # ハイブリッドクラウドネットワーキング
 

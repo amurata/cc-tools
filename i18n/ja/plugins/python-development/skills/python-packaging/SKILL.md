@@ -1,9 +1,9 @@
-> **[English](../../../../../../plugins/python-development/skills/python-packaging/SKILL.md)** | **日本語**
-
 ---
 name: python-packaging
 description: 適切なプロジェクト構造、setup.py/pyproject.toml、PyPIへの公開を使用して配布可能なPythonパッケージを作成。Pythonライブラリのパッケージング、CLIツールの作成、Pythonコードの配布時に使用。
 ---
+
+> **[English](../../../../../../plugins/python-development/skills/python-packaging/SKILL.md)** | **日本語**
 
 # Pythonパッケージング
 

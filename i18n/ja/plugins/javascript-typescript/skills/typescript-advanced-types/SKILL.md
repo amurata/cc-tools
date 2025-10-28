@@ -1,9 +1,9 @@
-> **[English](../../../../../plugins/javascript-typescript/skills/typescript-advanced-types/SKILL.md)** | **日本語**
-
 ---
 name: typescript-advanced-types
 description: ジェネリクス、条件型、マップ型、テンプレートリテラル、ユーティリティ型を含むTypeScriptの高度な型システムを習得し、型安全なアプリケーションを構築します。複雑な型ロジックの実装、再利用可能な型ユーティリティの作成、TypeScriptプロジェクトでのコンパイル時型安全性の確保時に使用してください。
 ---
+
+> **[English](../../../../../plugins/javascript-typescript/skills/typescript-advanced-types/SKILL.md)** | **日本語**
 
 # TypeScript高度な型
 

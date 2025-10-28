@@ -1,9 +1,9 @@
-> **[English](../../../../../plugins/llm-application-dev/skills/llm-evaluation/SKILL.md)** | **日本語**
-
 ---
 name: llm-evaluation
 description: 自動メトリクス、人間のフィードバック、ベンチマークを使用してLLMアプリケーションの包括的な評価戦略を実装します。LLMパフォーマンスのテスト、AIアプリケーション品質の測定、または評価フレームワークの確立時に使用します。
 ---
+
+> **[English](../../../../../plugins/llm-application-dev/skills/llm-evaluation/SKILL.md)** | **日本語**
 
 # LLM評価
 

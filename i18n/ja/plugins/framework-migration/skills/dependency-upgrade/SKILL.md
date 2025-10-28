@@ -1,9 +1,9 @@
-> **[English](../../../../../plugins/framework-migration/skills/dependency-upgrade/SKILL.md)** | **日本語**
-
 ---
 name: dependency-upgrade
 description: 互換性分析、段階的ロールアウト、包括的テストを伴うメジャー依存関係バージョンアップグレードを管理します。フレームワークバージョンのアップグレード、メジャー依存関係の更新、またはライブラリの破壊的変更の管理時に使用します。
 ---
+
+> **[English](../../../../../plugins/framework-migration/skills/dependency-upgrade/SKILL.md)** | **日本語**
 
 # 依存関係アップグレード
 

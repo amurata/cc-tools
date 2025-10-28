@@ -1,9 +1,9 @@
-> **[English](../../../../../plugins/cicd-automation/skills/gitlab-ci-patterns/SKILL.md)** | **日本語**
-
 ---
 name: gitlab-ci-patterns
 description: スケーラブルな自動化のためのマルチステージワークフロー、キャッシング、分散ランナーを備えたGitLab CI/CDパイプラインを構築。GitLab CI/CDの実装、パイプラインパフォーマンスの最適化、または自動テストとデプロイメントのセットアップ時に使用。
 ---
+
+> **[English](../../../../../plugins/cicd-automation/skills/gitlab-ci-patterns/SKILL.md)** | **日本語**
 
 # GitLab CIパターン
 

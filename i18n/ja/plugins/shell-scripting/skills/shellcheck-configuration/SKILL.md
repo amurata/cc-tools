@@ -1,9 +1,9 @@
-> **[English](../../../../plugins/shell-scripting/skills/shellcheck-configuration/SKILL.md)** | **日本語**
-
 ---
 name: shellcheck-configuration
 description: シェルスクリプト品質のためのShellCheck静的解析の設定と使用をマスター。リンティングインフラの設定、コード問題の修正、またはスクリプトの移植性の確保時に使用してください。
 ---
+
+> **[English](../../../../plugins/shell-scripting/skills/shellcheck-configuration/SKILL.md)** | **日本語**
 
 # ShellCheck設定と静的解析
 

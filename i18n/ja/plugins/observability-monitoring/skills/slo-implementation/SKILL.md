@@ -1,9 +1,9 @@
-> **[English](../../../../../plugins/observability-monitoring/skills/slo-implementation/SKILL.md)** | **日本語**
-
 ---
 name: slo-implementation
 description: エラーバジェットとアラートを用いたサービスレベルインジケーター（SLI）とサービスレベル目標（SLO）を定義・実装します。信頼性ターゲットの確立、SREプラクティスの実装、サービスパフォーマンスの測定時に使用します。
 ---
+
+> **[English](../../../../../plugins/observability-monitoring/skills/slo-implementation/SKILL.md)** | **日本語**
 
 # SLO実装
 

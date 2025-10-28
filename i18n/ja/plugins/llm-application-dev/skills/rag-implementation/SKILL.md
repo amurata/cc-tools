@@ -1,9 +1,9 @@
-> **[English](../../../../../plugins/llm-application-dev/skills/rag-implementation/SKILL.md)** | **日本語**
-
 ---
 name: rag-implementation
 description: ベクトルデータベースとセマンティック検索を使用してLLMアプリケーションのためのRetrieval-Augmented Generation（RAG）システムを構築します。知識に基づいたAI、ドキュメントQ&Aシステムの構築、またはLLMと外部ナレッジベースの統合時に使用します。
 ---
+
+> **[English](../../../../../plugins/llm-application-dev/skills/rag-implementation/SKILL.md)** | **日本語**
 
 # RAG実装
 

@@ -1,9 +1,9 @@
-> **[English](../../../../../plugins/observability-monitoring/skills/prometheus-configuration/SKILL.md)** | **日本語**
-
 ---
 name: prometheus-configuration
 description: インフラストラクチャとアプリケーションの包括的なメトリクス収集、ストレージ、モニタリングのためのPrometheusをセットアップします。メトリクス収集の実装、モニタリングインフラストラクチャのセットアップ、アラートシステムの設定時に使用します。
 ---
+
+> **[English](../../../../../plugins/observability-monitoring/skills/prometheus-configuration/SKILL.md)** | **日本語**
 
 # Prometheus設定
 

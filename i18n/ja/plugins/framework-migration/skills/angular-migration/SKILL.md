@@ -1,9 +1,9 @@
-> **[English](../../../../../plugins/framework-migration/skills/angular-migration/SKILL.md)** | **日本語**
-
 ---
 name: angular-migration
 description: ハイブリッドモード、段階的コンポーネント書き換え、依存性注入更新を使用してAngularJSからAngularへ移行します。AngularJSアプリケーションのアップグレード、フレームワーク移行の計画、またはレガシーAngularコードのモダナイゼーション時に使用します。
 ---
+
+> **[English](../../../../../plugins/framework-migration/skills/angular-migration/SKILL.md)** | **日本語**
 
 # Angular移行
 

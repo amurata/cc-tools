@@ -1,9 +1,9 @@
-> **[English](../../../../../../plugins/python-development/skills/python-testing-patterns/SKILL.md)** | **日本語**
-
 ---
 name: python-testing-patterns
 description: pytest、フィクスチャ、モッキング、テスト駆動開発を使用した包括的なテスト戦略を実装。Pythonテストの記述、テストスイートのセットアップ、テストベストプラクティスの実装時に使用。
 ---
+
+> **[English](../../../../../../plugins/python-development/skills/python-testing-patterns/SKILL.md)** | **日本語**
 
 # Pythonテストパターン
 

@@ -1,9 +1,9 @@
-> **[English](../../../../../plugins/security-scanning/skills/sast-configuration/SKILL.md)** | **日本語**
-
 ---
 name: sast-configuration
 description: アプリケーションコードでの自動脆弱性検出のための静的アプリケーションセキュリティテスト（SAST）ツールを設定します。セキュリティスキャンの設定、DevSecOps実践の実装、またはコード脆弱性検出の自動化時に使用してください。
 ---
+
+> **[English](../../../../../plugins/security-scanning/skills/sast-configuration/SKILL.md)** | **日本語**
 
 # SAST設定
 

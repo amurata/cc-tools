@@ -1,9 +1,9 @@
-> **[English](../../../../../../../plugins/machine-learning-ops/skills/ml-pipeline-workflow/SKILL.md)** | **日本語**
-
 ---
 name: ml-pipeline-workflow
 description: データ準備からモデル学習、検証、本番デプロイメントまでのエンドツーエンドMLOpsパイプラインを構築します。MLパイプラインの作成、MLOpsプラクティスの実装、またはモデル学習とデプロイメントワークフローの自動化時に使用します。
 ---
+
+> **[English](../../../../../../../plugins/machine-learning-ops/skills/ml-pipeline-workflow/SKILL.md)** | **日本語**
 
 # MLパイプラインワークフロー
 

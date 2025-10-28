@@ -1,9 +1,9 @@
-> **[English](../../../../../plugins/javascript-typescript/skills/modern-javascript-patterns/SKILL.md)** | **日本語**
-
 ---
 name: modern-javascript-patterns
 description: async/await、分割代入、スプレッド演算子、アロー関数、Promise、モジュール、イテレータ、ジェネレータ、関数型プログラミングパターンなどのES6+機能を習得し、クリーンで効率的なJavaScriptコードを書きます。レガシーコードのリファクタリング、モダンパターンの実装、JavaScriptアプリケーションの最適化時に使用してください。
 ---
+
+> **[English](../../../../../plugins/javascript-typescript/skills/modern-javascript-patterns/SKILL.md)** | **日本語**
 
 # モダンJavaScriptパターン
 

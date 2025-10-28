@@ -1,9 +1,9 @@
-> **[English](../../../../plugins/kubernetes-operations/skills/k8s-security-policies/SKILL.md)** | **日本語**
-
 ---
 name: k8s-security-policies
 description: 本番グレードのセキュリティのためのNetworkPolicy、PodSecurityPolicy、RBACを含むKubernetesセキュリティポリシーの実装。Kubernetesクラスタのセキュリティ確保、ネットワーク分離の実装、Podセキュリティ標準の強制に使用します。
 ---
+
+> **[English](../../../../plugins/kubernetes-operations/skills/k8s-security-policies/SKILL.md)** | **日本語**
 
 # Kubernetesセキュリティポリシー
 

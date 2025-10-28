@@ -1,9 +1,9 @@
-> **[English](../../../../../plugins/cicd-automation/skills/secrets-management/SKILL.md)** | **日本語**
-
 ---
 name: secrets-management
 description: Vault、AWS Secrets Manager、またはネイティブプラットフォームソリューションを使用したCI/CDパイプライン用の安全なシークレット管理を実装。機密認証情報の処理、シークレットのローテーション、またはCI/CD環境の保護時に使用。
 ---
+
+> **[English](../../../../../plugins/cicd-automation/skills/secrets-management/SKILL.md)** | **日本語**
 
 # シークレット管理
 

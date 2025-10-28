@@ -1,9 +1,9 @@
-> **[English](../../../../plugins/shell-scripting/skills/bash-defensive-patterns/SKILL.md)** | **日本語**
-
 ---
 name: bash-defensive-patterns
 description: 本番グレードスクリプトのための防御的Bashプログラミング技術をマスター。堅牢なシェルスクリプト、CI/CDパイプライン、または耐障害性と安全性を必要とするシステムユーティリティを作成する際に使用してください。
 ---
+
+> **[English](../../../../plugins/shell-scripting/skills/bash-defensive-patterns/SKILL.md)** | **日本語**
 
 # Bash防御的パターン
 

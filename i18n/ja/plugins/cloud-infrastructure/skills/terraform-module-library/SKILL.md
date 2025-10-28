@@ -1,9 +1,9 @@
-> **[English](../../../../../../plugins/cloud-infrastructure/skills/terraform-module-library/SKILL.md)** | **日本語**
-
 ---
 name: terraform-module-library
 description: Infrastructure as Codeベストプラクティスに従って、AWS、Azure、GCPインフラ用の再利用可能なTerraformモジュールを構築します。インフラモジュール作成、クラウドプロビジョニング標準化、再利用可能なIaCコンポーネント実装時に使用します。
 ---
+
+> **[English](../../../../../../plugins/cloud-infrastructure/skills/terraform-module-library/SKILL.md)** | **日本語**
 
 # Terraformモジュールライブラリ
 

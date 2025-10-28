@@ -1,9 +1,9 @@
-> **[English](../../../../../plugins/cicd-automation/skills/deployment-pipeline-design/SKILL.md)** | **日本語**
-
 ---
 name: deployment-pipeline-design
 description: 承認ゲート、セキュリティチェック、デプロイメントオーケストレーションを備えたマルチステージCI/CDパイプラインを設計。デプロイメントワークフローのアーキテクチャ設計、継続的デリバリーのセットアップ、またはGitOpsプラクティスの実装時に使用。
 ---
+
+> **[English](../../../../../plugins/cicd-automation/skills/deployment-pipeline-design/SKILL.md)** | **日本語**
 
 # デプロイメントパイプライン設計
 

@@ -1,9 +1,9 @@
-> **[English](../../../../../plugins/cicd-automation/skills/github-actions-templates/SKILL.md)** | **日本語**
-
 ---
 name: github-actions-templates
 description: アプリケーションの自動テスト、ビルド、デプロイのための本番環境対応GitHub Actionsワークフローを作成。GitHub Actionsでのci/CDセットアップ、開発ワークフローの自動化、または再利用可能なワークフローテンプレートの作成時に使用。
 ---
+
+> **[English](../../../../../plugins/cicd-automation/skills/github-actions-templates/SKILL.md)** | **日本語**
 
 # GitHub Actionsテンプレート
 

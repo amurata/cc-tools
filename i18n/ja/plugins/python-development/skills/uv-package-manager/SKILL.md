@@ -1,9 +1,9 @@
-> **[English](../../../../../../plugins/python-development/skills/uv-package-manager/SKILL.md)** | **日本語**
-
 ---
 name: uv-package-manager
 description: 高速Python依存関係管理、仮想環境、モダンなPythonプロジェクトワークフローのためのuvパッケージマネージャーをマスター。Pythonプロジェクトのセットアップ、依存関係の管理、uvによるPython開発ワークフローの最適化時に使用。
 ---
+
+> **[English](../../../../../../plugins/python-development/skills/uv-package-manager/SKILL.md)** | **日本語**
 
 # UVパッケージマネージャー
 

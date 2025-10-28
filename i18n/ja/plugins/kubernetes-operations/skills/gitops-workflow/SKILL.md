@@ -1,9 +1,9 @@
-> **[English](../../../../plugins/kubernetes-operations/skills/gitops-workflow/SKILL.md)** | **日本語**
-
 ---
 name: gitops-workflow
 description: 継続的な調整を伴う自動化された宣言的Kubernetesデプロイメント用のArgoCDとFluxを使用したGitOpsワークフローの実装。GitOps実践の実装、Kubernetesデプロイメントの自動化、宣言的インフラストラクチャ管理のセットアップに使用します。
 ---
+
+> **[English](../../../../plugins/kubernetes-operations/skills/gitops-workflow/SKILL.md)** | **日本語**
 
 # GitOpsワークフロー
 

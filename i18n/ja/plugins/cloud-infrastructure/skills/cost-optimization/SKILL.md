@@ -1,9 +1,9 @@
-> **[English](../../../../../../plugins/cloud-infrastructure/skills/cost-optimization/SKILL.md)** | **日本語**
-
 ---
 name: cost-optimization
 description: リソース適正サイジング、タグ付け戦略、リザーブドインスタンス、支出分析を通じてクラウドコストを最適化します。クラウド費用削減、インフラコスト分析、コストガバナンスポリシー実装時に使用します。
 ---
+
+> **[English](../../../../../../plugins/cloud-infrastructure/skills/cost-optimization/SKILL.md)** | **日本語**
 
 # クラウドコスト最適化
 

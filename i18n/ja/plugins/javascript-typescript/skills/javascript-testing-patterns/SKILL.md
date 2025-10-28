@@ -1,9 +1,9 @@
-> **[English](../../../../../plugins/javascript-typescript/skills/javascript-testing-patterns/SKILL.md)** | **日本語**
-
 ---
 name: javascript-testing-patterns
 description: Jest、Vitest、Testing Libraryを使用した包括的なテスト戦略を実装し、モッキング、フィクスチャ、テスト駆動開発を用いたユニットテスト、統合テスト、エンドツーエンドテストを行います。JavaScript/TypeScriptテストの作成、テストインフラの設定、TDD/BDDワークフローの実装時に使用してください。
 ---
+
+> **[English](../../../../../plugins/javascript-typescript/skills/javascript-testing-patterns/SKILL.md)** | **日本語**
 
 # JavaScriptテストパターン
 
