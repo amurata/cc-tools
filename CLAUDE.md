@@ -58,4 +58,26 @@ project/
 └── src/          # ソースコード
 ```
 
+## 🎨 Kiro Spec-Driven Development
+
+### 概要
+Kiro仕様駆動開発システム - AI開発ライフサイクル（AI-DLC）における体系的な開発手法
+
+### プロジェクト構成
+- **ステアリング**: `.kiro/steering/` - プロジェクト全体のルールとコンテキスト
+- **仕様**: `.kiro/specs/` - 個別機能の開発プロセスを形式化
+
+### 基本ワークフロー
+1. **Phase 0** (任意): ステアリング設定 (`/kiro:steering`)
+2. **Phase 1** (仕様): 要件 → 設計 → タスク定義
+3. **Phase 2** (実装): タスク実行と検証
+4. **進捗確認**: `/kiro:spec-status {feature-name}`
+
+### 開発原則
+- 3フェーズ承認ワークフロー（要件 → 設計 → タスク → 実装）
+- 各フェーズで人間のレビュー必須
+- ステアリングを常に最新に保ち、`/kiro:spec-status`で整合性確認
+
+詳細は [Kiro Spec-Driven Development](./docs/ai-dlc/kiro-spec-driven-development.md) を参照してください。
+
 
