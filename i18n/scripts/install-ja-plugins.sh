@@ -10,6 +10,10 @@
 #   ./install-ja-plugins.sh --dry-run .
 #   ./install-ja-plugins.sh --force ~/my-project
 #
+# 逆にプロジェクトのディレクトリからこのプラグインをインストールする場合:
+#   # cc-tools が /path/to/cc-tools にあるケース
+#   /path/to/cc-tools/i18n/scripts/install-ja-plugins.sh .
+#
 
 set -euo pipefail
 
@@ -287,6 +291,19 @@ copy_files() {
     else
         cp -r "$SOURCE_DIR/plugins" "$plugins_target"
         print_success "コピー完了: plugins/"
+    fi
+
+    # README.plugins.md のコピー
+    local readme_source="$SOURCE_DIR/README.plugins.md"
+    local readme_target="$TARGET_DIR/README.plugins.md"
+
+    if [ -f "$readme_source" ]; then
+        if [ "$DRY_RUN" = true ]; then
+            print_info "[DRY-RUN] コピー: $readme_source → $readme_target"
+        else
+            cp "$readme_source" "$readme_target"
+            print_success "コピー完了: README.plugins.md"
+        fi
     fi
 }
 

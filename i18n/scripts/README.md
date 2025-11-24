@@ -44,6 +44,10 @@ cd cc-tools
 
 # バックアップなしでインストール
 ./i18n/scripts/install-ja-plugins.sh --no-backup ~/my-project
+
+# 逆にプロジェクトのディレクトリからこのプラグインをインストールする場合
+# cc-tools が /path/to/cc-tools にあるケース
+/path/to/cc-tools/i18n/scripts/install-ja-plugins.sh .
 ```
 
 ## 📋 何がインストールされるか
@@ -143,6 +147,28 @@ Claude Code の設定ディレクトリにグローバルインストールす�
 
 - [日本語版プラグイン README](../ja/README.md)
 - [元のプラグイン (wshobson/agents)](https://github.com/wshobson/agents)
+
+## 🛠️ 便利なツール
+
+### 1. プラグイン検索ツール (`suggest-plugins.py`)
+
+何をしていいかわからない場合や、適切なプラグインを探したい場合に使用します。
+
+```bash
+./i18n/scripts/suggest-plugins.py
+```
+
+対話形式でキーワードを入力すると、おすすめのプラグインとインストールコマンドを教えてくれます。
+
+### 2. Upstream同期・翻訳チェック (`sync-upstream.sh`)
+
+元のリポジトリ（upstream）の更新を取り込み、翻訳が必要なファイルをチェックします。
+
+```bash
+./i18n/scripts/sync-upstream.sh
+```
+
+実行すると `TRANSLATION_TODO.md` が生成され、未翻訳のファイルや更新されたファイルがリストアップされます。
 
 ## 📄 ライセンス
 
