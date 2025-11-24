@@ -105,11 +105,8 @@ def main():
         
         if results:
             print(f"\n{len(results)} 件見つかりました:\n")
-            for plugin in results[:5]:  # 上位5件を表示
+            for plugin in results:
                 print_plugin(plugin)
-            
-            if len(results) > 5:
-                print(f"... 他 {len(results) - 5} 件")
         else:
             print(f"\n{re.RED}該当するプラグインが見つかりませんでした。別のキーワードを試してください。{NC}")
             print("ヒント: 'python', 'test', 'debug', 'git' などの単語で検索してみてください")

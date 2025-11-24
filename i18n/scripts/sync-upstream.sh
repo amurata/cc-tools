@@ -40,8 +40,32 @@ cat << EOF > "$TODO_FILE"
 ## 🆕 未翻訳のファイル (新規追加)
 EOF
 
+# 除外パターンの読み込み (簡易的なJSONパース)
+# .translation-map.json から exclude_patterns 配列の中身を抽出
+EXCLUDES=""
+if [ -f ".translation-map.json" ]; then
+    # grepとsedで簡易的に抽出（jq依存を避けるため）
+    # "exclude_patterns": [ ... ] の中身を取り出す
+    RAW_PATTERNS=$(sed -n '/"exclude_patterns": \[/,/\]/p' .translation-map.json | grep -v "exclude_patterns" | grep -v "\]" | sed 's/^[[:space:]]*"//;s/",\{0,1\}$//')
+    
+    for pattern in $RAW_PATTERNS; do
+        # findコマンド用の除外オプションを構築
+        # パターンがディレクトリの場合は /* を付与して中身を除外
+        if [[ "$pattern" == *"/" ]]; then
+            EXCLUDES="$EXCLUDES -not -path \"./$pattern*\""
+        elif [[ "$pattern" == *"**"* ]]; then
+             # ** を * に置換して簡易対応
+             CLEAN_PATTERN=${pattern//\*\*/\*}
+             EXCLUDES="$EXCLUDES -not -path \"./$CLEAN_PATTERN\""
+        else
+            EXCLUDES="$EXCLUDES -not -path \"./$pattern\""
+        fi
+    done
+fi
+
 # 新規ファイルの検出 (英語版にあって日本語版にないファイル)
-find plugins -type f -name "*.md" | while read -r file; do
+# evalを使用してEXCLUDES変数を展開
+eval "find plugins -type f -name \"*.md\" $EXCLUDES" | while read -r file; do
     ja_file="i18n/ja/$file"
     if [ ! -f "$ja_file" ]; then
         echo "- [ ] \`$file\`" >> "$TODO_FILE"
@@ -50,8 +74,8 @@ done
 
 echo -e "\n## 🔄 更新が必要なファイル (英語版が更新済み)" >> "$TODO_FILE"
 
-# 更新ファイルの検出 (check-outdated.shのロジックを流用・拡張)
-find plugins -type f -name "*.md" | while read -r source_file; do
+# 更新ファイルの検出
+eval "find plugins -type f -name \"*.md\" $EXCLUDES" | while read -r source_file; do
     ja_file="i18n/ja/$source_file"
     
     if [ -f "$ja_file" ]; then
