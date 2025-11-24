@@ -1,35 +1,33 @@
 ---
 name: llm-evaluation
-description: 自動メトリクス、人間のフィードバック、ベンチマークを使用してLLMアプリケーションの包括的な評価戦略を実装します。LLMパフォーマンスのテスト、AIアプリケーション品質の測定、または評価フレームワークの確立時に使用します。
+description: 自動メトリクス、人間によるフィードバック、およびベンチマークを使用して、LLMアプリケーションの包括的な評価戦略を実装します。LLMのパフォーマンスをテストし、AIアプリケーションの品質を測定し、または評価フレームワークを確立する場合に使用します。
 ---
-
-> **[English](../../../../../plugins/llm-application-dev/skills/llm-evaluation/SKILL.md)** | **日本語**
 
 # LLM評価
 
-自動メトリクスから人間評価、A/Bテストまで、LLMアプリケーションの包括的な評価戦略をマスターします。
+自動メトリクスから人間による評価、A/Bテストまで、LLMアプリケーションの包括的な評価戦略をマスターします。
 
-## このスキルを使用する場合
+## このスキルをいつ使用するか
 
-- LLMアプリケーションパフォーマンスを体系的に測定する場合
-- 異なるモデルまたはプロンプトを比較する場合
-- デプロイ前にパフォーマンス低下を検出する場合
-- プロンプト変更からの改善を検証する場合
-- 本番環境システムへの信頼を構築する場合
-- ベースラインを確立し、時間とともに進捗を追跡する場合
-- 予期しないモデル動作のデバッグを行う場合
+- LLMアプリケーションのパフォーマンスを体系的に測定する
+- 異なるモデルやプロンプトを比較する
+- デプロイ前にパフォーマンスの低下（リグレッション）を検出する
+- プロンプトの変更による改善を検証する
+- 本番システムへの信頼を築く
+- ベースラインを確立し、時間の経過とともに進捗を追跡する
+- 予期しないモデルの動作をデバッグする
 
 ## コア評価タイプ
 
 ### 1. 自動メトリクス
-計算されたスコアを使用した高速、反復可能、スケーラブルな評価。
+計算されたスコアを使用した、高速で再現性があり、スケーラブルな評価。
 
 **テキスト生成:**
-- **BLEU**: N-gramオーバーラップ（翻訳）
+- **BLEU**: N-gramの重複（翻訳）
 - **ROUGE**: 再現率重視（要約）
-- **METEOR**: セマンティック類似性
-- **BERTScore**: 埋め込みベースの類似性
-- **Perplexity**: 言語モデルの信頼度
+- **METEOR**: 意味的類似性
+- **BERTScore**: エンベディングベースの類似性
+- **Perplexity**: 言語モデルの確信度
 
 **分類:**
 - **Accuracy**: 正解率
@@ -37,31 +35,31 @@ description: 自動メトリクス、人間のフィードバック、ベンチ�
 - **Confusion Matrix**: エラーパターン
 - **AUC-ROC**: ランキング品質
 
-**検索（RAG）:**
-- **MRR**: Mean Reciprocal Rank（平均逆順位）
-- **NDCG**: Normalized Discounted Cumulative Gain（正規化割引累積利得）
-- **Precision@K**: トップKに関連するもの
-- **Recall@K**: トップKでのカバレッジ
+**検索 (RAG):**
+- **MRR**: 平均相互ランク (Mean Reciprocal Rank)
+- **NDCG**: 正規化割引累積利得 (Normalized Discounted Cumulative Gain)
+- **Precision@K**: 上位K件の関連性
+- **Recall@K**: 上位K件の網羅率
 
-### 2. 人間評価
-自動化が困難な品質面の手動評価。
+### 2. 人間による評価
+自動化が難しい品質面の手動評価。
 
 **次元:**
-- **正確性**: 事実的正しさ
-- **一貫性**: 論理的フロー
-- **関連性**: 質問への回答
-- **流暢性**: 自然な言語品質
-- **安全性**: 有害なコンテンツなし
-- **有用性**: ユーザーにとって有用
+- **Accuracy**: 事実の正確さ
+- **Coherence**: 論理的な流れ
+- **Relevance**: 質問に答えているか
+- **Fluency**: 自然言語の品質
+- **Safety**: 有害なコンテンツがないか
+- **Helpfulness**: ユーザーにとって有用か
 
 ### 3. LLM-as-Judge
 より強力なLLMを使用して、より弱いモデルの出力を評価します。
 
 **アプローチ:**
-- **Pointwise**: 個別の応答をスコア付け
-- **Pairwise**: 2つの応答を比較
+- **Pointwise**: 個々の回答をスコアリング
+- **Pairwise**: 2つの回答を比較
 - **Reference-based**: ゴールドスタンダードと比較
-- **Reference-free**: 真実なしで判断
+- **Reference-free**: 正解なしで判断
 
 ## クイックスタート
 
@@ -83,7 +81,7 @@ test_cases = [
         "expected": "Paris",
         "context": "France is a country in Europe. Paris is its capital."
     },
-    # ... more test cases
+    # ... その他のテストケース
 ]
 
 # 評価を実行
@@ -96,14 +94,14 @@ print(f"Overall Accuracy: {results.metrics['accuracy']}")
 print(f"BLEU Score: {results.metrics['bleu']}")
 ```
 
-## 自動メトリクス実装
+## 自動メトリクスの実装
 
-### BLEUスコア
+### BLEU Score
 ```python
 from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
 
 def calculate_bleu(reference, hypothesis):
-    """参照と仮説の間のBLEUスコアを計算します。"""
+    """リファレンスと仮説の間のBLEUスコアを計算します。"""
     smoothie = SmoothingFunction().method4
 
     return sentence_bleu(
@@ -119,7 +117,7 @@ bleu = calculate_bleu(
 )
 ```
 
-### ROUGEスコア
+### ROUGE Score
 ```python
 from rouge_score import rouge_scorer
 
@@ -158,56 +156,56 @@ def calculate_bertscore(references, hypotheses):
 ### カスタムメトリクス
 ```python
 def calculate_groundedness(response, context):
-    """応答が提供されたコンテキストに基づいているかをチェックします。"""
-    # NLIモデルを使用して含意をチェック
+    """回答が提供されたコンテキストに基づいているか確認します。"""
+    # 含意を確認するためにNLIモデルを使用
     from transformers import pipeline
 
     nli = pipeline("text-classification", model="microsoft/deberta-large-mnli")
 
     result = nli(f"{context} [SEP] {response}")[0]
 
-    # 応答がコンテキストに含意される信頼度を返す
+    # 回答がコンテキストによって含意される確信度を返す
     return result['score'] if result['label'] == 'ENTAILMENT' else 0.0
 
 def calculate_toxicity(text):
-    """生成されたテキストの有害性を測定します。"""
+    """生成されたテキストの毒性を測定します。"""
     from detoxify import Detoxify
 
     results = Detoxify('original').predict(text)
-    return max(results.values())  # 最高の有害性スコアを返す
+    return max(results.values())  # 最も高い毒性スコアを返す
 
 def calculate_factuality(claim, knowledge_base):
-    """ナレッジベースに対して事実的主張を検証します。"""
-    # ナレッジベースに依存する実装
-    # 検索+NLI、またはファクトチェックAPIを使用できる
+    """ナレッジベースに対して事実の主張を検証します。"""
+    # 実装はナレッジベースに依存します
+    # 検索 + NLI、またはファクトチェックAPIを使用できます
     pass
 ```
 
-## LLM-as-Judgeパターン
+## LLM-as-Judge パターン
 
 ### 単一出力評価
 ```python
 def llm_judge_quality(response, question):
-    """GPT-4を使用して応答品質を判断します。"""
-    prompt = f"""Rate the following response on a scale of 1-10 for:
-1. Accuracy (factually correct)
-2. Helpfulness (answers the question)
-3. Clarity (well-written and understandable)
+    """GPT-5を使用して回答品質を判断します。"""
+    prompt = f"""以下の回答を1-10のスケールで評価してください：
+1. 正確性（事実として正しい）
+2. 有用性（質問に答えている）
+3. 明確性（よく書かれていて理解しやすい）
 
-Question: {question}
-Response: {response}
+質問: {question}
+回答: {response}
 
-Provide ratings in JSON format:
+JSON形式で評価を提供してください：
 {{
   "accuracy": <1-10>,
   "helpfulness": <1-10>,
   "clarity": <1-10>,
-  "reasoning": "<brief explanation>"
+  "reasoning": "<短い説明>"
 }}
 """
 
     result = openai.ChatCompletion.create(
-        model="gpt-4",
+        model="gpt-5",
         messages=[{"role": "user", "content": prompt}],
         temperature=0
     )
@@ -218,27 +216,27 @@ Provide ratings in JSON format:
 ### ペアワイズ比較
 ```python
 def compare_responses(question, response_a, response_b):
-    """LLMジャッジを使用して2つの応答を比較します。"""
-    prompt = f"""Compare these two responses to the question and determine which is better.
+    """LLMジャッジを使用して2つの回答を比較します。"""
+    prompt = f"""質問に対するこれら2つの回答を比較し、どちらが優れているか判断してください。
 
-Question: {question}
+質問: {question}
 
-Response A: {response_a}
+回答 A: {response_a}
 
-Response B: {response_b}
+回答 B: {response_b}
 
-Which response is better and why? Consider accuracy, helpfulness, and clarity.
+どちらの回答が優れていますか？その理由は？正確性、有用性、明確性を考慮してください。
 
-Answer with JSON:
+JSONで答えてください：
 {{
-  "winner": "A" or "B" or "tie",
-  "reasoning": "<explanation>",
+  "winner": "A" または "B" または "tie",
+  "reasoning": "<説明>",
   "confidence": <1-10>
 }}
 """
 
     result = openai.ChatCompletion.create(
-        model="gpt-4",
+        model="gpt-5",
         messages=[{"role": "user", "content": prompt}],
         temperature=0
     )
@@ -246,12 +244,12 @@ Answer with JSON:
     return json.loads(result.choices[0].message.content)
 ```
 
-## 人間評価フレームワーク
+## 人間による評価フレームワーク
 
 ### アノテーションガイドライン
 ```python
 class AnnotationTask:
-    """人間アノテーションタスクの構造。"""
+    """人間によるアノテーションタスクの構造。"""
 
     def __init__(self, response, question, context=None):
         self.response = response
@@ -266,15 +264,15 @@ class AnnotationTask:
             "ratings": {
                 "accuracy": {
                     "scale": "1-5",
-                    "description": "Is the response factually correct?"
+                    "description": "回答は事実として正しいですか？"
                 },
                 "relevance": {
                     "scale": "1-5",
-                    "description": "Does it answer the question?"
+                    "description": "質問に答えていますか？"
                 },
                 "coherence": {
                     "scale": "1-5",
-                    "description": "Is it logically consistent?"
+                    "description": "論理的に一貫していますか？"
                 }
             },
             "issues": {
@@ -287,12 +285,12 @@ class AnnotationTask:
         }
 ```
 
-### 評価者間一致度
+### 評価者間一致率
 ```python
 from sklearn.metrics import cohen_kappa_score
 
 def calculate_agreement(rater1_scores, rater2_scores):
-    """評価者間一致度を計算します。"""
+    """評価者間一致率を計算します。"""
     kappa = cohen_kappa_score(rater1_scores, rater2_scores)
 
     interpretation = {
@@ -310,7 +308,7 @@ def calculate_agreement(rater1_scores, rater2_scores):
     }
 ```
 
-## A/Bテスト
+## A/B テスト
 
 ### 統計的テストフレームワーク
 ```python
@@ -337,7 +335,7 @@ class ABTest:
         # T検定
         t_stat, p_value = stats.ttest_ind(a_scores, b_scores)
 
-        # 効果量（Cohen's d）
+        # 効果量 (Cohen's d)
         pooled_std = np.sqrt((np.std(a_scores)**2 + np.std(b_scores)**2) / 2)
         cohens_d = (np.mean(b_scores) - np.mean(a_scores)) / pooled_std
 
@@ -355,7 +353,7 @@ class ABTest:
 
     @staticmethod
     def interpret_cohens_d(d):
-        """Cohen's d効果量を解釈します。"""
+        """Cohen's d 効果量を解釈します。"""
         abs_d = abs(d)
         if abs_d < 0.2:
             return "negligible"
@@ -377,7 +375,7 @@ class RegressionDetector:
         self.threshold = threshold
 
     def check_for_regression(self, new_results):
-        """新しい結果が回帰を示しているかを検出します。"""
+        """新しい結果が回帰を示しているか検出します。"""
         regressions = []
 
         for metric in self.baseline.keys():
@@ -390,7 +388,7 @@ class RegressionDetector:
             # 相対変化を計算
             relative_change = (new_score - baseline_score) / baseline_score
 
-            # 大幅な減少にフラグを立てる
+            # 有意な減少がある場合はフラグを立てる
             if relative_change < -self.threshold:
                 regressions.append({
                     "metric": metric,
@@ -430,7 +428,7 @@ class BenchmarkRunner:
                 )
                 results[metric.name].append(score)
 
-        # 結果を集約
+        # 結果を集計
         return {
             metric: {
                 "mean": np.mean(scores),
@@ -448,26 +446,26 @@ class BenchmarkRunner:
 - **references/human-evaluation.md**: アノテーションのベストプラクティス
 - **references/benchmarking.md**: 標準ベンチマーク
 - **references/a-b-testing.md**: 統計的テストガイド
-- **references/regression-testing.md**: CI/CD統合
+- **references/regression-testing.md**: CI/CD 統合
 - **assets/evaluation-framework.py**: 完全な評価ハーネス
-- **assets/benchmark-dataset.jsonl**: サンプルデータセット
+- **assets/benchmark-dataset.jsonl**: データセット例
 - **scripts/evaluate-model.py**: 自動評価ランナー
 
 ## ベストプラクティス
 
-1. **複数のメトリクス**: 包括的な視点のために多様なメトリクスを使用します
-2. **代表的なデータ**: 実世界の多様な例でテストします
-3. **ベースライン**: 常にベースラインパフォーマンスと比較します
-4. **統計的厳密性**: 比較に適切な統計テストを使用します
-5. **継続的評価**: CI/CDパイプラインに統合します
-6. **人間検証**: 自動メトリクスと人間の判断を組み合わせます
-7. **エラー分析**: 失敗を調査して弱点を理解します
-8. **バージョン管理**: 評価結果を時間とともに追跡します
+1. **複数のメトリクス**: 包括的なビューのために多様なメトリクスを使用する
+2. **代表的なデータ**: 実世界の多様な例でテストする
+3. **ベースライン**: 常にベースラインパフォーマンスと比較する
+4. **統計的厳密さ**: 比較には適切な統計的テストを使用する
+5. **継続的評価**: CI/CD パイプラインに統合する
+6. **人間による検証**: 自動メトリクスと人間の判断を組み合わせる
+7. **エラー分析**: 弱点を理解するために失敗を調査する
+8. **バージョン管理**: 時間の経過とともに評価結果を追跡する
 
-## よくある落とし穴
+## 一般的な落とし穴
 
-- **単一メトリクスへの執着**: 他を犠牲にして1つのメトリクスを最適化してしまう
-- **小さなサンプルサイズ**: あまりにも少ない例から結論を導き出してしまう
-- **データ汚染**: トレーニングデータでテストしてしまう
+- **単一メトリクスへの執着**: 他を犠牲にして1つのメトリクスに最適化する
+- **小さなサンプルサイズ**: 少なすぎる例から結論を導き出す
+- **データ汚染**: トレーニングデータでテストする
 - **分散の無視**: 統計的不確実性を考慮しない
-- **メトリクスミスマッチ**: ビジネス目標に合わないメトリクスを使用してしまう
+- **メトリクスの不一致**: ビジネス目標と一致しないメトリクスを使用する

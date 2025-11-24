@@ -1,17 +1,8 @@
 # 翻訳タスクリスト
 
-最終更新: 2025年 11月24日 月曜日 16時22分05秒 JST
+最終更新: 2025年 11月24日 月曜日 16時45分41秒 JST
 
 ## 🆕 未翻訳のファイル (新規追加)
-- [ ] `plugins/backend-development/agents/temporal-python-pro.md`
-- [ ] `plugins/backend-development/skills/workflow-orchestration-patterns/SKILL.md`
-- [ ] `plugins/backend-development/skills/temporal-python-testing/resources/replay-testing.md`
-- [ ] `plugins/backend-development/skills/temporal-python-testing/resources/integration-testing.md`
-- [ ] `plugins/backend-development/skills/temporal-python-testing/resources/local-setup.md`
-- [ ] `plugins/backend-development/skills/temporal-python-testing/resources/unit-testing.md`
-- [ ] `plugins/backend-development/skills/temporal-python-testing/SKILL.md`
-- [ ] `plugins/database-design/skills/postgresql/SKILL.md`
-- [ ] `plugins/julia-development/agents/julia-pro.md`
 
 ## 🔄 更新が必要なファイル (英語版が更新済み)
 - [ ] `plugins/payment-processing/agents/payment-integration.md` (英語版が 26日 新しい)

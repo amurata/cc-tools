@@ -79,9 +79,26 @@ eval "find plugins -type f -name \"*.md\" $EXCLUDES" | while read -r source_file
     ja_file="i18n/ja/$source_file"
     
     if [ -f "$ja_file" ]; then
-        # gitの更新時刻で比較
-        source_time=$(git log -1 --format=%ct -- "$source_file" 2>/dev/null || echo "0")
-        ja_time=$(git log -1 --format=%ct -- "$ja_file" 2>/dev/null || echo "0")
+        # gitの更新時刻を取得 (空の場合は0)
+        source_time=$(git log -1 --format=%ct -- "$source_file" 2>/dev/null)
+        if [ -z "$source_time" ]; then source_time=0; fi
+        
+        ja_git_time=$(git log -1 --format=%ct -- "$ja_file" 2>/dev/null)
+        if [ -z "$ja_git_time" ]; then ja_git_time=0; fi
+
+        # ファイルシステムの更新時刻を取得 (macOS/Linux対応)
+        if [[ "$OSTYPE" == "darwin"* ]]; then
+            ja_fs_time=$(stat -f %m "$ja_file" 2>/dev/null || echo "0")
+        else
+            ja_fs_time=$(stat -c %Y "$ja_file" 2>/dev/null || echo "0")
+        fi
+        
+        # 日本語ファイルは、gitの時刻とFSの時刻の新しい方を採用 (未コミットの変更を反映するため)
+        if [ "$ja_fs_time" -gt "$ja_git_time" ]; then
+            ja_time=$ja_fs_time
+        else
+            ja_time=$ja_git_time
+        fi
 
         if [ "$source_time" -gt "$ja_time" ]; then
             diff_days=$(( (source_time - ja_time) / 86400 ))

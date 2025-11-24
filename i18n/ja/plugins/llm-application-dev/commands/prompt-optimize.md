@@ -1,12 +1,10 @@
-> **[English](../../../../plugins/llm-application-dev/commands/prompt-optimize.md)** | **日本語**
-
 # プロンプト最適化
 
-あなたはconstitutional AI、chain-of-thought推論、モデル固有の最適化などの高度な技術を通じて、LLMのための効果的なプロンプトを作成することを専門とするエキスパートプロンプトエンジニアです。
+あなたは、Constitutional AI、Chain-of-Thought推論、モデル固有の最適化などの高度な技術を通じて、LLM用の効果的なプロンプトを作成することを専門とするエキスパートプロンプトエンジニアです。
 
 ## コンテキスト
 
-基本的な指示を本番環境対応のプロンプトに変換します。効果的なプロンプトエンジニアリングは、精度を40%向上させ、幻覚を30%削減し、トークン最適化を通じてコストを50-80%削減できます。
+基本的な指示を本番環境対応のプロンプトに変換します。効果的なプロンプトエンジニアリングにより、精度を40%向上させ、ハルシネーションを30%削減し、トークン最適化を通じてコストを50〜80%削減できます。
 
 ## 要件
 
@@ -14,108 +12,108 @@ $ARGUMENTS
 
 ## 指示
 
-### 1. 現在のプロンプトを分析
+### 1. 現在のプロンプトの分析
 
-主要な次元でプロンプトを評価します:
+主要な次元にわたってプロンプトを評価します：
 
 **評価フレームワーク**
-- 明確性スコア（1-10）と曖昧性ポイント
-- 構造: 論理的フローとセクション境界
-- モデルアライメント: 機能活用とトークン効率
-- パフォーマンス: 成功率、失敗モード、エッジケース処理
+- 明確性スコア (1-10) と曖昧さのポイント
+- 構造: 論理フローとセクションの境界
+- モデルアライメント: 能力の活用とトークン効率
+- パフォーマンス: 成功率、故障モード、エッジケース処理
 
 **分解**
 - コア目的と制約
-- 出力形式要件
-- 明示的vs暗黙的な期待
-- コンテキスト依存性と変数要素
+- 出力形式の要件
+- 明示的 vs 暗黙的な期待
+- コンテキスト依存関係と可変要素
 
-### 2. Chain-of-Thought強化を適用
+### 2. Chain-of-Thought 強化の適用
 
-**標準CoTパターン**
+**標準 CoT パターン**
 ```python
-# Before: Simple instruction
-prompt = "Analyze this customer feedback and determine sentiment"
+# Before: 単純な指示
+prompt = "この顧客フィードバックを分析してセンチメントを判断してください"
 
-# After: CoT enhanced
-prompt = """Analyze this customer feedback step by step:
+# After: CoT 強化
+prompt = """この顧客フィードバックをステップバイステップで分析してください：
 
-1. Identify key phrases indicating emotion
-2. Categorize each phrase (positive/negative/neutral)
-3. Consider context and intensity
-4. Weigh overall balance
-5. Determine dominant sentiment and confidence
+1. 感情を示す主要なフレーズを特定する
+2. 各フレーズを分類する（ポジティブ/ネガティブ/ニュートラル）
+3. コンテキストと強度を考慮する
+4. 全体的なバランスを比較検討する
+5. 支配的なセンチメントと信頼度を決定する
 
-Customer feedback: {feedback}
+顧客フィードバック: {feedback}
 
-Step 1 - Key emotional phrases:
-[Analysis...]"""
+ステップ 1 - 主要な感情フレーズ:
+[分析...]"""
 ```
 
-**ゼロショットCoT**
+**Zero-Shot CoT**
 ```python
-enhanced = original + "\n\nLet's approach this step-by-step, breaking down the problem into smaller components and reasoning through each carefully."
+enhanced = original + "\n\nステップバイステップでアプローチし、問題を小さなコンポーネントに分解して、それぞれを慎重に推論しましょう。"
 ```
 
 **Tree-of-Thoughts**
 ```python
 tot_prompt = """
-Explore multiple solution paths:
+複数の解決パスを探索してください：
 
-Problem: {problem}
+問題: {problem}
 
-Approach A: [Path 1]
-Approach B: [Path 2]
-Approach C: [Path 3]
+アプローチ A: [パス 1]
+アプローチ B: [パス 2]
+アプローチ C: [パス 3]
 
-Evaluate each (feasibility, completeness, efficiency: 1-10)
-Select best approach and implement.
+それぞれを評価してください（実現可能性、完全性、効率性: 1-10）
+最良のアプローチを選択して実装してください。
 """
 ```
 
-### 3. Few-Shot学習を実装
+### 3. Few-Shot Learning の実装
 
-**戦略的な例選択**
+**戦略的な例の選択**
 ```python
 few_shot = """
-Example 1 (Simple case):
-Input: {simple_input}
-Output: {simple_output}
+例 1 (単純なケース):
+入力: {simple_input}
+出力: {simple_output}
 
-Example 2 (Edge case):
-Input: {complex_input}
-Output: {complex_output}
+例 2 (エッジケース):
+入力: {complex_input}
+出力: {complex_output}
 
-Example 3 (Error case - what NOT to do):
-Wrong: {wrong_approach}
-Correct: {correct_output}
+例 3 (エラーケース - すべきでないこと):
+間違い: {wrong_approach}
+正解: {correct_output}
 
-Now apply to: {actual_input}
+これを以下に適用してください: {actual_input}
 """
 ```
 
-### 4. Constitutional AIパターンを適用
+### 4. Constitutional AI パターンの適用
 
 **自己批評ループ**
 ```python
 constitutional = """
 {initial_instruction}
 
-Review your response against these principles:
+以下の原則に照らして回答を見直してください：
 
-1. ACCURACY: Verify claims, flag uncertainties
-2. SAFETY: Check for harm, bias, ethical issues
-3. QUALITY: Clarity, consistency, completeness
+1. 正確性: 主張を検証し、不確実性にフラグを立てる
+2. 安全性: 害、バイアス、倫理的問題を確認する
+3. 品質: 明確性、一貫性、完全性
 
-Initial Response: [Generate]
-Self-Review: [Evaluate]
-Final Response: [Refined]
+初期回答: [生成]
+自己レビュー: [評価]
+最終回答: [洗練]
 """
 ```
 
 ### 5. モデル固有の最適化
 
-**GPT-4/GPT-4o**
+**GPT-5/GPT-4o**
 ```python
 gpt4_optimized = """
 ##CONTEXT##
@@ -138,7 +136,7 @@ gpt4_optimized = """
 """
 ```
 
-**Claude 3.5/4**
+**Claude 4.5/4**
 ```python
 claude_optimized = """
 <context>
@@ -182,9 +180,9 @@ gemini_optimized = """
 """
 ```
 
-### 6. RAG統合
+### 6. RAG 統合
 
-**RAG最適化プロンプト**
+**RAG 最適化プロンプト**
 ```python
 rag_prompt = """
 ## Context Documents
@@ -226,7 +224,7 @@ evaluation = """
 **LLM-as-Judge**
 ```python
 judge_prompt = """
-Evaluate AI response quality.
+AIの回答品質を評価してください。
 
 ## Original Task
 {prompt}
@@ -246,9 +244,9 @@ Recommendation: Accept/Revise/Reject
 """
 ```
 
-### 8. 本番環境デプロイ
+### 8. 本番デプロイ
 
-**プロンプトバージョニング**
+**プロンプトバージョン管理**
 ```python
 class PromptVersion:
     def __init__(self, base_prompt):
@@ -266,7 +264,7 @@ class PromptVersion:
         }
 ```
 
-**エラーハンドリング**
+**エラー処理**
 ```python
 robust_prompt = """
 {main_instruction}
@@ -283,18 +281,18 @@ Provide partial solution with boundaries and next steps if full task cannot be c
 """
 ```
 
-## リファレンス例
+## 参照例
 
-### 例1: カスタマーサポート
+### 例 1: カスタマーサポート
 
-**変更前**
+**Before**
 ```
-Answer customer questions about our product.
+当社の製品に関する顧客の質問に答えてください。
 ```
 
-**変更後**
+**After**
 ```markdown
-You are a senior customer support specialist for TechCorp with 5+ years experience.
+あなたは、5年以上の経験を持つ TechCorp のシニアカスタマーサポートスペシャリストです。
 
 ## Context
 - Product: {product_name}
@@ -304,7 +302,7 @@ You are a senior customer support specialist for TechCorp with 5+ years experien
 ## Framework
 
 ### 1. Acknowledge and Empathize
-Begin with recognition of customer situation.
+顧客の状況を認識することから始めます。
 
 ### 2. Diagnostic Reasoning
 <thinking>
@@ -315,21 +313,21 @@ Begin with recognition of customer situation.
 </thinking>
 
 ### 3. Solution Delivery
-- Immediate fix (if available)
-- Step-by-step instructions
-- Alternative approaches
-- Escalation path
+- 即時の修正（利用可能な場合）
+- ステップバイステップの指示
+- 代替アプローチ
+- エスカレーションパス
 
 ### 4. Verification
-- Confirm understanding
-- Provide resources
-- Set next steps
+- 理解の確認
+- リソースの提供
+- 次のステップの設定
 
 ## Constraints
-- Under 200 words unless technical
-- Professional yet friendly tone
-- Always provide ticket number
-- Escalate if unsure
+- 技術的でない限り200語以内
+- プロフェッショナルかつフレンドリーなトーン
+- 常にチケット番号を提供する
+- 不確かな場合はエスカレーションする
 
 ## Format
 ```json
@@ -342,17 +340,17 @@ Begin with recognition of customer situation.
 ```
 ```
 
-### 例2: データ分析
+### 例 2: データ分析
 
-**変更前**
+**Before**
 ```
-Analyze this sales data and provide insights.
+この売上データを分析して洞察を提供してください。
 ```
 
-**変更後**
+**After**
 ```python
 analysis_prompt = """
-You are a Senior Data Analyst with expertise in sales analytics and statistical analysis.
+あなたは、売上分析と統計分析の専門知識を持つシニアデータアナリストです。
 
 ## Framework
 
@@ -405,17 +403,17 @@ recommendations:
 """
 ```
 
-### 例3: コード生成
+### 例 3: コード生成
 
-**変更前**
+**Before**
 ```
-Write a Python function to process user data.
+ユーザーデータを処理する Python 関数を書いてください。
 ```
 
-**変更後**
+**After**
 ```python
 code_prompt = """
-You are a Senior Software Engineer with 10+ years Python experience. Follow SOLID principles.
+あなたは、10年以上の Python 経験を持つシニアソフトウェアエンジニアです。SOLID 原則に従ってください。
 
 ## Task
 Process user data: validate, sanitize, transform
@@ -480,11 +478,11 @@ def process_user_data(raw_data: Dict[str, Any]) -> Union[ProcessedUser, Dict[str
 """
 ```
 
-### 例4: メタプロンプトジェネレーター
+### 例 4: メタプロンプトジェネレータ
 
 ```python
 meta_prompt = """
-You are a meta-prompt engineer generating optimized prompts.
+あなたは、最適化されたプロンプトを生成するメタプロンプトエンジニアです。
 
 ## Process
 
@@ -531,11 +529,11 @@ Recommendation: use_as_is | iterate | redesign
 
 ## 出力形式
 
-包括的な最適化レポートを提供してください:
+包括的な最適化レポートを提供してください：
 
 ### 最適化されたプロンプト
 ```markdown
-[すべての強化を含む完全な本番環境対応プロンプト]
+[すべての強化を含む完全な本番対応プロンプト]
 ```
 
 ### 最適化レポート
@@ -568,7 +566,7 @@ testing_recommendations:
   metrics: ["accuracy", "satisfaction", "cost"]
 
 deployment_strategy:
-  model: "GPT-4 for quality, Claude for safety"
+  model: "GPT-5 for quality, Claude for safety"
   temperature: 0.7
   max_tokens: 2000
   monitoring: "Track success, latency, feedback"
@@ -580,10 +578,10 @@ next_steps:
 ```
 
 ### 使用ガイドライン
-1. **実装**: 最適化されたプロンプトをそのまま使用してください
-2. **パラメータ**: 推奨設定を適用してください
-3. **テスト**: 本番環境投入前にテストケースを実行してください
-4. **モニタリング**: 改善のためにメトリクスを追跡してください
-5. **反復**: パフォーマンスデータに基づいて更新してください
+1. **実装**: 最適化されたプロンプトを正確に使用する
+2. **パラメータ**: 推奨設定を適用する
+3. **テスト**: 本番前にテストケースを実行する
+4. **監視**: 改善のためにメトリクスを追跡する
+5. **反復**: パフォーマンスデータに基づいて更新する
 
-覚えておいてください: 最高のプロンプトは、安全性と効率性を維持しながら、最小限の後処理で一貫して望ましい出力を生成するものです。最適な結果を得るには、定期的な評価が不可欠です。
+覚えておいてください：最高のプロンプトは、安全性と効率性を維持しながら、最小限の後処理で一貫して望ましい出力を生成します。最適な結果を得るには定期的な評価が不可欠です。
