@@ -1988,6 +1988,50 @@
         "./skills/shellcheck-configuration/SKILL.md",
         "./skills/bats-testing-patterns/SKILL.md"
       ]
+    },
+    {
+      "name": "parallel-dev-workflow",
+      "source": "../plugins/parallel-dev-workflow",
+      "description": "Git Worktreeを活用した並行開発ワークフロー、SPEC駆動タスク分割、意味あるテスト基準に基づくTDD、完了チェックリスト管理",
+      "version": "1.0.0",
+      "author": {
+        "name": "amurata",
+        "url": "https://github.com/amurata"
+      },
+      "homepage": "https://github.com/amurata/cc-tools/tree/main/i18n/ja/plugins/parallel-dev-workflow",
+      "repository": "https://github.com/amurata/cc-tools",
+      "license": "MIT",
+      "keywords": [
+        "parallel-development",
+        "git-worktree",
+        "tdd",
+        "tfdd",
+        "github-flow",
+        "spec-driven",
+        "wave-execution",
+        "completion-checklist"
+      ],
+      "category": "workflows",
+      "strict": false,
+      "commands": [
+        "./commands/spec-create.md",
+        "./commands/task-divide.md",
+        "./commands/wave-setup.md",
+        "./commands/parallel-sync.md",
+        "./commands/completion-check.md",
+        "./commands/github-flow-commit.md"
+      ],
+      "agents": [
+        "./agents/spec-architect.md",
+        "./agents/task-divider.md",
+        "./agents/parallel-coordinator.md",
+        "./agents/quality-guardian.md"
+      ],
+      "skills": [
+        "./skills/tdd-meaningful-test.md",
+        "./skills/deep-thinking.md",
+        "./skills/worktree-management.md"
+      ]
     }
   ]
 }

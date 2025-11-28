@@ -2,6 +2,30 @@
 
 このディレクトリには、インストールされた日本語版プラグインが含まれています。
 
+## 🎯 このリポジトリのオリジナルプラグイン
+
+このディレクトリには、claude-code-workflows の日本語翻訳版プラグインに加えて、**このリポジトリで独自に開発されたオリジナルプラグイン**も含まれています。
+
+### parallel-dev-workflow
+
+Git Worktree + 複数AI開発インスタンスによる並行開発ワークフロープラグインです。
+
+**主な特徴:**
+- **SPECファースト**: 仕様書に基づいたタスク分割（仕様書なしでタスク分割を始めることを防止）
+- **TFDD/IDD両対応**: タスクファイル駆動開発とGitHub Issue駆動開発の両方に対応
+- **意味のあるテスト**: カバレッジ数値追求ではなく、テストの意味を重視
+- **完了チェック徹底**: 「追加は半分、削除で完了」の原則を強制
+
+**コンポーネント:**
+
+| カテゴリ | 名前 |
+|---------|------|
+| エージェント | `spec-architect`, `task-divider`, `parallel-coordinator`, `quality-guardian` |
+| コマンド | `/spec-create`, `/task-divide`, `/wave-setup`, `/parallel-sync`, `/completion-check`, `/github-flow-commit` |
+| スキル | `tdd-meaningful-test`, `deep-thinking`, `worktree-management` |
+
+詳細は [`plugins/parallel-dev-workflow/README.md`](plugins/parallel-dev-workflow/README.md) を参照してください。
+
 ## ⚠️ 重要: まだ有効化されていません
 
 `install-ja-plugins.sh` スクリプトを実行しただけでは、プラグインは **インストール（配置）されただけ** の状態です。
